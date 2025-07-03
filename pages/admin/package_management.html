@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Package Management - Campus Portal</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fcampuspor2185back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Section -->
+    <header class="bg-surface shadow-soft border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Campus Logo & Branding -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-semibold text-text-primary">Campus Portal</h1>
+                        <p class="text-sm text-text-secondary">Package Management</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-1">
+                    <a href="admin_dashboard.html" class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                        Dashboard
+                    </a>
+                    <a href="floor_points_management.html" class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                        Floor Points
+                    </a>
+                    <a href="package_management.html" class="px-4 py-2 text-primary bg-primary-50 rounded-md font-medium transition-smooth">
+                        Package Management
+                    </a>
+                    <a href="student_dashboard.html" class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                        Student View
+                    </a>
+                </nav>
+
+                <!-- User Profile & Actions -->
+                <div class="flex items-center space-x-3">
+                    <button id="barcode-scanner-btn" class="p-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-lg transition-smooth" title="Barcode Scanner">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
+                        </svg>
+                    </button>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                            <span class="text-sm font-medium text-primary">MS</span>
+                        </div>
+                        <span class="text-sm font-medium text-text-primary hidden sm:block">Mail Staff</span>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md hover:bg-secondary-100 transition-smooth">
+                    <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 bg-surface">
+            <div class="px-4 py-2 space-y-1">
+                <a href="admin_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Dashboard
+                </a>
+                <a href="floor_points_management.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Floor Points
+                </a>
+                <a href="package_management.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">
+                    Package Management
+                </a>
+                <a href="student_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Student View
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex min-h-screen">
+        <!-- Filter Sidebar -->
+        <aside class="hidden lg:block w-80 bg-surface border-r border-slate-200 p-6">
+            <div class="space-y-6">
+                <!-- Search Section -->
+                <div>
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Search & Filter</h3>
+                    <div class="relative">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <input type="text" id="package-search" placeholder="Search by name, tracking..." class="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth" />
+                    </div>
+                </div>
+
+                <!-- Status Filter -->
+                <div>
+                    <h4 class="font-medium text-text-primary mb-3">Delivery Status</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="status-filter rounded border-slate-300 text-primary focus:ring-primary-500" value="all" checked />
+                            <span class="ml-2 text-sm text-text-secondary">All Packages</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="status-filter rounded border-slate-300 text-warning focus:ring-warning-500" value="ready" />
+                            <span class="ml-2 text-sm text-text-secondary">Ready for Pickup</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="status-filter rounded border-slate-300 text-success focus:ring-success-500" value="delivered" />
+                            <span class="ml-2 text-sm text-text-secondary">Delivered</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="status-filter rounded border-slate-300 text-error focus:ring-error-500" value="returned" />
+                            <span class="ml-2 text-sm text-text-secondary">Returned</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Date Range Filter -->
+                <div>
+                    <h4 class="font-medium text-text-primary mb-3">Date Range</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm text-text-secondary mb-1">From</label>
+                            <input type="date" id="date-from" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth" />
+                        </div>
+                        <div>
+                            <label class="block text-sm text-text-secondary mb-1">To</label>
+                            <input type="date" id="date-to" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Residence Filter -->
+                <div>
+                    <h4 class="font-medium text-text-primary mb-3">Residence</h4>
+                    <select id="residence-filter" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth">
+                        <option value="all">All Residences</option>
+                        <option value="north-hall">North Hall</option>
+                        <option value="south-hall">South Hall</option>
+                        <option value="east-tower">East Tower</option>
+                        <option value="west-tower">West Tower</option>
+                    </select>
+                </div>
+
+                <!-- Package Type Filter -->
+                <div>
+                    <h4 class="font-medium text-text-primary mb-3">Package Type</h4>
+                    <select id="type-filter" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth">
+                        <option value="all">All Types</option>
+                        <option value="standard">Standard</option>
+                        <option value="express">Express</option>
+                        <option value="fragile">Fragile</option>
+                        <option value="oversized">Oversized</option>
+                    </select>
+                </div>
+
+                <!-- Clear Filters -->
+                <button id="clear-filters" class="w-full btn-secondary">
+                    <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    Clear All Filters
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-6">
+            <!-- Page Header -->
+            <div class="mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h2 class="text-fluid-2xl font-semibold text-text-primary">Package Management</h2>
+                        <p class="text-text-secondary mt-1">Manage package deliveries and notifications</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button id="notification-btn" class="btn-secondary flex items-center space-x-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h6v-2H4v2zM4 15h8v-2H4v2zM4 11h8V9H4v2z"/>
+                            </svg>
+                            <span>Send Notifications</span>
+                        </button>
+                        <button id="export-btn" class="btn-secondary flex items-center space-x-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <span>Export</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                <div class="card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-text-secondary">Total Packages</p>
+                            <p class="text-2xl font-semibold text-text-primary font-data">127</p>
+                        </div>
+                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-text-secondary">Ready for Pickup</p>
+                            <p class="text-2xl font-semibold text-warning font-data">23</p>
+                        </div>
+                        <div class="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-warning" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-text-secondary">Delivered Today</p>
+                            <p class="text-2xl font-semibold text-success font-data">18</p>
+                        </div>
+                        <div class="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-text-secondary">Pending Pickup</p>
+                            <p class="text-2xl font-semibold text-error font-data">5</p>
+                        </div>
+                        <div class="w-12 h-12 bg-error-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-error" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Batch Actions -->
+            <div class="card p-4 mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="select-all" class="rounded border-slate-300 text-primary focus:ring-primary-500" />
+                            <span class="ml-2 text-sm text-text-secondary">Select All</span>
+                        </label>
+                        <span id="selected-count" class="text-sm text-text-secondary">0 selected</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <select id="batch-action" class="px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth">
+                            <option value>Batch Actions</option>
+                            <option value="ready">Mark as Ready</option>
+                            <option value="delivered">Mark as Delivered</option>
+                            <option value="returned">Mark as Returned</option>
+                            <option value="notify">Send Notifications</option>
+                        </select>
+                        <button id="apply-batch" class="btn-primary" disabled>Apply</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package Table -->
+            <div class="card overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-secondary-50 border-b border-slate-200">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">
+                                    <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary-500" />
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Student</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Tracking Number</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Arrival Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Sender</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-surface divide-y divide-slate-200" id="package-table-body">
+                            <!-- Package Row 1 -->
+                            <tr class="hover:bg-secondary-50 transition-smooth package-row" data-status="ready">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <input type="checkbox" class="package-checkbox rounded border-slate-300 text-primary focus:ring-primary-500" />
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                                            <span class="text-sm font-medium text-primary">JS</span>
+                                        </div>
+                                        <div class="ml-3">
+                                            <div class="text-sm font-medium text-text-primary">John Smith</div>
+                                            <div class="text-sm text-text-secondary">North Hall - Room 204</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-data text-text-primary">1Z999AA1234567890</div>
+                                    <div class="text-sm text-text-secondary">Amazon</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-text-primary">Today</div>
+                                    <div class="text-sm text-text-secondary">2:30 PM</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="status-warning px-3 py-1 rounded-full text-xs font-medium">Ready for Pickup</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <img src="https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Amazon logo" class="w-8 h-8 rounded object-cover mr-2" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                        <span class="text-sm text-text-primary">Amazon</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex items-center space-x-2">
+                                        <button class="status-toggle-btn text-success hover:text-success-600 transition-smooth" data-status="delivered" title="Mark as Delivered">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="text-text-secondary hover:text-text-primary transition-smooth" title="Add Note">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="text-primary hover:text-primary-700 transition-smooth" title="Send Notification">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h6v-2H4v2zM4 15h8v-2H4v2zM4 11h8V9H4v2z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Package Row 2 -->
+                            <tr class="hover:bg-secondary-50 transition-smooth package-row" data-status="delivered">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <input type="checkbox" class="package-checkbox rounded border-slate-300 text-primary focus:ring-primary-500" />
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-accent-100 rounded-full flex items-center justify-center">
+                                            <span class="text-sm font-medium text-accent">EM</span>
+                                        </div>
+                                        <div class="ml-3">
+                                            <div class="text-sm font-medium text-text-primary">Emily Martinez</div>
+                                            <div class="text-sm text-text-secondary">South Hall - Room 315</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-data text-text-primary">1234567890123456</div>
+                                    <div class="text-sm text-text-secondary">FedEx</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-text-primary">Yesterday</div>
+                                    <div class="text-sm text-text-secondary">11:15 AM</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="status-success px-3 py-1 rounded-full text-xs font-medium">Delivered</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <img src="https://images.pixabay.com/photo/2017/01/31/17/34/delivery-2025194_1280.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="FedEx logo" class="w-8 h-8 rounded object-cover mr-2" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                        <span class="text-sm text-text-primary">FedEx</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-success flex items-center">
+                                            <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                            </svg>
+                                            Delivered
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Package Row 3 -->
+                            <tr class="hover:bg-secondary-50 transition-smooth package-row" data-status="ready">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <input type="checkbox" class="package-checkbox rounded border-slate-300 text-primary focus:ring-primary-500" />
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-success-100 rounded-full flex items-center justify-center">
+                                            <span class="text-sm font-medium text-success">MJ</span>
+                                        </div>
+                                        <div class="ml-3">
+                                            <div class="text-sm font-medium text-text-primary">Michael Johnson</div>
+                                            <div class="text-sm text-text-secondary">East Tower - Room 512</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-data text-text-primary">1Z12345E0205271688</div>
+                                    <div class="text-sm text-text-secondary">UPS</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-text-primary">Today</div>
+                                    <div class="text-sm text-text-secondary">9:15 AM</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="status-warning px-3 py-1 rounded-full text-xs font-medium">Ready for Pickup</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="UPS logo" class="w-8 h-8 rounded object-cover mr-2" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                        <span class="text-sm text-text-primary">UPS</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex items-center space-x-2">
+                                        <button class="status-toggle-btn text-success hover:text-success-600 transition-smooth" data-status="delivered" title="Mark as Delivered">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="text-text-secondary hover:text-text-primary transition-smooth" title="Add Note">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="text-primary hover:text-primary-700 transition-smooth" title="Send Notification">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h6v-2H4v2zM4 15h8v-2H4v2zM4 11h8V9H4v2z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Package Row 4 -->
+                            <tr class="hover:bg-secondary-50 transition-smooth package-row" data-status="returned">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <input type="checkbox" class="package-checkbox rounded border-slate-300 text-primary focus:ring-primary-500" />
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-error-100 rounded-full flex items-center justify-center">
+                                            <span class="text-sm font-medium text-error">SD</span>
+                                        </div>
+                                        <div class="ml-3">
+                                            <div class="text-sm font-medium text-text-primary">Sarah Davis</div>
+                                            <div class="text-sm text-text-secondary">West Tower - Room 308</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-data text-text-primary">9876543210987654</div>
+                                    <div class="text-sm text-text-secondary">USPS</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-text-primary">3 days ago</div>
+                                    <div class="text-sm text-text-secondary">1:45 PM</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="status-error px-3 py-1 rounded-full text-xs font-medium">Returned</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <img src="https://images.pixabay.com/photo/2016/12/06/14/33/mail-1886926_1280.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="USPS logo" class="w-8 h-8 rounded object-cover mr-2" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                        <span class="text-sm text-text-primary">USPS</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-error flex items-center">
+                                            <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                                            </svg>
+                                            Returned
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex items-center justify-between mt-6">
+                <div class="text-sm text-text-secondary">
+                    Showing 1 to 4 of 127 packages
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button class="px-3 py-2 border border-slate-200 rounded-md text-text-secondary hover:bg-secondary-50 transition-smooth" disabled>
+                        Previous
+                    </button>
+                    <button class="px-3 py-2 bg-primary text-white rounded-md">1</button>
+                    <button class="px-3 py-2 border border-slate-200 rounded-md text-text-secondary hover:bg-secondary-50 transition-smooth">2</button>
+                    <button class="px-3 py-2 border border-slate-200 rounded-md text-text-secondary hover:bg-secondary-50 transition-smooth">3</button>
+                    <button class="px-3 py-2 border border-slate-200 rounded-md text-text-secondary hover:bg-secondary-50 transition-smooth">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Barcode Scanner Modal -->
+    <div id="barcode-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-surface rounded-lg max-w-md w-full p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-text-primary">Barcode Scanner</h3>
+                <button id="close-barcode-modal" class="text-text-secondary hover:text-text-primary transition-smooth">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-secondary-100 rounded-lg p-8 text-center">
+                    <svg class="w-16 h-16 mx-auto text-text-secondary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
+                    </svg>
+                    <p class="text-text-secondary">Position barcode within the frame</p>
+                </div>
+                <div class="flex space-x-3">
+                    <button id="start-scan" class="flex-1 btn-primary">Start Scanning</button>
+                    <button id="manual-entry" class="flex-1 btn-secondary">Manual Entry</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div id="notification-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-surface rounded-lg max-w-lg w-full p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-text-primary">Send Notifications</h3>
+                <button id="close-notification-modal" class="text-text-secondary hover:text-text-primary transition-smooth">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">Notification Type</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary-500" checked />
+                            <span class="ml-2 text-sm text-text-secondary">Email Notification</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded border-slate-300 text-primary focus:ring-primary-500" />
+                            <span class="ml-2 text-sm text-text-secondary">SMS Notification</span>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">Message Template</label>
+                    <select class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth">
+                        <option>Package Ready for Pickup</option>
+                        <option>Package Delivered</option>
+                        <option>Package Returned</option>
+                        <option>Custom Message</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">Recipients</label>
+                    <p class="text-sm text-text-secondary mb-2">3 students selected</p>
+                </div>
+                <div class="flex space-x-3">
+                    <button class="flex-1 btn-secondary">Preview</button>
+                    <button class="flex-1 btn-primary">Send Notifications</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-text-secondary text-sm">© 2025 Campus Portal. All Rights Reserved.</p>
+                <div class="mt-4 flex justify-center space-x-6">
+                    <a href="admin_login.html" class="text-text-secondary hover:text-primary transition-smooth text-sm">Admin Login</a>
+                    <a href="#" class="text-text-secondary hover:text-primary transition-smooth text-sm">Support</a>
+                    <a href="#" class="text-text-secondary hover:text-primary transition-smooth text-sm">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Package selection and batch actions
+        const selectAllCheckbox = document.getElementById('select-all');
+        const packageCheckboxes = document.querySelectorAll('.package-checkbox');
+        const selectedCount = document.getElementById('selected-count');
+        const batchActionSelect = document.getElementById('batch-action');
+        const applyBatchBtn = document.getElementById('apply-batch');
+
+        function updateSelectedCount() {
+            const checkedBoxes = document.querySelectorAll('.package-checkbox:checked');
+            const count = checkedBoxes.length;
+            selectedCount.textContent = `${count} selected`;
+            applyBatchBtn.disabled = count === 0 || !batchActionSelect.value;
+        }
+
+        selectAllCheckbox.addEventListener('change', (e) => {
+            packageCheckboxes.forEach(checkbox => {
+                checkbox.checked = e.target.checked;
+            });
+            updateSelectedCount();
+        });
+
+        packageCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateSelectedCount);
+        });
+
+        batchActionSelect.addEventListener('change', updateSelectedCount);
+
+        applyBatchBtn.addEventListener('click', () => {
+            const action = batchActionSelect.value;
+            const checkedBoxes = document.querySelectorAll('.package-checkbox:checked');
+            
+            if (action && checkedBoxes.length > 0) {
+                // Simulate batch action
+                checkedBoxes.forEach(checkbox => {
+                    const row = checkbox.closest('.package-row');
+                    const statusSpan = row.querySelector('span[class*="status-"]');
+                    
+                    if (action === 'ready') {
+                        statusSpan.className = 'status-warning px-3 py-1 rounded-full text-xs font-medium';
+                        statusSpan.textContent = 'Ready for Pickup';
+                        row.dataset.status = 'ready';
+                    } else if (action === 'delivered') {
+                        statusSpan.className = 'status-success px-3 py-1 rounded-full text-xs font-medium';
+                        statusSpan.textContent = 'Delivered';
+                        row.dataset.status = 'delivered';
+                    } else if (action === 'returned') {
+                        statusSpan.className = 'status-error px-3 py-1 rounded-full text-xs font-medium';
+                        statusSpan.textContent = 'Returned';
+                        row.dataset.status = 'returned';
+                    }
+                    
+                    checkbox.checked = false;
+                });
+                
+                selectAllCheckbox.checked = false;
+                batchActionSelect.value = '';
+                updateSelectedCount();
+                
+                // Show success message
+                showNotification('Batch action applied successfully!', 'success');
+            }
+        });
+
+        // Individual status toggle buttons
+        document.querySelectorAll('.status-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const row = e.target.closest('.package-row');
+                const statusSpan = row.querySelector('span[class*="status-"]');
+                const newStatus = btn.dataset.status;
+                
+                if (newStatus === 'delivered') {
+                    statusSpan.className = 'status-success px-3 py-1 rounded-full text-xs font-medium';
+                    statusSpan.textContent = 'Delivered';
+                    row.dataset.status = 'delivered';
+                    
+                    // Replace action buttons with delivered status
+                    const actionsCell = row.querySelector('td:last-child');
+                    actionsCell.innerHTML = `
+                        <div class="flex items-center space-x-2">
+                            <span class="text-success flex items-center">
+                                <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                Delivered
+                            </span>
+                        </div>
+                    `;
+                    
+                    showNotification('Package marked as delivered!', 'success');
+                }
+            });
+        });
+
+        // Search functionality
+        const packageSearch = document.getElementById('package-search');
+        packageSearch.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.package-row').forEach(row => {
+                const studentName = row.querySelector('.text-sm.font-medium').textContent.toLowerCase();
+                const trackingNumber = row.querySelector('.font-data').textContent.toLowerCase();
+                const matches = studentName.includes(searchTerm) || trackingNumber.includes(searchTerm);
+                row.style.display = matches ? 'table-row' : 'none';
+            });
+        });
+
+        // Status filter
+        document.querySelectorAll('.status-filter').forEach(filter => {
+            filter.addEventListener('change', () => {
+                const checkedFilters = Array.from(document.querySelectorAll('.status-filter:checked')).map(f => f.value);
+                
+                document.querySelectorAll('.package-row').forEach(row => {
+                    const status = row.dataset.status;
+                    const shouldShow = checkedFilters.includes('all') || checkedFilters.includes(status);
+                    row.style.display = shouldShow ? 'table-row' : 'none';
+                });
+            });
+        });
+
+        // Clear filters
+        document.getElementById('clear-filters').addEventListener('click', () => {
+            document.getElementById('package-search').value = '';
+            document.getElementById('date-from').value = '';
+            document.getElementById('date-to').value = '';
+            document.getElementById('residence-filter').value = 'all';
+            document.getElementById('type-filter').value = 'all';
+            
+            document.querySelectorAll('.status-filter').forEach(filter => {
+                filter.checked = filter.value === 'all';
+            });
+            
+            document.querySelectorAll('.package-row').forEach(row => {
+                row.style.display = 'table-row';
+            });
+        });
+
+        // Barcode scanner modal
+        const barcodeBtn = document.getElementById('barcode-scanner-btn');
+        const barcodeModal = document.getElementById('barcode-modal');
+        const closeBarcodeModal = document.getElementById('close-barcode-modal');
+
+        barcodeBtn.addEventListener('click', () => {
+            barcodeModal.classList.remove('hidden');
+        });
+
+        closeBarcodeModal.addEventListener('click', () => {
+            barcodeModal.classList.add('hidden');
+        });
+
+        document.getElementById('start-scan').addEventListener('click', () => {
+            showNotification('Barcode scanning started...', 'info');
+            barcodeModal.classList.add('hidden');
+        });
+
+        document.getElementById('manual-entry').addEventListener('click', () => {
+            const trackingNumber = prompt('Enter tracking number:');
+            if (trackingNumber) {
+                showNotification(`Package ${trackingNumber} processed!`, 'success');
+            }
+            barcodeModal.classList.add('hidden');
+        });
+
+        // Notification modal
+        const notificationBtn = document.getElementById('notification-btn');
+        const notificationModal = document.getElementById('notification-modal');
+        const closeNotificationModal = document.getElementById('close-notification-modal');
+
+        notificationBtn.addEventListener('click', () => {
+            notificationModal.classList.remove('hidden');
+        });
+
+        closeNotificationModal.addEventListener('click', () => {
+            notificationModal.classList.add('hidden');
+        });
+
+        // Export functionality
+        document.getElementById('export-btn').addEventListener('click', () => {
+            showNotification('Export started... Download will begin shortly.', 'info');
+        });
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-20 right-4 z-50 p-4 rounded-lg shadow-elevated max-w-sm animate-slide-up`;
+            
+            if (type === 'success') {
+                notification.className += ' bg-success-50 text-success-600 border border-success-100';
+            } else if (type === 'error') {
+                notification.className += ' bg-error-50 text-error-600 border border-error-100';
+            } else {
+                notification.className += ' bg-primary-50 text-primary-600 border border-primary-100';
+            }
+            
+            notification.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    <span class="text-sm font-medium">${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Real-time updates simulation
+        setInterval(() => {
+            // Simulate real-time package status updates
+            const randomRow = document.querySelectorAll('.package-row')[Math.floor(Math.random() * document.querySelectorAll('.package-row').length)];
+            if (randomRow && Math.random() < 0.1) { // 10% chance every 30 seconds
+                randomRow.classList.add('animate-fade-in');
+                setTimeout(() => {
+                    randomRow.classList.remove('animate-fade-in');
+                }, 300);
+            }
+        }, 30000);
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
