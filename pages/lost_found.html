@@ -124,22 +124,22 @@
                     </div>
                     <div>
                         <h1 class="text-xl font-semibold text-text-primary">Thrive Scholar</h1>
-                        <p class="text-sm text-text-secondary">Main Office</p>
+                        <p class="text-sm text-text-secondary">SA2 Main Office</p>
                     </div>
                 </div>
                 
                 <nav class="hidden md:flex items-center space-x-1">
-                    <a href="homepage.html" class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                        Home
-                    </a>
-                    <a href="student_dashboard.html" class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                        Student Dashboard
-                    </a>
-                    <a href="print_request.html" class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                        Print Request
-                    </a>
-                    <a href="lost_found_admin.html" class="px-4 py-2 text-primary bg-primary-50 rounded-md font-medium transition-smooth">
-                        Lost & Found Admin
+                    <a href="homepage.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">
+                    Home
+                </a>
+                <a href="student_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Student Dashboard
+                </a>
+                <a href="print_request.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Print Request
+                </a>
+                <a href="lost_found.html" class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Lost & Found
                     </a>
                 </nav>
 
@@ -153,15 +153,18 @@
 
         <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 bg-surface">
             <div class="px-4 py-2 space-y-1">
-                <a href="student_dashboard.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">
-                    Dashboard
+                <a href="homepage.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">
+                    Home
                 </a>
-                <a href="admin_login.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Admin Login
+                <a href="student_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Student Dashboard
                 </a>
-                <a href="lost_found_admin.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Lost & Found Admin
+                <a href="print_request.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Print Request
                 </a>
+                <a href="lost_found.html" class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Lost & Found
+                    </a>
             </div>
         </div>
     </header>
@@ -216,6 +219,7 @@
         <section class="mb-8 animate-fade-in">
             <div class="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                 <h2 class="text-fluid-xl font-semibold text-text-primary">All Found Items</h2>
+                
                 <div class="flex items-center space-x-2">
                     <div class="relative flex-1 max-w-md">
                         <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -232,6 +236,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="found-items-grid">
                 <p id="no-found-items-message" class="text-text-secondary col-span-full text-center hidden">No found items reported yet.</p>
             </div>
+            
         </section>
 
         <section class="animate-fade-in">
@@ -488,5 +493,6 @@
     }
 </script>
 
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
 </body>
 </html>
