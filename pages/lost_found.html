@@ -130,17 +130,17 @@
                 
                 <nav class="hidden md:flex items-center space-x-1">
                     <a href="homepage.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">
-                    Home
-                </a>
-                <a href="student_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Student Dashboard
-                </a>
-                <a href="print_request.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Print Request
-                </a>
-                <a href="lost_found.html" class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Lost & Found
+                        Home
                     </a>
+                    <a href="student_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                        Student Dashboard
+                    </a>
+                    <a href="print_request.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                        Print Request
+                    </a>
+                    <a href="lost_found.html" class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                        Lost & Found
+                        </a>
                 </nav>
 
                 <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md hover:bg-secondary-100 transition-smooth">
@@ -184,7 +184,7 @@
             </div>
         </section>
 
-        <section class="mb-8 animate-fade-in">
+        <!-- <section class="mb-8 animate-fade-in">
             <h2 class="text-fluid-xl font-semibold text-text-primary mb-4">Add New Item</h2>
             <div class="card p-6">
                 <form id="lost-found-form" class="space-y-4">
@@ -214,7 +214,7 @@
                     <button type="submit" class="btn-primary w-full">Add Item</button>
                 </form>
             </div>
-        </section>
+        </section> -->
 
         <section class="mb-8 animate-fade-in">
             <div class="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
@@ -234,12 +234,168 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="found-items-grid">
+                <!-- add lost items here. -->
+                <div class="card p-6 hover-lift transition-smooth animate-fade-in border border-slate-300">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-text-primary">Beats Headphone</h3>
+                                <p class="text-sm text-text-secondary">Reported by a scholars.</p>
+                            </div>
+                        </div>
+                        <span class="status-success px-3 py-1 rounded-full text-xs font-medium">Found</span>
+                    </div>
+                    <img src="https://i5.walmartimages.com/seo/Beats-Solo4-Wireless-Headphones-On-Ear-Wireless-Headphones-Slate-Blue_c7868a4b-c910-4f4a-83e7-2b5f20e7457f.290fc1bd987687c21c4f824a7181f76d.png?odnHeight=573&odnWidth=573&odnBg=FFFFFF" alt="Black Backpack" class="w-full h-80 object-cover rounded-lg mb-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Reported On</span>
+                            <span class="font-medium text-text-primary">07/07/2024</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Contact</span>
+                            <span class="font-medium text-text-primary">sa2mainoffice@thrivesummer.org</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-200 text-center">
+                        <p class="text-sm text-text-secondary">For more details or to claim, visit the <span class="font-semibold text-primary">Main Office</span>.</p>
+                    </div>
+                </div>
+
+                <div class="card p-6 hover-lift transition-smooth animate-fade-in border border-slate-300">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-text-primary">Water Bottle- Thrive Scholars</h3>
+                                <p class="text-sm text-text-secondary">Found Outside Dinning.</p>
+                            </div>
+                        </div>
+                        <span class="status-success px-3 py-1 rounded-full text-xs font-medium">Found</span>
+                    </div>
+                    <img src="/thrive_mainoffice/img/item (4).jpg" alt="Water Bottle" class="w-full h-80 object-cover rounded-lg mb-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Reported On</span>
+                            <span class="font-medium text-text-primary">07/05/2025</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Contact</span>
+                            <span class="font-medium text-text-primary">sa2mainoffice@thrivesummer.org</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-200 text-center">
+                        <p class="text-sm text-text-secondary">For more details or to claim, visit the <span class="font-semibold text-primary">Main Office</span>.</p>
+                    </div>
+                </div>
+
+                <div class="card p-6 hover-lift transition-smooth animate-fade-in border border-slate-300">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-text-primary">Hair Band</h3>
+                                <p class="text-sm text-text-secondary">Found in the main auditorium.</p>
+                            </div>
+                        </div>
+                        <span class="status-success px-3 py-1 rounded-full text-xs font-medium">Found</span>
+                    </div>
+                     <img src="/thrive_mainoffice/img/item (2).jpg" alt="iPhone" class="w-full h-80 object-cover rounded-lg mb-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Reported On</span>
+                            <span class="font-medium text-text-primary">07/01/2025</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Contact</span>
+                            <span class="font-medium text-text-primary">sa2mainoffice@thrivesummer.org</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-200 text-center">
+                        <p class="text-sm text-text-secondary">For more details or to claim, visit the <span class="font-semibold text-primary">Main Office</span>.</p>
+                    </div>
+                </div>
+
+                <div class="card p-6 hover-lift transition-smooth animate-fade-in border border-slate-300">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-text-primary">Hand Wear</h3>
+                                <p class="text-sm text-text-secondary">Found in the main auditorium.</p>
+                            </div>
+                        </div>
+                        <span class="status-success px-3 py-1 rounded-full text-xs font-medium">Found</span>
+                    </div>
+                     <img src="/thrive_mainoffice/img/item (3).jpg" alt="iPhone" class="w-full h-80 object-cover rounded-lg mb-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Reported On</span>
+                            <span class="font-medium text-text-primary">07/01/2025</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Contact</span>
+                            <span class="font-medium text-text-primary">sa2mainoffice@thrivesummer.org</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-200 text-center">
+                        <p class="text-sm text-text-secondary">For more details or to claim, visit the <span class="font-semibold text-primary">Main Office</span>.</p>
+                    </div>
+                </div>
+
+                <div class="card p-6 hover-lift transition-smooth animate-fade-in border border-slate-300">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-text-primary">Water Bottle</h3>
+                                <p class="text-sm text-text-secondary">Reported by a scholar.</p>
+                            </div>
+                        </div>
+                        <span class="status-success px-3 py-1 rounded-full text-xs font-medium">Found</span>
+                    </div>
+                     <img src="/thrive_mainoffice/img/item (1).jpg" alt="iPhone" class="w-full h-80 object-cover rounded-lg mb-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Reported On</span>
+                            <span class="font-medium text-text-primary">07/01/2025</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Contact</span>
+                            <span class="font-medium text-text-primary">sa2mainoffice@thrivesummer.org</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-200 text-center">
+                        <p class="text-sm text-text-secondary">For more details or to claim, visit the <span class="font-semibold text-primary">Main Office</span>.</p>
+                    </div>
+                </div>
+
                 <p id="no-found-items-message" class="text-text-secondary col-span-full text-center hidden">No found items reported yet.</p>
             </div>
             
         </section>
 
-        <section class="animate-fade-in">
+        <!-- <section class="animate-fade-in">
             <div class="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                 <h2 class="text-fluid-xl font-semibold text-text-primary">All Lost Items</h2>
                 <div class="flex items-center space-x-2">
@@ -258,7 +414,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="lost-items-grid">
                 <p id="no-lost-items-message" class="text-text-secondary col-span-full text-center hidden">No lost items reported yet.</p>
             </div>
-        </section>
+        </section> -->
 
         <div id="loading-indicator" class="hidden fixed top-20 right-4 bg-surface shadow-elevated rounded-lg p-4 z-50">
             <div class="flex items-center space-x-3">
@@ -374,19 +530,35 @@
     }
 
     function displayItems(items, targetGrid, noItemsMessage) {
-        targetGrid.innerHTML = '';
-        if (items.length === 0) {
+        // Clear only dynamically added items
+        const dynamicItems = targetGrid.querySelectorAll('.reported-item-card');
+        dynamicItems.forEach(item => item.remove());
+        
+        const staticItemCount = targetGrid.children.length;
+
+        if (items.length === 0 && staticItemCount === 0) {
             noItemsMessage.classList.remove('hidden');
         } else {
             noItemsMessage.classList.add('hidden');
-            items.forEach(item => targetGrid.appendChild(renderItemCard(item)));
+             // Prepend new items so static ones remain at the end
+            items.forEach(item => targetGrid.prepend(renderItemCard(item)));
         }
     }
+
 
     function filterAndSearchItems(searchEl, filterEl, statusToShow, targetGrid, noItemsMessage) {
         const searchTerm = searchEl.value.toLowerCase();
         const filterStatus = filterEl.value;
         const allItems = loadItems();
+        
+        // Hide/show static cards based on search
+        const staticCards = targetGrid.querySelectorAll('.card:not(.reported-item-card)');
+        staticCards.forEach(card => {
+            const name = (card.querySelector('h3')?.textContent || '').toLowerCase();
+            const description = (card.querySelector('p')?.textContent || '').toLowerCase();
+            const matches = name.includes(searchTerm) || description.includes(searchTerm);
+            card.style.display = matches ? 'block' : 'none';
+        });
 
         const filtered = allItems.filter(item => {
             const matchesSearch = item.name.toLowerCase().includes(searchTerm) ||
