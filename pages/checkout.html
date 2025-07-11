@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholar Checkout Form- Main Office</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- We will use ES6 Modules for Three.js to support the GLTFLoader -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px #bfdbfe;
+        }
+        .btn-add {
+            background-color: #22c55e;
+        }
+        .btn-add:hover {
+            background-color: #16a34a;
+        }
+        #form-status {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .status-error { background-color: #f8d7da; color: #721c24; }
+        /* Style for the 3D canvas container */
+        #robot-canvas-container {
+            width: 100%;
+            height: 250px; /* Increased height for the new model */
+            margin-bottom: 1rem;
+            background-color: #e0e0e0; /* A light gray background for the scene */
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+
+<!-- Container for the 3D robot animation -->
+<div id="robot-canvas-container"></div>
+
+<div class="max-w-4xl mx-auto p-6 sm:p-8 bg-white rounded-2xl shadow-lg -mt-16 relative z-10">
+    <div class="border-b border-gray-200 pb-4 mb-6">
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Scholar Checkout Form- Main Office</h1>
+        <p class="mt-1 text-sm text-gray-500">Please fill out all required fields.</p>
+    </div>
+    
+    <div class="mb-6 p-4 bg-blue-50 border border-blue-200 text-blue-800 rounded-lg">
+        <p class="font-medium">Please Note: The exact check-out time is recorded automatically when you click the "Submit" button. You do not need to enter it.</p>
+    </div>
+
+    <form id="checkoutForm">
+        <!-- Main Checkout Information -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="form-group">
+                <label for="officeStaffOut" class="block text-sm font-medium text-gray-700 mb-1">Main Office Staff Checking Out</label>
+                <input type="text" id="officeStaffOut" name="officeStaffOut" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+            </div>
+            <div class="form-group">
+                <label for="scholarWithId" class="block text-sm font-medium text-gray-700 mb-1">Scholar (with ID) Full Name</label>
+                <input type="text" id="scholarWithId" name="scholarWithId" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+            </div>
+            <div class="form-group">
+                <label for="idChecked" class="block text-sm font-medium text-gray-700 mb-1">ID Checked</label>
+                <select id="idChecked" name="idChecked" class="form-select w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    <option value="Yes" selected>Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="checkoutDate" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                <input type="date" id="checkoutDate" name="checkoutDate" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+            </div>
+            <div class="form-group">
+                <label for="mainReturnTime" class="block text-sm font-medium text-gray-700 mb-1">Expected Return Time (for group)</label>
+                <input type="time" id="mainReturnTime" name="mainReturnTime" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+            </div>
+            <div class="form-group md:col-span-2">
+                <label for="reason" class="block text-sm font-medium text-gray-700 mb-1">Reason For Check Out</label>
+                <input type="text" id="reason" name="reason" class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+            </div>
+        </div>
+
+        <!-- Accompanying Scholars Section -->
+        <h2 class="text-xl font-semibold text-gray-800 mt-8 pt-6 border-t border-gray-200">Accompanying Scholar(s) Details</h2>
+        <div id="accompanying-scholars-container" class="mt-4 space-y-6">
+            <div class="accompanying-scholar-section p-4 border border-gray-200 rounded-lg bg-gray-50" data-scholar-id="1">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                     <div class="form-group">
+                        <label for="accompanyingScholarName1" class="block text-sm font-medium text-gray-700 mb-1">Scholar Name 1</label>
+                        <input type="text" name="accompanyingScholarName" id="accompanyingScholarName1" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div class="form-group">
+                        <label for="note1" class="block text-sm font-medium text-gray-700 mb-1">Note 1 (Optional)</label>
+                        <input type="text" name="accompanyingScholarNote" id="note1" class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn-add mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" onclick="addScholar()">
+            <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>
+            Add Another Scholar
+        </button>
+
+        <!-- Final Check-In Section -->
+        <h2 class="text-xl font-semibold text-gray-800 mt-8 pt-6 border-t border-gray-200">Final Check-In (Optional)</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <div class="form-group">
+                <label for="staffIn" class="block text-sm font-medium text-gray-700 mb-1">Main Office Staff Checking In</label>
+                <input type="text" id="staffIn" name="staffIn" class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+            </div>
+            <div class="form-group">
+                <label for="checkinTime" class="block text-sm font-medium text-gray-700 mb-1">Actual Return/Check-In Time</label>
+                <input type="time" id="checkinTime" name="checkinTime" class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+            </div>
+            <div class="form-group md:col-span-2">
+                <label for="generalNotes" class="block text-sm font-medium text-gray-700 mb-1">General Notes</label>
+                <input type="text" id="generalNotes" name="generalNotes" class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+            </div>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-gray-200 flex justify-end">
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Submit
+            </button>
+        </div>
+    </form>
+    <div id="form-status" class="mt-6 p-4 rounded-md text-center font-medium hidden"></div>
+</div>
+
+<!-- Using an import map for Three.js modules -->
+<script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/"
+        }
+    }
+</script>
+
+<script type="module">
+    // --- SCRIPT FOR 3D ROBOT ANIMATION ---
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+    let container, clock, mixer, actions, activeAction, previousAction;
+    let camera, scene, renderer, model;
+
+    const emotes = [ 'Jump', 'Yes', 'No', 'Wave', 'Punch', 'ThumbsUp' ];
+    const api = { state: 'Idle' };
+
+    init();
+
+    function init() {
+        container = document.getElementById('robot-canvas-container');
+        clock = new THREE.Clock();
+
+        // Scene and Camera
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xe0e0e0);
+        scene.fog = new THREE.Fog(0xe0e0e0, 20, 100);
+
+        camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.25, 100);
+        camera.position.set(-5, 3, 10);
+        camera.lookAt(0, 2, 0);
+        
+        // Lighting
+        const hemiLight = new THREE.HemisphereLight(0xffffff, 0x8d8d8d, 3);
+        hemiLight.position.set(0, 20, 0);
+        scene.add(hemiLight);
+
+        const dirLight = new THREE.DirectionalLight(0xffffff, 3);
+        dirLight.position.set(0, 20, 10);
+        scene.add(dirLight);
+
+        // Ground
+        const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshPhongMaterial({ color: 0xcbcbcb, depthWrite: false }));
+        mesh.rotation.x = -Math.PI / 2;
+        scene.add(mesh);
+
+        const grid = new THREE.GridHelper(200, 40, 0x000000, 0x000000);
+        grid.material.opacity = 0.2;
+        grid.material.transparent = true;
+        scene.add(grid);
+
+        // Model Loader
+        const loader = new GLTFLoader();
+        loader.load('https://threejs.org/examples/models/gltf/RobotExpressive/RobotExpressive.glb', function (gltf) {
+            model = gltf.scene;
+            scene.add(model);
+            setupAnimations(gltf.animations);
+        }, undefined, function (e) {
+            console.error(e);
+        });
+
+        // Renderer
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setAnimationLoop(animate);
+        container.appendChild(renderer.domElement);
+
+        window.addEventListener('resize', onWindowResize);
+    }
+
+    function setupAnimations(animations) {
+        mixer = new THREE.AnimationMixer(model);
+        actions = {};
+
+        for (let i = 0; i < animations.length; i++) {
+            const clip = animations[i];
+            const action = mixer.clipAction(clip);
+            actions[clip.name] = action;
+
+            if (emotes.indexOf(clip.name) >= 0) {
+                action.clampWhenFinished = true;
+                action.loop = THREE.LoopOnce;
+            }
+        }
+        
+        // Default action
+        activeAction = actions['Idle'];
+        activeAction.play();
+
+        // Start autonomous emote animations
+        setInterval(playRandomEmote, 10000); // Play a random emote every 10 seconds
+    }
+    
+    function playRandomEmote() {
+        const randomEmote = emotes[Math.floor(Math.random() * emotes.length)];
+        fadeToAction(randomEmote, 0.2);
+
+        // Add a listener to return to idle state when the emote is finished
+        mixer.addEventListener('finished', restoreState);
+    }
+
+    function restoreState() {
+        mixer.removeEventListener('finished', restoreState);
+        fadeToAction(api.state, 0.2); // Fade back to Idle
+    }
+
+    function fadeToAction(name, duration) {
+        previousAction = activeAction;
+        activeAction = actions[name];
+
+        if (previousAction !== activeAction) {
+            previousAction.fadeOut(duration);
+        }
+
+        activeAction
+            .reset()
+            .setEffectiveTimeScale(1)
+            .setEffectiveWeight(1)
+            .fadeIn(duration)
+            .play();
+    }
+
+    function onWindowResize() {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+    }
+
+    function animate() {
+        const dt = clock.getDelta();
+        if (mixer) mixer.update(dt);
+        renderer.render(scene, camera);
+    }
+</script>
+
+<script>
+    // --- SCRIPT FOR FORM FUNCTIONALITY (NO CHANGES HERE) ---
+    document.addEventListener("DOMContentLoaded", function() {
+        const now = new Date();
+        const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+        document.getElementById('checkoutDate').value = localDate;
+    });
+
+    let scholarCount = 1;
+
+    function addScholar() {
+        scholarCount++;
+        const container = document.getElementById('accompanying-scholars-container');
+        const newScholarSection = document.createElement('div');
+        newScholarSection.className = 'accompanying-scholar-section p-4 mt-4 border border-gray-200 rounded-lg bg-gray-50';
+        newScholarSection.setAttribute('data-scholar-id', scholarCount);
+        newScholarSection.innerHTML = `
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="form-group">
+                    <label for="accompanyingScholarName${scholarCount}" class="block text-sm font-medium text-gray-700 mb-1">Scholar Name ${scholarCount}</label>
+                    <input type="text" name="accompanyingScholarName" id="accompanyingScholarName${scholarCount}" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                </div>
+                <div class="form-group">
+                    <label for="note${scholarCount}" class="block text-sm font-medium text-gray-700 mb-1">Note ${scholarCount} (Optional)</label>
+                    <input type="text" name="accompanyingScholarNote" id="note${scholarCount}" class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                </div>
+            </div>`;
+        container.appendChild(newScholarSection);
+    }
+
+    const form = document.getElementById('checkoutForm');
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const statusDiv = document.getElementById('form-status');
+        statusDiv.style.display = 'block';
+        statusDiv.className = 'mt-6 p-4 rounded-md text-center font-medium bg-blue-100 text-blue-800';
+        statusDiv.textContent = 'Submitting...';
+        
+        // IMPORTANT: Remember to paste your Web App URL here.
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpb4Wa7ZFPQUJHmer21uxT7N5DvpR78WLuSlpfiJx8qse3k-T_wrcBO75hEyvnh5hr/exec"; 
+
+        const accompanyingScholarsArray = [];
+        document.querySelectorAll('.accompanying-scholar-section').forEach(section => {
+            const nameInput = section.querySelector('input[name="accompanyingScholarName"]');
+            const noteInput = section.querySelector('input[name="accompanyingScholarNote"]');
+            if (nameInput.value) {
+                 accompanyingScholarsArray.push({
+                    name: nameInput.value,
+                    note: noteInput.value
+                });
+            }
+        });
+        
+        const formData = {
+            officeStaffOut: document.getElementById('officeStaffOut').value,
+            scholarWithId: document.getElementById('scholarWithId').value,
+            idChecked: document.getElementById('idChecked').value,
+            checkoutDate: document.getElementById('checkoutDate').value,
+            mainReturnTime: document.getElementById('mainReturnTime').value,
+            reason: document.getElementById('reason').value,
+            accompanyingScholars: accompanyingScholarsArray,
+            staffIn: document.getElementById('staffIn').value,
+            checkinTime: document.getElementById('checkinTime').value,
+            generalNotes: document.getElementById('generalNotes').value
+        };
+
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                statusDiv.textContent = 'Form submitted successfully!';
+                statusDiv.className = 'mt-6 p-4 rounded-md text-center font-medium bg-green-100 text-green-800';
+                form.reset();
+                const now = new Date();
+                document.getElementById('checkoutDate').value = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+                const container = document.getElementById('accompanying-scholars-container');
+                while (container.children.length > 1) {
+                    container.removeChild(container.lastChild);
+                }
+                scholarCount = 1;
+            } else {
+                throw new Error(data.message || 'The script returned an error.');
+            }
+        })
+        .catch(err => {
+            statusDiv.textContent = `Error: ${err.message}. Please check script deployment permissions.`;
+            statusDiv.className = 'mt-6 p-4 rounded-md text-center font-medium status-error';
+            console.error("Fetch Error:", err);
+        });
+    });
+</script>
+
+</body>
+</html>

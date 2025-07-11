@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - SA2 Main Office</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fcampuspor2185back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header Section -->
+    <header class="bg-surface shadow-soft border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Campus Logo & Branding -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-semibold text-text-primary">Campus Portal</h1>
+                        <p class="text-sm text-text-secondary">Admin Dashboard</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-1">
+                    <a href="admin_dashboard.html" class="px-4 py-2 text-primary bg-primary-50 rounded-md font-medium transition-smooth">
+                        Dashboard
+                    </a>
+                    <a href="student_dashboard.html" class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                        Student View
+                    </a>
+                    <a href="admin_login.html" class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                        Logout
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md hover:bg-secondary-100 transition-smooth">
+                    <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 bg-surface">
+            <div class="px-4 py-2 space-y-1">
+                <a href="admin_dashboard.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">
+                    Dashboard
+                </a>
+                <a href="student_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Student View
+                </a>
+                <a href="admin_login.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 lg:pt-16 bg-surface border-r border-slate-200">
+            <div class="flex-1 flex flex-col min-h-0 pt-5 pb-4 overflow-y-auto">
+                <div class="flex-1 px-3 space-y-1">
+                    <!-- Dashboard -->
+                    <a href="admin_dashboard.html" class="bg-primary-50 text-primary group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                        <svg class="text-primary mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"/>
+                        </svg>
+                        Dashboard
+                    </a>
+
+                    <!-- Floor Points Management -->
+                    <a href="floor_points_management.html" class="text-text-secondary hover:bg-secondary-100 hover:text-text-primary group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-smooth">
+                        <svg class="text-text-secondary group-hover:text-text-primary mr-3 h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                        </svg>
+                        Floor Points Management
+                    </a>
+
+                    <!-- Mail Management -->
+                    <a href="package_management.html" class="text-text-secondary hover:bg-secondary-100 hover:text-text-primary group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-smooth">
+                        <svg class="text-text-secondary group-hover:text-text-primary mr-3 h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        Mail Management
+                    </a>
+
+                    <!-- Reports -->
+                    <a href="#" class="text-text-secondary hover:bg-secondary-100 hover:text-text-primary group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-smooth">
+                        <svg class="text-text-secondary group-hover:text-text-primary mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Reports
+                    </a>
+
+                    <!-- Settings -->
+                    <a href="#" class="text-text-secondary hover:bg-secondary-100 hover:text-text-primary group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-smooth">
+                        <svg class="text-text-secondary group-hover:text-text-primary mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Settings
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 lg:pl-64">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <!-- Welcome Section -->
+                <section class="mb-8">
+                    <div class="bg-gradient-to-r from-primary-50 to-accent-50 rounded-xl p-6 border border-primary-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h2 class="text-fluid-2xl font-semibold text-text-primary mb-2">Welcome Back, Admin!</h2>
+                                <p class="text-text-secondary">Manage floor points and package deliveries efficiently</p>
+                            </div>
+                            <div class="hidden sm:block">
+                                <img src="https://images.pixabay.com/photos/2016/11/29/06/15/plans-1867745_1280.jpg" alt="Admin dashboard illustration" class="w-24 h-24 rounded-lg object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Summary Cards -->
+                <section class="mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Active Packages Card -->
+                        <div class="card p-6 hover-lift transition-smooth">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-text-secondary">Active Packages</p>
+                                    <p class="text-2xl font-semibold text-text-primary font-data">24</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex items-center text-sm">
+                                    <span class="text-success font-medium">+3</span>
+                                    <span class="text-text-secondary ml-1">from yesterday</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Deliveries Card -->
+                        <div class="card p-6 hover-lift transition-smooth">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-text-secondary">Pending Deliveries</p>
+                                    <p class="text-2xl font-semibold text-text-primary font-data">8</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex items-center text-sm">
+                                    <span class="text-warning font-medium">-2</span>
+                                    <span class="text-text-secondary ml-1">from yesterday</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Point Updates Card -->
+                        <div class="card p-6 hover-lift transition-smooth">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-text-secondary">Point Updates Today</p>
+                                    <p class="text-2xl font-semibold text-text-primary font-data">12</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex items-center text-sm">
+                                    <span class="text-success font-medium">+5</span>
+                                    <span class="text-text-secondary ml-1">from yesterday</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- System Alerts Card -->
+                        <div class="card p-6 hover-lift transition-smooth">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-error-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-text-secondary">System Alerts</p>
+                                    <p class="text-2xl font-semibold text-text-primary font-data">2</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex items-center text-sm">
+                                    <span class="text-error font-medium">New</span>
+                                    <span class="text-text-secondary ml-1">requires attention</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab Navigation -->
+                <section class="mb-6">
+                    <div class="flex space-x-1 bg-secondary-100 p-1 rounded-lg w-fit">
+                        <button id="overview-tab" class="tab-btn active px-6 py-2 rounded-md font-medium transition-smooth bg-surface text-primary shadow-soft">
+                            <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                            Overview
+                        </button>
+                        <button id="floor-points-tab" class="tab-btn px-6 py-2 rounded-md font-medium transition-smooth text-text-secondary hover:text-text-primary">
+                            <svg class="w-5 h-5 inline-block mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                            </svg>
+                            Floor Points
+                        </button>
+                        <button id="mail-management-tab" class="tab-btn px-6 py-2 rounded-md font-medium transition-smooth text-text-secondary hover:text-text-primary">
+                            <svg class="w-5 h-5 inline-block mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            Mail Management
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Overview Section -->
+                <section id="overview-section" class="animate-fade-in">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Recent Activities -->
+                        <div class="card p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-text-primary">Recent Activities</h3>
+                                <button class="text-primary hover:text-primary-700 text-sm font-medium transition-smooth">
+                                    View All
+                                </button>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-8 h-8 bg-success-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm text-text-primary">Added 50 points to Alpha Team</p>
+                                        <p class="text-xs text-text-secondary">2 hours ago by Admin</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-8 h-8 bg-warning-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-4 h-4 text-warning" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm text-text-primary">Package marked as delivered</p>
+                                        <p class="text-xs text-text-secondary">3 hours ago by Mail Staff</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm text-text-primary">Beta Team points updated</p>
+                                        <p class="text-xs text-text-secondary">5 hours ago by Admin</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="card p-6">
+                            <h3 class="text-lg font-semibold text-text-primary mb-4">Quick Actions</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <a href="floor_points_management.html" class="btn-primary text-center block min-h-touch">
+                                    <svg class="w-5 h-5 inline-block mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                                    </svg>
+                                    Manage Points
+                                </a>
+                                <a href="package_management.html" class="btn-secondary text-center block min-h-touch">
+                                    <svg class="w-5 h-5 inline-block mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                    Update Packages
+                                </a>
+                                <button class="btn-secondary min-h-touch" onclick="generateReport()">
+                                    <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                    </svg>
+                                    Generate Report
+                                </button>
+                                <button class="btn-secondary min-h-touch" onclick="showSettings()">
+                                    <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    Settings
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Alerts -->
+                    <div class="mt-8">
+                        <div class="card p-6">
+                            <h3 class="text-lg font-semibold text-text-primary mb-4">System Alerts</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-3 p-4 bg-warning-50 border border-warning-100 rounded-lg">
+                                    <svg class="w-5 h-5 text-warning flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                                    </svg>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium text-warning-600">Package Delivery Overdue</p>
+                                        <p class="text-sm text-text-secondary">3 packages have been in the mail room for over 7 days</p>
+                                    </div>
+                                    <button class="text-warning hover:text-warning-600 text-sm font-medium transition-smooth">
+                                        Review
+                                    </button>
+                                </div>
+                                <div class="flex items-start space-x-3 p-4 bg-error-50 border border-error-100 rounded-lg">
+                                    <svg class="w-5 h-5 text-error flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                                    </svg>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium text-error-600">System Maintenance Required</p>
+                                        <p class="text-sm text-text-secondary">Database backup scheduled for tonight at 2:00 AM</p>
+                                    </div>
+                                    <button class="text-error hover:text-error-600 text-sm font-medium transition-smooth">
+                                        Acknowledge
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Floor Points Section -->
+                <section id="floor-points-section" class="hidden animate-fade-in">
+                    <div class="card p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-semibold text-text-primary">Floor Points Quick Management</h3>
+                            <a href="floor_points_management.html" class="btn-primary">
+                                <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                Full Management
+                            </a>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-slate-200">
+                                <thead class="bg-secondary-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Team</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Current Points</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Recent Change</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-surface divide-y divide-slate-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center mr-3">
+                                                    <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM4 18v-4h3v4h2v-7.5c0-1.1.9-2 2-2s2 .9 2 2V18h2v-4h3v4h1v2H3v-2h1z"/>
+                                                    </svg>
+                                                </div>
+                                                <div>
+                                                    <div class="text-sm font-medium text-text-primary">Alpha Team</div>
+                                                    <div class="text-sm text-text-secondary">Floor 3A</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm font-data text-text-primary">1,250</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success-100 text-success-800">
+                                                +50
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-primary hover:text-primary-700 mr-3 transition-smooth" onclick="quickAddPoints('Alpha Team')">Add</button>
+                                            <button class="text-text-secondary hover:text-text-primary transition-smooth" onclick="quickSubtractPoints('Alpha Team')">Subtract</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 bg-accent-100 rounded-lg flex items-center justify-center mr-3">
+                                                    <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                                    </svg>
+                                                </div>
+                                                <div>
+                                                    <div class="text-sm font-medium text-text-primary">Beta Team</div>
+                                                    <div class="text-sm text-text-secondary">Floor 2B</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm font-data text-text-primary">980</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success-100 text-success-800">
+                                                +30
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-primary hover:text-primary-700 mr-3 transition-smooth" onclick="quickAddPoints('Beta Team')">Add</button>
+                                            <button class="text-text-secondary hover:text-text-primary transition-smooth" onclick="quickSubtractPoints('Beta Team')">Subtract</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 bg-success-100 rounded-lg flex items-center justify-center mr-3">
+                                                    <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                                    </svg>
+                                                </div>
+                                                <div>
+                                                    <div class="text-sm font-medium text-text-primary">Gamma Team</div>
+                                                    <div class="text-sm text-text-secondary">Floor 1C</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm font-data text-text-primary">1,450</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success-100 text-success-800">
+                                                +80
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-primary hover:text-primary-700 mr-3 transition-smooth" onclick="quickAddPoints('Gamma Team')">Add</button>
+                                            <button class="text-text-secondary hover:text-text-primary transition-smooth" onclick="quickSubtractPoints('Gamma Team')">Subtract</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Mail Management Section -->
+                <section id="mail-management-section" class="hidden animate-fade-in">
+                    <div class="card p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-semibold text-text-primary">Package Status Quick Update</h3>
+                            <a href="package_management.html" class="btn-primary">
+                                <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                Full Management
+                            </a>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Package Card 1 -->
+                            <div class="border border-slate-200 rounded-lg p-4 hover-lift transition-smooth">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <h4 class="font-medium text-text-primary">Amazon Package</h4>
+                                        <p class="text-sm text-text-secondary">1Z999AA1234567890</p>
+                                    </div>
+                                    <span class="status-warning px-2 py-1 rounded-full text-xs font-medium">Ready</span>
+                                </div>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-text-secondary">Student:</span>
+                                        <span class="text-text-primary">John Doe</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-text-secondary">Arrived:</span>
+                                        <span class="text-text-primary">Today, 2:30 PM</span>
+                                    </div>
+                                </div>
+                                <button class="w-full btn-primary text-sm" onclick="markAsDelivered('1Z999AA1234567890')">
+                                    Mark as Delivered
+                                </button>
+                            </div>
+
+                            <!-- Package Card 2 -->
+                            <div class="border border-slate-200 rounded-lg p-4 hover-lift transition-smooth">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <h4 class="font-medium text-text-primary">UPS Package</h4>
+                                        <p class="text-sm text-text-secondary">1Z12345E0205271688</p>
+                                    </div>
+                                    <span class="status-warning px-2 py-1 rounded-full text-xs font-medium">Ready</span>
+                                </div>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-text-secondary">Student:</span>
+                                        <span class="text-text-primary">Jane Smith</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-text-secondary">Arrived:</span>
+                                        <span class="text-text-primary">Today, 9:15 AM</span>
+                                    </div>
+                                </div>
+                                <button class="w-full btn-primary text-sm" onclick="markAsDelivered('1Z12345E0205271688')">
+                                    Mark as Delivered
+                                </button>
+                            </div>
+
+                            <!-- Package Card 3 -->
+                            <div class="border border-slate-200 rounded-lg p-4 hover-lift transition-smooth">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <h4 class="font-medium text-text-primary">FedEx Package</h4>
+                                        <p class="text-sm text-text-secondary">1234567890123456</p>
+                                    </div>
+                                    <span class="status-success px-2 py-1 rounded-full text-xs font-medium">Delivered</span>
+                                </div>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-text-secondary">Student:</span>
+                                        <span class="text-text-primary">Mike Johnson</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-text-secondary">Delivered:</span>
+                                        <span class="text-text-primary">Yesterday, 3:45 PM</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-center text-success">
+                                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Loading Indicator -->
+                <div id="loading-indicator" class="hidden fixed top-20 right-4 bg-surface shadow-elevated rounded-lg p-4 z-50">
+                    <div class="flex items-center space-x-3">
+                        <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-primary"></div>
+                        <span class="text-sm text-text-secondary">Updating data...</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-slate-200 mt-12 lg:ml-64">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-text-secondary text-sm">© 2025 Campus Portal. All Rights Reserved.</p>
+                <div class="mt-4 flex justify-center space-x-6">
+                    <a href="student_dashboard.html" class="text-text-secondary hover:text-primary transition-smooth text-sm">Student View</a>
+                    <a href="#" class="text-text-secondary hover:text-primary transition-smooth text-sm">Support</a>
+                    <a href="#" class="text-text-secondary hover:text-primary transition-smooth text-sm">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Quick Action Modals -->
+    <div id="quick-action-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-surface rounded-lg p-6 w-full max-w-md mx-4">
+            <h3 id="modal-title" class="text-lg font-semibold text-text-primary mb-4">Add Points</h3>
+            <form id="quick-action-form">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-text-secondary mb-2">Points</label>
+                    <input type="number" id="points-input" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth" placeholder="Enter points" />
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-text-secondary mb-2">Reason</label>
+                    <input type="text" id="reason-input" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth" placeholder="Enter reason" />
+                </div>
+                <div class="flex space-x-3">
+                    <button type="submit" class="flex-1 btn-primary">Confirm</button>
+                    <button type="button" onclick="closeModal()" class="flex-1 btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Tab switching
+        const overviewTab = document.getElementById('overview-tab');
+        const floorPointsTab = document.getElementById('floor-points-tab');
+        const mailManagementTab = document.getElementById('mail-management-tab');
+        const overviewSection = document.getElementById('overview-section');
+        const floorPointsSection = document.getElementById('floor-points-section');
+        const mailManagementSection = document.getElementById('mail-management-section');
+
+        function switchTab(activeTab, sections, activeSection) {
+            // Update tab styles
+            document.querySelectorAll('.tab-btn').forEach(tab => {
+                tab.classList.remove('active', 'bg-surface', 'text-primary', 'shadow-soft');
+                tab.classList.add('text-text-secondary');
+            });
+            
+            activeTab.classList.add('active', 'bg-surface', 'text-primary', 'shadow-soft');
+            activeTab.classList.remove('text-text-secondary');
+            
+            // Update section visibility
+            sections.forEach(section => section.classList.add('hidden'));
+            activeSection.classList.remove('hidden');
+        }
+
+        overviewTab.addEventListener('click', () => {
+            switchTab(overviewTab, [overviewSection, floorPointsSection, mailManagementSection], overviewSection);
+        });
+
+        floorPointsTab.addEventListener('click', () => {
+            switchTab(floorPointsTab, [overviewSection, floorPointsSection, mailManagementSection], floorPointsSection);
+        });
+
+        mailManagementTab.addEventListener('click', () => {
+            switchTab(mailManagementTab, [overviewSection, floorPointsSection, mailManagementSection], mailManagementSection);
+        });
+
+        // Quick action functions
+        let currentTeam = '';
+        let currentAction = '';
+
+        function quickAddPoints(team) {
+            currentTeam = team;
+            currentAction = 'add';
+            document.getElementById('modal-title').textContent = `Add Points to ${team}`;
+            document.getElementById('quick-action-modal').classList.remove('hidden');
+        }
+
+        function quickSubtractPoints(team) {
+            currentTeam = team;
+            currentAction = 'subtract';
+            document.getElementById('modal-title').textContent = `Subtract Points from ${team}`;
+            document.getElementById('quick-action-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('quick-action-modal').classList.add('hidden');
+            document.getElementById('quick-action-form').reset();
+        }
+
+        function markAsDelivered(trackingNumber) {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            loadingIndicator.classList.remove('hidden');
+            
+            // Simulate API call
+            setTimeout(() => {
+                loadingIndicator.classList.add('hidden');
+                alert(`Package ${trackingNumber} marked as delivered!`);
+            }, 1000);
+        }
+
+        function generateReport() {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            loadingIndicator.classList.remove('hidden');
+            
+            // Simulate report generation
+            setTimeout(() => {
+                loadingIndicator.classList.add('hidden');
+                alert('Report generated successfully!');
+            }, 2000);
+        }
+
+        function showSettings() {
+            alert('Settings panel would open here');
+        }
+
+        // Form submission
+        document.getElementById('quick-action-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const points = document.getElementById('points-input').value;
+            const reason = document.getElementById('reason-input').value;
+            
+            if (!points || !reason) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            const loadingIndicator = document.getElementById('loading-indicator');
+            loadingIndicator.classList.remove('hidden');
+            
+            // Simulate API call
+            setTimeout(() => {
+                loadingIndicator.classList.add('hidden');
+                closeModal();
+                alert(`${currentAction === 'add' ? 'Added' : 'Subtracted'} ${points} points ${currentAction === 'add' ? 'to' : 'from'} ${currentTeam} for: ${reason}`);
+            }, 1000);
+        });
+
+        // Auto-refresh data every 30 seconds
+        setInterval(() => {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            loadingIndicator.classList.remove('hidden');
+            setTimeout(() => {
+                loadingIndicator.classList.add('hidden');
+            }, 1000);
+        }, 30000);
+
+        // Close modal when clicking outside
+        document.getElementById('quick-action-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'quick-action-modal') {
+                closeModal();
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
