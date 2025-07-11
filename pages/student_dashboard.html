@@ -345,511 +345,22 @@
         <section id="packages-section" class="hidden animate-fade-in">
             <!-- Search and Filter -->
             <div class="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-                <div class="relative flex-1 max-w-md">
-                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    <input type="text" id="package-search" placeholder="Search packages..."
-                        class="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth" />
+                <div class="relative flex-1 w-full sm:max-w-md">
+                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    <input type="text" id="package-search" placeholder="Search by name or sender..." class="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth" />
                 </div>
                 <div class="flex items-center space-x-2">
-                    <select id="status-filter"
-                        class="px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth">
+                    <select id="status-filter" class="px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-smooth">
                         <option value="all">All Status</option>
                         <option value="ready">Ready for Pickup</option>
+                        <option value="notified">Notified</option>
                         <option value="delivered">Delivered</option>
                     </select>
                 </div>
             </div>
-
-            <!-- Package Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="packages-grid">
-
-                <!-- Card for Justin Weng -->
-            <div class="card p-6 hover-lift transition-smooth package-card" data-status="ready">
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                         <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
-                            <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2.5-1.5L8 17l2.5-1.5L13 16z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-text-primary">Justin Weng</h3>
-                            <p class="text-sm text-text-secondary">Number of Packages: 1</p>
-                        </div>
-                    </div>
-                    <span class="status-warning px-3 py-1 rounded-full text-xs font-medium shrink-0">Ready for Pickup</span>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Arrived</span>
-                        <span class="text-sm font-medium text-text-primary">Today, 11:30 AM</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Pickup Location</span>
-                        <span class="text-sm font-medium text-text-primary">Main Office "Eaton 283"</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Sender</span>
-                        <span class="text-sm font-medium text-text-primary">USPS</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button class="btn-primary">
-                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        Get Directions
-                    </button>
-                </div>
-            </div>
-
-            <!-- Card for Sophia Peri -->
-            <div class="card p-6 hover-lift transition-smooth package-card" data-status="ready">
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center shrink-0">
-                           <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5V4H4zm0 12h5v-5H4v5zm10 0h5v-5h-5v5zm0-12h5V4h-5v5z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-text-primary">Sophia Peri</h3>
-                            <p class="text-sm text-text-secondary">Number of Packages: 1</p>
-                        </div>
-                    </div>
-                    <span class="status-warning px-3 py-1 rounded-full text-xs font-medium shrink-0">Ready for Pickup</span>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Arrived</span>
-                        <span class="text-sm font-medium text-text-primary">Today, 11:25 AM</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Pickup Location</span>
-                        <span class="text-sm font-medium text-text-primary">Main Office "Eaton 283"</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Sender</span>
-                        <span class="text-sm font-medium text-text-primary">Amazon.com</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button class="btn-primary">
-                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        Get Directions
-                    </button>
-                </div>
-            </div>
-
-            <!-- Card for Damian Arias -->
-            <div class="card p-6 hover-lift transition-smooth package-card" data-status="ready">
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center shrink-0">
-                           <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5V4H4zm0 12h5v-5H4v5zm10 0h5v-5h-5v5zm0-12h5V4h-5v5z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-text-primary">Damian Arias</h3>
-                            <p class="text-sm text-text-secondary">Number of Packages: 1</p>
-                        </div>
-                    </div>
-                    <span class="status-warning px-3 py-1 rounded-full text-xs font-medium shrink-0">Ready for Pickup</span>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Arrived</span>
-                        <span class="text-sm font-medium text-text-primary">Today, 11:20 AM</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Pickup Location</span>
-                        <span class="text-sm font-medium text-text-primary">Main Office "Eaton 283"</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Sender</span>
-                        <span class="text-sm font-medium text-text-primary">Amazon.com</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button class="btn-primary">
-                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        Get Directions
-                    </button>
-                </div>
-            </div>
-
-            <!-- Card for Osatohanmwen Oyewole Sado -->
-            <div class="card p-6 hover-lift transition-smooth package-card" data-status="ready">
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                         <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
-                            <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2.5-1.5L8 17l2.5-1.5L13 16z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-text-primary">Osatohanmwen Oyewole Sado</h3>
-                            <p class="text-sm text-text-secondary">Number of Packages: 1</p>
-                        </div>
-                    </div>
-                    <span class="status-warning px-3 py-1 rounded-full text-xs font-medium shrink-0">Ready for Pickup</span>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Arrived</span>
-                        <span class="text-sm font-medium text-text-primary">Today, 11:15 AM</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Pickup Location</span>
-                        <span class="text-sm font-medium text-text-primary">Main Office "Eaton 283"</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Sender</span>
-                        <span class="text-sm font-medium text-text-primary">USPS</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button class="btn-primary">
-                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        Get Directions
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Card for Jaynees Machuca -->
-            <div class="card p-6 hover-lift transition-smooth package-card" data-status="ready">
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                         <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
-                            <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2.5-1.5L8 17l2.5-1.5L13 16z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-text-primary">Jaynees Machuca</h3>
-                            <p class="text-sm text-text-secondary">Number of Packages: 1</p>
-                        </div>
-                    </div>
-                    <span class="status-warning px-3 py-1 rounded-full text-xs font-medium shrink-0">Ready for Pickup</span>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Arrived</span>
-                        <span class="text-sm font-medium text-text-primary">Today, 11:10 AM</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Pickup Location</span>
-                        <span class="text-sm font-medium text-text-primary">Main Office "Eaton 283"</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Sender</span>
-                        <span class="text-sm font-medium text-text-primary">USPS</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button class="btn-primary">
-                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        Get Directions
-                    </button>
-                </div>
-            </div>
-
-                <!-- Card for Orfi Corres -->
-            <div class="card p-6 hover-lift transition-smooth package-card" data-status="notified">
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-black rounded-lg flex items-center justify-center shrink-0">
-                           <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 0 .17.02.24.05.78.27 1.47.64 2.06 1.18.62.55 1.12 1.25 1.42 2.04.07.18.1.37.1.56.02 3.2.01 6.4.01 9.6 0 .12-.01.23-.02.35-.16 1.17-.6 2.27-1.34 3.21-.71.89-1.62 1.53-2.68 1.88-.23.08-.46.13-.7.15-2.5.07-5.01.05-7.51.05-.78 0-1.55-.01-2.33.02-.38.01-.76.01-1.14-.02-.57-.05-1.12-.23-1.64-.51-.55-.3-1.05-.7-1.48-1.18-.45-.5-.83-1.07-1.12-1.68-.14-.3-.24-.61-.3-.93-.03-.54-.02-1.08-.02-1.62l.02-6.55c0-.45.02-.9.06-1.34.13-1.21.58-2.34 1.34-3.36.79-1.04 1.8-1.79 2.96-2.2.35-.12.7-.2 1.06-.22 2.22-.07 4.43-.05 6.65-.05l.02.02zM8.73 7.42c.43 1.13.87 2.26 1.3 3.39.17.45.34.9.51 1.35.1.28.27.52.5.73.23.21.49.39.78.5.3.11.6.19.92.21.2.01.4-.01.6-.05.4-.09.77-.28 1.08-.58.28-.27.5-.59.65-.95.12-.28.21-.57.28-.87.21-.84.43-1.68.64-2.52.21-.87.42-1.73.64-2.6.02-.09.04-.18.06-.28.01-.05-.01-.1-.07-.11-.2-.04-.4-.04-.6-.04-1.19-.01-2.38-.01-3.57 0-.15 0-.29.01-.44.02-.13.01-.25.04-.37.07-.28.07-.56.18-.82.34-.23.14-.44.31-.62.52-.17.19-.3.4-.4.64-.11.26-.18.53-.22.81-.07.47-.11.95-.16 1.42-.05.42-.08.85-.12 1.28-.02.2-.04.4-.05.61l-.01.04c0 .02.02.03.03.03.11 0 .22-.01.33-.01.19 0 .38-.01.57-.01.15 0 .3-.01.45-.01.25-.01.5-.02.75-.02.1-.01.19-.02.28-.04.28-.06.54-.18.78-.34.22-.15.42-.34.58-.55.14-.19.25-.39.33-.61.16-.42.32-.85.48-1.27.11-.3.22-.6.33-.91.13-.35.26-.7.39-1.04.09-.23.18-.46.28-.69.05-.12.1-.24.15-.36.05-.14.1-.28.15-.42.02-.05.03-.1.04-.15.01-.06.01-.12-.01-.18-.02-.09-.06-.17-.11-.25-.09-.13-.2-.25-.33-.35-.15-.11-.32-.2-.49-.26-.18-.06-.37-.09-.56-.11-.2-.02-.4-.03-.6-.03-.57 0-1.14-.01-1.71.01-.4.01-.8.04-1.19.1-.2.03-.39.08-.58.14-.37.12-.72.29-1.03.53-.29.22-.54.49-.75.79-.21.3-.37.62-.48.96-.12.34-.21.69-.28 1.04-.08.39-.14.78-.2 1.17-.07.4-.12.81-.17 1.21-.05.4-.08.8-.12 1.2.02.04.03.04.05.04.28 0 .56.01.84.01.48 0 .96.01 1.44.01.15 0 .3 0 .45.01.23.01.46.02.69.02.14 0 .28.01.42.01.11 0 .22.01.33.02.1-.04.18-.08.26-.13.3-.18.56-.4.77-.67.21-.27.38-.58.51-.89.13-.31.25-.62.36-.94.12-.32.23-.65.34-.97.11-.33.22-.66.33-1 .06-.17.11-.34.17-.51.05-.15.1-.3.15-.45.02-.05.03-.1.04-.15.01-.06.01-.12-.01-.18-.02-.09-.06-.17-.11-.25-.09-.13-.2-.25-.33-.35-.15-.11-.32-.2-.49-.26-.18-.06-.37-.09-.56-.11-.2-.02-.4-.03-.6-.03-.57 0-1.14-.01-1.71.01-.4.01-.8.04-1.19.1-.2.03-.39.08-.58.14-.37.12-.72.29-1.03.53-.29.22-.54.49-.75.79-.21.3-.37.62-.48.96-.12.34-.21.69-.28 1.04-.08.39-.14.78-.2 1.17-.07.4-.12.81-.17 1.21-.05.4-.08.8-.12 1.2z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-text-primary">Orfi Corres</h3>
-                            <p class="text-sm text-text-secondary">Number of Packages: 1</p>
-                        </div>
-                    </div>
-                    <span class="status-notified px-3 py-1 rounded-full text-xs font-medium shrink-0">Notified</span>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Arrived</span>
-                        <span class="text-sm font-medium text-text-primary">Yesterday, 1:05 PM</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Pickup Location</span>
-                        <span class="text-sm font-medium text-text-primary">Main Office "Eaton 283"</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Sender</span>
-                        <span class="text-sm font-medium text-text-primary">TikTok Shop</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button class="btn-primary">
-                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        Get Directions
-                    </button>
-                </div>
-            </div>
-
-             <!-- Card for Chinedu Eleh -->
-            <div class="card p-6 hover-lift transition-smooth package-card" data-status="notified">
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center shrink-0">
-                           <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5V4H4zm0 12h5v-5H4v5zm10 0h5v-5h-5v5zm0-12h5V4h-5v5z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-text-primary">Chinedu Eleh</h3>
-                            <p class="text-sm text-text-secondary">Number of Packages: 1</p>
-                        </div>
-                    </div>
-                    <span class="status-notified px-3 py-1 rounded-full text-xs font-medium shrink-0">Notified</span>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Arrived</span>
-                        <span class="text-sm font-medium text-text-primary">Yesterday, 12:45 PM</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Pickup Location</span>
-                        <span class="text-sm font-medium text-text-primary">Main Office "Eaton 283"</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Sender</span>
-                        <span class="text-sm font-medium text-text-primary">Amazon.com</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button class="btn-primary">
-                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        Get Directions
-                    </button>
-                </div>
-            </div>
-
-            <!-- Card for E -->
-            <div class="card p-6 hover-lift transition-smooth package-card" data-status="notified">
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
-                           <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-text-primary">E</h3>
-                            <p class="text-sm text-text-secondary">Number of Packages: 3</p>
-                        </div>
-                    </div>
-                    <span class="status-notified px-3 py-1 rounded-full text-xs font-medium shrink-0">Notified</span>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Arrived</span>
-                        <span class="text-sm font-medium text-text-primary">Yesterday, 12:40 PM</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Pickup Location</span>
-                        <span class="text-sm font-medium text-text-primary">Main Office "Eaton 283"</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Sender</span>
-                        <span class="text-sm font-medium text-text-primary">Walmart</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button class="btn-primary">
-                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        Get Directions
-                    </button>
-                </div>
-            </div>
-
-            <!-- Card for Chibuzo Zoe Ana -->
-            <div class="card p-6 hover-lift transition-smooth package-card" data-status="notified">
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                         <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
-                            <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2.5-1.5L8 17l2.5-1.5L13 16z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-text-primary">Chibuzo Zoe Ana</h3>
-                            <p class="text-sm text-text-secondary">Number of Packages: 1</p>
-                        </div>
-                    </div>
-                    <span class="status-notified px-3 py-1 rounded-full text-xs font-medium shrink-0">Notified</span>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Arrived</span>
-                        <span class="text-sm font-medium text-text-primary">Yesterday, 2:05 PM</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Pickup Location</span>
-                        <span class="text-sm font-medium text-text-primary">Main Office "Eaton 283"</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Sender</span>
-                        <span class="text-sm font-medium text-text-primary">USPS</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button class="btn-primary">
-                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        Get Directions
-                    </button>
-                </div>
-            </div>
-
-            <!-- Card for Enrique Carrillo -->
-            <div class="card p-6 hover-lift transition-smooth package-card" data-status="notified">
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center shrink-0">
-                            <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-text-primary">Enrique Carrillo</h3>
-                            <p class="text-sm text-text-secondary">Number of Packages: 1</p>
-                        </div>
-                    </div>
-                    <span class="status-notified px-3 py-1 rounded-full text-xs font-medium shrink-0">Notified</span>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Arrived</span>
-                        <span class="text-sm font-medium text-text-primary">Yesterday, 1:45 PM</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Pickup Location</span>
-                        <span class="text-sm font-medium text-text-primary">Main Office "Eaton 283"</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Sender</span>
-                        <span class="text-sm font-medium text-text-primary">Normal Box</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button class="btn-primary">
-                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        Get Directions
-                    </button>
-                </div>
-            </div>
-
-            <!-- Card for Zarina Devletova -->
-            <div class="card p-6 hover-lift transition-smooth package-card" data-status="notified">
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center shrink-0">
-                           <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5V4H4zm0 12h5v-5H4v5zm10 0h5v-5h-5v5zm0-12h5V4h-5v5z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-text-primary">Zarina Devletova</h3>
-                            <p class="text-sm text-text-secondary">Number of Packages: 2</p>
-                        </div>
-                    </div>
-                    <span class="status-notified px-3 py-1 rounded-full text-xs font-medium shrink-0">Notified</span>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Arrived</span>
-                        <span class="text-sm font-medium text-text-primary">Yesterday, 12:35 PM</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Pickup Location</span>
-                        <span class="text-sm font-medium text-text-primary">Main Office "Eaton 283"</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-text-secondary">Sender</span>
-                        <span class="text-sm font-medium text-text-primary">Amazon.com</span>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button class="btn-primary">
-                        <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        Get Directions
-                    </button>
-                </div>
-            </div>
-
-
-
-
-                <!-- Package Card 2 - Delivered -->
-                <!-- <div class="card p-6 hover-lift transition-smooth package-card" data-status="delivered">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-success" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-text-primary">Person Name</h3>
-                                <p class="text-sm text-text-secondary">Number Of Packages</p>
-                            </div>
-                        </div>
-                        <span class="status-success px-3 py-1 rounded-full text-xs font-medium">Delivered</span>
-                    </div>
-                    
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-text-secondary">Delivered</span>
-                            <span class="text-sm font-medium text-text-primary">Yesterday, 11:15 AM</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-text-secondary">Picked up</span>
-                            <span class="text-sm font-medium text-text-primary">Yesterday, 3:45 PM</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-text-secondary">Sender</span>
-                            <span class="text-sm font-medium text-text-primary">Best Buy</span>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 pt-4 border-t border-slate-200">
-                        <div class="flex items-center justify-center text-success">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                            <span class="font-medium">Package Collected</span>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- Package Card 3 - Ready for Pickup -->
-                <!-- <div class="card p-6 hover-lift transition-smooth package-card" data-status="ready">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-warning" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-text-primary">UPS Package</h3>
-                                <p class="text-sm text-text-secondary">Tracking: 1Z12345E0205271688</p>
-                            </div>
-                        </div>
-                        <span class="status-warning px-3 py-1 rounded-full text-xs font-medium">Ready for Pickup</span>
-                    </div>
-                    
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-text-secondary">Arrived</span>
-                            <span class="text-sm font-medium text-text-primary">Today, 9:15 AM</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-text-secondary">Pickup Location</span>
-                            <span class="text-sm font-medium text-text-primary">Mail Room B</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-text-secondary">Sender</span>
-                            <span class="text-sm font-medium text-text-primary">Target</span>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 pt-4 border-t border-slate-200">
-                        <button class="w-full btn-primary">
-                            <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            </svg>
-                            Get Directions
-                        </button>
-                    </div>
-                </div> -->
+            <!-- Package Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="packages-grid">
+                <!-- Package cards are now generated by JavaScript -->
             </div>
         </section>
 
@@ -878,141 +389,131 @@
     </footer>
 
     <!-- JavaScript -->
+    <!-- IMPORTANT: Load the data file BEFORE the main logic file -->
+    <script src="/database/package.js"></script>
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Tab switching
-        const floorPointsTab = document.getElementById('floor-points-tab');
-        const packagesTab = document.getElementById('packages-tab');
-        const floorPointsSection = document.getElementById('floor-points-section');
-        const packagesSection = document.getElementById('packages-section');
-
-        function switchTab(activeTab, inactiveTab, activeSection, inactiveSection) {
-            // Update tab styles
-            activeTab.classList.add('active', 'bg-surface', 'text-primary', 'shadow-soft');
-            activeTab.classList.remove('text-text-secondary');
-            inactiveTab.classList.remove('active', 'bg-surface', 'text-primary', 'shadow-soft');
-            inactiveTab.classList.add('text-text-secondary');
-
-            // Update section visibility
-            activeSection.classList.remove('hidden');
-            inactiveSection.classList.add('hidden');
-        }
-
-        floorPointsTab.addEventListener('click', () => {
-            switchTab(floorPointsTab, packagesTab, floorPointsSection, packagesSection);
-        });
-
-        packagesTab.addEventListener('click', () => {
-            switchTab(packagesTab, floorPointsTab, packagesSection, floorPointsSection);
-        });
-
-        // Expandable team cards
-        document.querySelectorAll('.expand-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const card = e.target.closest('.team-card');
-                const content = card.querySelector('.expandable-content');
-                const icon = btn.querySelector('svg');
-
-                content.classList.toggle('hidden');
-                icon.classList.toggle('rotate-180');
-            });
-        });
-
-        // Search functionality
-        const teamSearch = document.getElementById('team-search');
-        const packageSearch = document.getElementById('package-search');
-        const statusFilter = document.getElementById('status-filter');
-
-        teamSearch.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            document.querySelectorAll('.team-card').forEach(card => {
-                const teamName = card.querySelector('h3').textContent.toLowerCase();
-                card.style.display = teamName.includes(searchTerm) ? 'block' : 'none';
-            });
-        });
-
-        packageSearch.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            document.querySelectorAll('.package-card').forEach(card => {
-                const packageName = card.querySelector('h3').textContent.toLowerCase();
-                const tracking = card.querySelector('p').textContent.toLowerCase();
-                const matches = packageName.includes(searchTerm) || tracking.includes(searchTerm);
-                card.style.display = matches ? 'block' : 'none';
-            });
-        });
-
-        statusFilter.addEventListener('change', (e) => {
-            const filterValue = e.target.value;
-            document.querySelectorAll('.package-card').forEach(card => {
-                const status = card.dataset.status;
-                if (filterValue === 'all' || status === filterValue) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-
-        // Refresh functionality
-        const refreshBtn = document.getElementById('refresh-btn');
-        const loadingIndicator = document.getElementById('loading-indicator');
-
-        refreshBtn.addEventListener('click', () => {
-            loadingIndicator.classList.remove('hidden');
-
-            // Simulate data refresh
-            setTimeout(() => {
-                loadingIndicator.classList.add('hidden');
-
-                // Add subtle animation to indicate refresh
-                document.querySelectorAll('.team-card, .package-card').forEach(card => {
-                    card.classList.add('animate-fade-in');
-                    setTimeout(() => {
-                        card.classList.remove('animate-fade-in');
-                    }, 300);
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- GENERAL UI LOGIC (Mobile Menu, Tabs, etc.) ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
                 });
-            }, 1500);
-        });
+            }
 
-        // Auto-refresh every 30 seconds
-        setInterval(() => {
-            loadingIndicator.classList.remove('hidden');
-            setTimeout(() => {
-                loadingIndicator.classList.add('hidden');
-            }, 1000);
-        }, 30000);
+            const floorPointsTab = document.getElementById('floor-points-tab');
+            const packagesTab = document.getElementById('packages-tab');
+            const floorPointsSection = document.getElementById('floor-points-section');
+            const packagesSection = document.getElementById('packages-section');
 
-        // Pull-to-refresh simulation (for mobile)
-        let startY = 0;
-        let pullDistance = 0;
-        const pullThreshold = 100;
+            function switchTab(activeTab, inactiveTab, activeSection, inactiveSection) {
+                activeTab.classList.add('active', 'bg-surface', 'text-primary', 'shadow-soft');
+                activeTab.classList.remove('text-text-secondary', 'hover:text-text-primary');
+                inactiveTab.classList.remove('active', 'bg-surface', 'text-primary', 'shadow-soft');
+                inactiveTab.classList.add('text-text-secondary', 'hover:text-text-primary');
+                activeSection.classList.remove('hidden');
+                inactiveSection.classList.add('hidden');
+            }
 
-        document.addEventListener('touchstart', (e) => {
-            startY = e.touches[0].clientY;
-        });
+            if (floorPointsTab) {
+                floorPointsTab.addEventListener('click', () => {
+                    switchTab(floorPointsTab, packagesTab, floorPointsSection, packagesSection);
+                });
+            }
 
-        document.addEventListener('touchmove', (e) => {
-            if (window.scrollY === 0) {
-                pullDistance = e.touches[0].clientY - startY;
-                if (pullDistance > 0 && pullDistance < pullThreshold) {
-                    document.body.style.transform = `translateY(${pullDistance * 0.5}px)`;
+            if (packagesTab) {
+                packagesTab.addEventListener('click', () => {
+                    switchTab(packagesTab, floorPointsTab, packagesSection, floorPointsSection);
+                });
+            }
+
+            // --- ALL OTHER FUNCTIONALITY (Floor Points, Refresh, etc.) ---
+            // This is your original code for floor points and refresh, which is preserved.
+            const teamSearch = document.getElementById('team-search');
+            if(teamSearch) {
+                teamSearch.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    document.querySelectorAll('.team-card').forEach(card => {
+                        const teamName = card.querySelector('h3').textContent.toLowerCase();
+                        card.style.display = teamName.includes(searchTerm) ? 'block' : 'none';
+                    });
+                });
+            }
+            
+            // --- PACKAGE MANAGEMENT LOGIC (The updated part) ---
+            const packageGrid = document.getElementById('packages-grid');
+            const packageSearchInput = document.getElementById('package-search');
+            const statusFilterInput = document.getElementById('status-filter');
+
+            const icons = {
+                truck: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2.5-1.5L8 17l2.5-1.5L13 16z"></path></svg>`,
+                box: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5V4H4zm0 12h5v-5H4v5zm10 0h5v-5h-5v5zm0-12h5V4h-5v5z"></path></svg>`,
+                package: `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 0 .17.02.24.05.78.27 1.47.64 2.06 1.18.62.55 1.12 1.25 1.42 2.04.07.18.1.37.1.56.02 3.2.01 6.4.01 9.6 0 .12-.01.23-.02.35-.16 1.17-.6 2.27-1.34 3.21-.71.89-1.62 1.53-2.68 1.88-.23.08-.46.13-.7.15-2.5.07-5.01.05-7.51.05-.78 0-1.55-.01-2.33.02-.38.01-.76.01-1.14-.02-.57-.05-1.12-.23-1.64-.51-.55-.3-1.05-.7-1.48-1.18-.45-.5-.83-1.07-1.12-1.68-.14-.3-.24-.61-.3-.93-.03-.54-.02-1.08-.02-1.62l.02-6.55c0-.45.02-.9.06-1.34.13-1.21.58-2.34 1.34-3.36.79-1.04 1.8-1.79 2.96-2.2.35-.12.7-.2 1.06-.22 2.22-.07 4.43-.05 6.65-.05l.02.02zM8.73 7.42c.43 1.13.87 2.26 1.3 3.39.17.45.34.9.51 1.35.1.28.27.52.5.73.23.21.49.39.78.5.3.11.6.19.92.21.2.01.4-.01.6-.05.4-.09.77-.28 1.08-.58.28-.27.5-.59.65-.95.12-.28.21-.57.28-.87.21-.84.43-1.68.64-2.52.21-.87.42-1.73.64-2.6.02-.09.04-.18.06-.28.01-.05-.01-.1-.07-.11-.2-.04-.4-.04-.6-.04-1.19-.01-2.38-.01-3.57 0-.15 0-.29.01-.44.02-.13.01-.25.04-.37.07-.28.07-.56.18-.82.34-.23.14-.44.31-.62.52-.17.19-.3.4-.4.64-.11.26-.18.53-.22.81-.07.47-.11.95-.16 1.42-.05.42-.08.85-.12 1.28-.02.2-.04.4-.05.61l-.01.04c0 .02.02.03.03.03.11 0 .22-.01.33-.01.19 0 .38-.01.57-.01.15 0 .3-.01.45-.01.25-.01.5-.02.75-.02.1-.01.19-.02.28-.04.28-.06.54-.18.78-.34.22-.15.42-.34.58-.55.14-.19.25-.39.33-.61.16-.42.32-.85.48-1.27.11-.3.22-.6.33-.91.13-.35.26-.7.39-1.04.09-.23.18-.46.28-.69.05-.12.1-.24.15-.36.05-.14.1-.28.15-.42.02-.05.03-.1.04-.15.01-.06.01-.12-.01-.18-.02-.09-.06-.17-.11-.25-.09-.13-.2-.25-.33-.35-.15-.11-.32-.2-.49-.26-.18-.06-.37-.09-.56-.11-.2-.02-.4-.03-.6-.03-.57 0-1.14-.01-1.71.01-.4.01-.8.04-1.19.1-.2.03-.39.08-.58.14-.37.12-.72.29-1.03.53-.29.22-.54.49-.75.79-.21.3-.37.62-.48.96-.12.34-.21.69-.28 1.04-.08.39-.14.78-.2 1.17-.07.4-.12.81-.17 1.21-.05.4-.08.8-.12 1.2.02.04.03.04.05.04.28 0 .56.01.84.01.48 0 .96.01 1.44.01.15 0 .3 0 .45.01.23.01.46.02.69.02.14 0 .28.01.42.01.11 0 .22.01.33.02.1-.04.18-.08.26-.13.3-.18.56-.4.77-.67.21-.27.38-.58.51-.89.13-.31.25-.62.36-.94.12-.32.23-.65.34-.97.11-.33.22-.66.33-1 .06-.17.11-.34.17-.51.05-.15.1-.3.15-.45.02-.05.03-.1.04-.15.01-.06.01-.12-.01-.18-.02-.09-.06-.17-.11-.25-.09-.13-.2-.25-.33-.35-.15-.11-.32-.2-.49-.26-.18-.06-.37-.09-.56-.11-.2-.02-.4-.03-.6-.03-.57 0-1.14-.01-1.71.01-.4.01-.8.04-1.19.1-.2.03-.39.08-.58.14-.37.12-.72.29-1.03.53-.29.22-.54.49-.75.79-.21.3-.37.62-.48.96-.12.34-.21.69-.28 1.04-.08.39-.14.78-.2 1.17-.07.4-.12.81-.17 1.21-.05.4-.08.8-.12 1.2z"></path></svg>`,
+                cart: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>`,
+                check: `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`
+            };
+            
+            function renderPackages(packagesToRender) {
+                if (!packageGrid) return;
+                packageGrid.innerHTML = ''; // Clear existing cards
+                if (packagesToRender.length === 0) {
+                    packageGrid.innerHTML = `<p class="text-text-secondary col-span-full text-center">No packages found matching your criteria.</p>`;
+                    return;
+                }
+                packagesToRender.forEach(pkg => {
+                    const card = document.createElement('div');
+                    card.className = 'card p-6 hover-lift transition-smooth package-card animate-fade-in';
+                    card.dataset.status = pkg.status;
+                    const iconHtml = `<div class="w-12 h-12 ${pkg.iconBgColor} rounded-lg flex items-center justify-center shrink-0 ${pkg.iconTextColor}">${icons[pkg.icon] || icons.box}</div>`;
+                    let statusBadge, detailsHtml, footerHtml;
+                    if (pkg.status === 'delivered') {
+                        statusBadge = `<span class="status-success px-3 py-1 rounded-full text-xs font-medium shrink-0">Delivered</span>`;
+                        detailsHtml = `<div class="flex items-center justify-between"><span class="text-sm text-text-secondary">Delivered</span><span class="text-sm font-medium text-text-primary">${pkg.arrived}</span></div><div class="flex items-center justify-between"><span class="text-sm text-text-secondary">Picked up</span><span class="text-sm font-medium text-text-primary">${pkg.pickedUp || ''}</span></div><div class="flex items-center justify-between"><span class="text-sm text-text-secondary">Sender</span><span class="text-sm font-medium text-text-primary">${pkg.sender}</span></div>`;
+                        footerHtml = `<div class="flex items-center justify-center text-success">${icons.check}<span class="font-medium ml-2">Package Collected</span></div>`;
+                    } else {
+                        const statusText = pkg.status === 'ready' ? 'Ready for Pickup' : 'Notified';
+                        const statusClass = pkg.status === 'ready' ? 'status-warning' : 'status-notified';
+                        statusBadge = `<span class="${statusClass} px-3 py-1 rounded-full text-xs font-medium shrink-0">${statusText}</span>`;
+                        detailsHtml = `<div class="flex items-center justify-between"><span class="text-sm text-text-secondary">Arrived</span><span class="text-sm font-medium text-text-primary">${pkg.arrived}</span></div><div class="flex items-center justify-between"><span class="text-sm text-text-secondary">Pickup Location</span><span class="text-sm font-medium text-text-primary">${pkg.location}</span></div><div class="flex items-center justify-between"><span class="text-sm text-text-secondary">Sender</span><span class="text-sm font-medium text-text-primary">${pkg.sender}</span></div>`;
+                        footerHtml = `<button class="btn-primary"><svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Get Directions</button>`;
+                    }
+                    card.innerHTML = `<div class="flex items-start justify-between mb-4"><div class="flex items-center space-x-3">${iconHtml}<div><h3 class="font-semibold text-text-primary">${pkg.name}</h3><p class="text-sm text-text-secondary">Number of Packages: ${pkg.packageCount}</p></div></div>${statusBadge}</div><div class="space-y-3">${detailsHtml}</div><div class="mt-4 pt-4 border-t border-slate-200">${footerHtml}</div>`;
+                    packageGrid.appendChild(card);
+                });
+            }
+
+            function filterAndRenderPackages() {
+                if (typeof packages === 'undefined') {
+                    console.error("Package data not loaded. Make sure packages.js is included correctly.");
+                    return;
+                }
+                const searchTerm = packageSearchInput.value.toLowerCase();
+                const status = statusFilterInput.value;
+                let filteredPackages = packages.filter(pkg => {
+                    const matchesStatus = status === 'all' || pkg.status === status;
+                    const matchesSearch = searchTerm === '' || pkg.name.toLowerCase().includes(searchTerm) || pkg.sender.toLowerCase().includes(searchTerm);
+                    return matchesStatus && matchesSearch;
+                });
+                renderPackages(filteredPackages);
+            }
+
+            // Add event listeners for package filters
+            if (packageSearchInput) {
+                packageSearchInput.addEventListener('input', filterAndRenderPackages);
+            }
+            if(statusFilterInput) {
+                statusFilterInput.addEventListener('change', filterAndRenderPackages);
+            }
+
+            // Initial render of packages
+            if (typeof packages !== 'undefined') {
+                filterAndRenderPackages();
+            } else {
+                if(packageGrid) {
+                    packageGrid.innerHTML = `<p class="text-text-secondary col-span-full text-center">Loading package data...</p>`;
                 }
             }
-        });
-
-        document.addEventListener('touchend', () => {
-            if (pullDistance > pullThreshold) {
-                refreshBtn.click();
-            }
-            document.body.style.transform = '';
-            pullDistance = 0;
         });
     </script>
     <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
