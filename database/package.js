@@ -6,7 +6,7 @@ const packages = [
 {
         name: "Daniel A. Ojerinde",
         packageCount: 1,
-        status: "ready", 
+        status: "delivered", 
         arrived: "Today, 1:41 PM",
         location: 'Main Office "Eaton 283"',
         sender: "USPS",
@@ -17,7 +17,7 @@ const packages = [
     {
         name: "Justine Weng",
         packageCount: 1,
-        status: "ready", 
+        status: "delivered", 
         arrived: "Today, 1:40 PM",
         location: 'Main Office "Eaton 283"',
         sender: "Target",
@@ -28,7 +28,7 @@ const packages = [
     {
         name: "Orfi Cortes",
         packageCount: 1,
-        status: "ready", 
+        status: "delivered", 
         arrived: "Today, 1:36 PM",
         location: 'Main Office "Eaton 283"',
         sender: "Unknown",
@@ -39,7 +39,7 @@ const packages = [
     {
         name: "Zarina Devletova",
         packageCount: 1,
-        status: "ready", 
+        status: "delivered", 
         arrived: "Today, 1:35 PM",
         location: 'Main Office "Eaton 283"',
         sender: "Unknown",

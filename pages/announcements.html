@@ -1,248 +1,441 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Announcements | SA2 Main Office</title>
-    <link rel="stylesheet" href="../css/main.css" />
+    <title>Announcements & Events | Thrive Scholar</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script type="module"
-        src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fcampuspor2185back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            /* A lighter, cleaner background */
+        }
+
+        /* Custom component styles using @apply for cleaner HTML */
+        .card {
+            @apply bg-white border border-slate-200 rounded-xl shadow-sm transition-all duration-300 ease-in-out;
+        }
+
+        .hover-lift {
+            @apply hover:-translate-y-1 hover:shadow-lg;
+        }
+
+        .btn {
+            @apply w-full px-4 py-2.5 rounded-lg font-semibold text-center transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2;
+        }
+
+        .btn-primary {
+            @apply bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500;
+        }
+
+        .btn-secondary {
+            @apply bg-indigo-100 text-indigo-700 hover:bg-indigo-200 focus:ring-indigo-500;
+        }
+
+        /* Tab styling with moving indicator */
+        .tab-btn {
+            @apply relative z-10 px-4 py-2 text-sm md:text-base md:px-6 md:py-2.5 rounded-lg font-semibold transition-colors duration-300 ease-in-out flex items-center gap-2;
+            /* The background is handled by the moving indicator */
+        }
+
+        .tab-btn.active {
+            @apply text-indigo-600;
+            /* Active text color */
+        }
+
+        .tab-btn:not(.active) {
+            @apply text-slate-600 hover:text-slate-900;
+            /* Inactive text color */
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+    </style>
 </head>
 
-<body class="bg-background min-h-screen">
-    <header class="bg-surface shadow-soft border-b border-slate-200 sticky top-0 z-50">
+<body class="text-slate-800">
+    <!-- HEADER -->
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" />
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo and Title -->
+                <div class="flex items-center space-x-4">
+                    <div
+                        class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
+                        <svg class="w-7 h-7 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
                         </svg>
                     </div>
                     <div>
-                        <h1 class="text-xl font-semibold text-text-primary">Thrive Scholar</h1>
-                        <p class="text-sm text-text-secondary">Main Office</p>
+                        <h1 class="text-xl font-bold text-slate-900">Thrive Scholar</h1>
+                        <p class="text-sm text-slate-500">Main Office</p>
                     </div>
                 </div>
 
-                <nav class="hidden md:flex items-center space-x-1">
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-2">
                     <a href="homepage.html"
-                        class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                        Home
-                    </a>
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Home</a>
                     <a href="announcements.html"
-                       class="px-4 py-2 text-primary bg-primary-50 rounded-md font-medium transition-smooth">
-                       Announcements
-                    </a>
+                        class="px-4 py-2 text-indigo-600 bg-indigo-50 font-medium rounded-lg transition-colors">Announcements</a>
                     <a href="student_dashboard.html"
-                        class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                        Student Dashboard
-                    </a>
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Dashboard</a>
                     <a href="print_request.html"
-                        class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                        Print Request
-                    </a>
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Print
+                        Request</a>
                     <a href="lost_found.html"
-                        class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                        Lost & Found
-                    </a>
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Lost
+                        & Found</a>
                 </nav>
 
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md hover:bg-secondary-100 transition-smooth">
-                    <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn"
+                    class="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100 transition-colors">
+                    <svg class="w-6 h-6" id="menu-open-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg class="w-6 h-6 hidden" id="menu-close-icon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 bg-surface">
-            <div class="px-4 py-2 space-y-1">
-                <a href="homepage.html" class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Home
-                </a>
-                 <a href="announcements.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">
-                    Announcements
-                </a>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="homepage.html"
+                    class="block px-3 py-2 text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-md font-medium">Home</a>
+                <a href="announcements.html"
+                    class="block px-3 py-2 text-indigo-600 bg-indigo-50 rounded-md font-medium">Announcements</a>
                 <a href="student_dashboard.html"
-                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Student Dashboard
-                </a>
+                    class="block px-3 py-2 text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-md font-medium">Dashboard</a>
                 <a href="print_request.html"
-                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Print Request
-                </a>
+                    class="block px-3 py-2 text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-md font-medium">Print
+                    Request</a>
                 <a href="lost_found.html"
-                    class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Lost & Found
-                </a>
+                    class="block px-3 py-2 text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-md font-medium">Lost
+                    & Found</a>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <section class="mb-8">
-            <div class="bg-gradient-to-r from-primary-50 to-accent-50 rounded-xl p-6 border border-primary-100">
-                <h2 class="text-fluid-2xl font-semibold text-text-primary mb-2">Latest Updates & Events</h2>
-                <p class="text-text-secondary">Stay informed about what's happening on campus.</p>
-            </div>
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <!-- Page Header -->
+        <section class="mb-10 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Latest Updates & Events</h2>
+            <p class="text-lg text-slate-600">Stay informed about what's happening on campus.</p>
         </section>
 
-        <section class="mb-6">
-            <div class="flex space-x-1 bg-secondary-100 p-1 rounded-lg w-fit">
+        <!-- Tab Navigation Section -->
+        <section class="mb-10 flex justify-center">
+            <div class="inline-flex bg-slate-200 p-1 rounded-xl">
+                <!-- Announcements Tab -->
                 <button id="announcements-tab"
-                    class="tab-btn active px-6 py-2 rounded-md font-medium transition-smooth bg-surface text-primary shadow-soft">
-                    <svg class="w-5 h-5 inline-block mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
-                    Announcements
+                    class="tab-btn active px-6 py-2 rounded-md font-medium bg-white text-blue-600 shadow transition flex items-center space-x-2"
+                    aria-selected="true" role="tab" data-tab="announcements">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                    </svg>
+                    <span>Announcements</span>
                 </button>
+
+                <!-- Events Tab -->
                 <button id="events-tab"
-                    class="tab-btn px-6 py-2 rounded-md font-medium transition-smooth text-text-secondary hover:text-text-primary">
-                    <svg class="w-5 h-5 inline-block mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
-                    Events
+                    class="tab-btn px-6 py-2 rounded-md font-medium text-gray-600 hover:text-blue-600 hover:bg-slate-100 transition flex items-center space-x-2"
+                    aria-selected="false" role="tab" data-tab="events">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c0-.414.336-.75.75-.75h10.5a.75.75 0 01.75.75v1.25a.75.75 0 01-.75.75H5.5a.75.75 0 01-.75-.75V7.5z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span>Events</span>
                 </button>
             </div>
         </section>
 
+
+        <!-- Content Sections -->
         <section id="announcements-section" class="animate-fade-in">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="announcements-grid">
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="announcements-grid">
+                <!-- Announcement cards will be injected here -->
+            </div>
         </section>
 
         <section id="events-section" class="hidden animate-fade-in">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="events-grid">
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="events-grid">
+                <!-- Event cards will be injected here -->
+            </div>
         </section>
 
     </main>
 
-    <footer class="bg-surface border-t border-slate-200 mt-12">
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="text-center">
-                <p class="text-text-secondary text-sm">© 2025 Thrive Scholars. All Rights Reserved.</p>
+                <p class="text-slate-500 text-sm">© 2025 Thrive Scholars. All Rights Reserved.</p>
                 <div class="mt-4 flex justify-center space-x-6">
-                     <a href="admin_login.html"
-                        class="text-text-secondary hover:text-primary transition-smooth text-sm">Admin Access</a>
-                    <a href="checkout.html" target="_blank" class="text-text-secondary hover:text-primary transition-smooth text-sm">Support</a>
-                    <a href="#" class="text-text-secondary hover:text-primary transition-smooth text-sm">Privacy</a>
+                    <a href="#" class="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Admin Access</a>
+                    <a href="#" class="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Support</a>
+                    <a href="#" class="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Privacy</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="/database/announcements.js"></script>
+    <!-- 
+      This script tag contains the data for your announcements and events.
+      In your actual project, you would keep this in an external file like `/database/announcements.js`
+    -->
+    <script src="/database/announcements.js">
+
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- UI ELEMENT REFERENCES ---
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
-            const announcementsTab = document.getElementById('announcements-tab');
-            const eventsTab = document.getElementById('events-tab');
-            const announcementsSection = document.getElementById('announcements-section');
-            const eventsSection = document.getElementById('events-section');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
+
             const announcementsGrid = document.getElementById('announcements-grid');
             const eventsGrid = document.getElementById('events-grid');
+
+            const tabContainer = document.getElementById('tab-container');
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabIndicator = document.getElementById('tab-indicator');
+            const contentSections = document.querySelectorAll('main > section[id$="-section"]');
 
             // --- MOBILE MENU LOGIC ---
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', () => {
                     mobileMenu.classList.toggle('hidden');
+                    menuOpenIcon.classList.toggle('hidden');
+                    menuCloseIcon.classList.toggle('hidden');
                 });
+            }
+
+            // --- TAB INDICATOR LOGIC ---
+            function moveIndicator(activeTab) {
+                if (!activeTab || !tabIndicator) return;
+                // Move the indicator pill to the active tab's position and size
+                tabIndicator.style.width = `${activeTab.offsetWidth}px`;
+                tabIndicator.style.transform = `translateX(${activeTab.offsetLeft}px)`;
             }
 
             // --- TAB SWITCHING LOGIC ---
-            function switchTab(activeTab, inactiveTab, activeSection, inactiveSection) {
-                activeTab.classList.add('active', 'bg-surface', 'text-primary', 'shadow-soft');
-                activeTab.classList.remove('text-text-secondary', 'hover:text-text-primary');
-                inactiveTab.classList.remove('active', 'bg-surface', 'text-primary', 'shadow-soft');
-                inactiveTab.classList.add('text-text-secondary', 'hover:text-text-primary');
-                activeSection.classList.remove('hidden');
-                inactiveSection.classList.add('hidden');
-            }
+            function switchTab(clickedTab) {
+                if (!clickedTab || clickedTab.classList.contains('active')) return;
 
-            if (announcementsTab) {
-                announcementsTab.addEventListener('click', () => {
-                    switchTab(announcementsTab, eventsTab, announcementsSection, eventsSection);
+                const targetTab = clickedTab.dataset.tab;
+
+                // Update button active/inactive classes
+                tabButtons.forEach(button => {
+                    button.classList.remove('active', 'bg-white', 'text-blue-600', 'shadow');
+                    button.classList.add('text-gray-600', 'hover:text-blue-600', 'hover:bg-slate-100');
+                    button.setAttribute('aria-selected', 'false');
+                });
+
+                clickedTab.classList.add('active', 'bg-white', 'text-blue-600', 'shadow');
+                clickedTab.classList.remove('text-gray-600', 'hover:text-blue-600', 'hover:bg-slate-100');
+                clickedTab.setAttribute('aria-selected', 'true');
+
+                // Move the indicator
+                moveIndicator(clickedTab);
+
+                // Show/hide content sections
+                contentSections.forEach(section => {
+                    if (section.id === `${targetTab}-section`) {
+                        section.classList.remove('hidden');
+                        section.classList.add('animate-fade-in');
+                    } else {
+                        section.classList.add('hidden');
+                    }
                 });
             }
 
-            if (eventsTab) {
-                eventsTab.addEventListener('click', () => {
-                    switchTab(eventsTab, announcementsTab, eventsSection, announcementsSection);
+
+            // Add event listeners to all tab buttons
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => switchTab(button));
+            });
+
+            // --- HELPER FUNCTIONS ---
+            function generateCalendarLink(event) {
+                const formatDateTime = (dateStr, timeStr) => {
+                    const date = new Date(dateStr);
+                    const timeParts = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/);
+                    if (!timeParts) return date.toISOString().replace(/-|:|\.\d+/g, '');
+
+                    let hours = parseInt(timeParts[1], 10);
+                    const minutes = parseInt(timeParts[2], 10);
+                    const period = timeParts[3];
+
+                    if (period === 'PM' && hours < 12) hours += 12;
+                    if (period === 'AM' && hours === 12) hours = 0;
+
+                    date.setUTCHours(hours, minutes, 0, 0);
+                    return date.toISOString().replace(/-|:|\.\d+Z/g, '') + 'Z';
+                };
+
+                const timeRange = event.time.split(' - ');
+                const startTimeStr = timeRange[0];
+                const endTimeStr = timeRange.length > 1 ? timeRange[1] : null;
+
+                const startDateTime = formatDateTime(event.date, startTimeStr);
+                let endDateTime;
+
+                if (endTimeStr) {
+                    endDateTime = formatDateTime(event.date, endTimeStr);
+                } else {
+                    // Default to a 1-hour duration if no end time is provided
+                    const tempDate = new Date(startDateTime);
+                    tempDate.setHours(tempDate.getHours() + 1);
+                    endDateTime = tempDate.toISOString().replace(/-|:|\.\d+Z/g, '') + 'Z';
+                }
+
+                const baseUrl = 'https://www.google.com/calendar/render?action=TEMPLATE';
+                const params = new URLSearchParams({
+                    text: event.title,
+                    dates: `${startDateTime}/${endDateTime}`,
+                    details: event.description,
+                    location: event.location,
                 });
+
+                return `${baseUrl}&${params.toString()}`;
             }
 
             // --- DYNAMIC CONTENT RENDERING LOGIC ---
             function renderContent() {
                 if (typeof announcementsData === 'undefined') {
-                    console.error("Announcements data not loaded. Make sure announcements.js is included correctly.");
-                    announcementsGrid.innerHTML = `<p class="text-text-secondary col-span-full text-center">Could not load announcements.</p>`;
-                    eventsGrid.innerHTML = `<p class="text-text-secondary col-span-full text-center">Could not load events.</p>`;
+                    console.error("Data not loaded.");
+                    announcementsGrid.innerHTML = `<p class="text-slate-500 col-span-full text-center">Could not load announcements.</p>`;
+                    eventsGrid.innerHTML = `<p class="text-slate-500 col-span-full text-center">Could not load events.</p>`;
                     return;
                 }
 
-                // Clear existing content
                 announcementsGrid.innerHTML = '';
                 eventsGrid.innerHTML = '';
 
-                const allAnnouncements = announcementsData.filter(item => item.type === 'announcement');
-                const allEvents = announcementsData.filter(item => item.type === 'event');
+                const allAnnouncements = announcementsData.filter(item => item.type === 'announcement').sort((a, b) => new Date(b.postedDate) - new Date(a.postedDate));
+                const allEvents = announcementsData.filter(item => item.type === 'event').sort((a, b) => new Date(a.date) - new Date(b.date));
 
-                // Render Announcements
                 if (allAnnouncements.length > 0) {
                     allAnnouncements.forEach(item => {
-                        const imageHtml = item.image ? `<img src="${item.image}" alt="${item.title}" class="w-full h-40 object-cover rounded-lg mb-4">` : '';
+                        const newBadge = item.isNew ? `<span class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full">NEW</span>` : '';
+                        const imageHtml = item.image ? `<img src="${item.image}" alt="${item.title}" class="w-full h-48 object-cover rounded-t-xl" onerror="this.style.display='none'">` : '';
+
                         const cardHtml = `
-                            <div class="card p-6 hover-lift transition-smooth flex flex-col">
+                            <div class="card hover-lift flex flex-col relative">
                                 ${imageHtml}
-                                <h3 class="text-xl font-semibold text-text-primary mb-2">${item.title}</h3>
-                                <p class="text-text-secondary flex-grow mb-4">${item.description}</p>
-                                <div class="text-xs text-text-secondary border-t border-slate-200 pt-3 mt-auto">
-                                    Posted: ${item.postedDate}
+                                ${newBadge}
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <h3 class="text-xl font-bold text-slate-900 mb-2">${item.title}</h3>
+                                    <p class="text-slate-600 flex-grow mb-4">${item.description}</p>
+                                    <div class="text-xs text-slate-400 border-t border-slate-100 pt-3 mt-auto">
+                                        Posted: ${new Date(item.postedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                    </div>
                                 </div>
-                            </div>
-                        `;
+                            </div>`;
                         announcementsGrid.innerHTML += cardHtml;
                     });
                 } else {
-                    announcementsGrid.innerHTML = `<p class="text-text-secondary col-span-full">No announcements at this time.</p>`;
+                    announcementsGrid.innerHTML = `<p class="text-slate-500 col-span-full text-center">No announcements at this time.</p>`;
                 }
 
-                // Render Events
                 if (allEvents.length > 0) {
                     allEvents.forEach(item => {
-                        const imageHtml = item.image ? `<img src="${item.image}" alt="${item.title}" class="w-full h-40 object-cover rounded-lg mb-4">` : '';
+                        const calendarLink = generateCalendarLink(item);
+                        const imageHtml = item.image ? `<img src="${item.image}" alt="${item.title}" class="w-full h-48 object-cover rounded-t-xl" onerror="this.style.display='none'">` : '';
+                        const formattedDate = new Date(item.date + 'T00:00:00');
+
                         const cardHtml = `
-                            <div class="card p-6 hover-lift transition-smooth flex flex-col">
-                                ${imageHtml}
-                                <h3 class="text-xl font-semibold text-text-primary mb-2">${item.title}</h3>
-                                <div class="text-sm text-text-secondary space-y-1 mb-3">
-                                   <p><strong>Date:</strong> ${item.date}</p>
-                                   <p><strong>Time:</strong> ${item.time}</p>
-                                   <p><strong>Location:</strong> ${item.location}</p>
+                            <div class="card hover-lift flex flex-col">
+                                <div class="relative">
+                                    ${imageHtml}
+                                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm p-2 rounded-lg text-center shadow-md">
+                                        <p class="text-indigo-600 font-bold text-sm">${formattedDate.toLocaleString('en-US', { month: 'short' }).toUpperCase()}</p>
+                                        <p class="text-slate-900 font-extrabold text-2xl">${formattedDate.getDate()}</p>
+                                    </div>
                                 </div>
-                                <p class="text-text-secondary flex-grow mb-4">${item.description}</p>
-                                <div class="flex flex-col sm:flex-row gap-3 mt-auto border-t border-slate-200 pt-4">
-                                    <button class="btn-primary w-full">Register</button>
-                                    <button class="btn-secondary w-full">Add to Calendar</button>
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <h3 class="text-xl font-bold text-slate-900 mb-2">${item.title}</h3>
+                                    <div class="text-sm text-slate-500 space-y-1.5 mb-4">
+                                        <p class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-slate-400"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z" clip-rule="evenodd" /></svg> ${item.time}</p>
+                                        <p class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-slate-400"><path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.757.433.57.57 0 00.28.14l.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" /></svg> ${item.location}</p>
+                                    </div>
+                                    <p class="text-slate-600 flex-grow mb-6">${item.description}</p>
+                                    <div class="flex flex-col sm:flex-row gap-3 mt-auto border-t border-slate-100 pt-5">
+                                        <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Register</a>
+                                        <a href="${calendarLink}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Add to Calendar</a>
+                                    </div>
                                 </div>
-                            </div>
-                        `;
+                            </div>`;
                         eventsGrid.innerHTML += cardHtml;
                     });
                 } else {
-                    eventsGrid.innerHTML = `<p class="text-text-secondary col-span-full">No upcoming events scheduled.</p>`;
+                    eventsGrid.innerHTML = `<p class="text-slate-500 col-span-full text-center">No upcoming events scheduled.</p>`;
                 }
             }
-            
+
+            // --- INITIALIZATION ---
             // Initial render on page load
             renderContent();
+
+            // Set initial active state on the first tab
+            const initialActiveTab = document.querySelector('.tab-btn');
+            if (initialActiveTab) {
+                initialActiveTab.classList.add('active');
+            }
+
+            // Set initial position of the tab indicator.
+            // Using a small timeout to ensure the browser has calculated the layout.
+            setTimeout(() => {
+                const activeTab = document.querySelector('.tab-btn.active');
+                moveIndicator(activeTab);
+            }, 50);
+
+            // Add a listener for resize to reposition the indicator if the window size changes.
+            window.addEventListener('resize', () => {
+                const currentActiveTab = document.querySelector('.tab-btn.active');
+                moveIndicator(currentActiveTab);
+            });
         });
     </script>
-    <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
 </body>
 
 </html>
