@@ -1,55 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scholar Checkout Form- Main Office</title>
+    <title>Scholar Check-In & Check-Out System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- ES6 Modules support for Three.js GLTFLoader -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            background-color: #f0f2f5;
         }
-
-        .form-input:focus,
-        .form-select:focus {
+        .form-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .form-input:focus, .form-select:focus {
             outline: none;
             border-color: #3b82f6;
             box-shadow: 0 0 0 2px #bfdbfe;
         }
-
-        .btn-add {
-            background-color: #22c55e;
+        .btn {
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
         }
-
-        .btn-add:hover {
-            background-color: #16a34a;
+        .btn:active {
+            transform: scale(0.98);
         }
-
-        #form-status {
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .status-error {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-
-        /* Style for the 3D canvas container */
-        #robot-canvas-container {
-            width: 100%;
-            height: 250px;
-            margin-bottom: 1rem;
-            background-color: #e0e0e0;
-            border-radius: 12px;
-        }
-
-        /* Styles for Autosuggestion Box */
         .suggestions-container {
             position: absolute;
             border: 1px solid #d1d5db;
@@ -58,439 +39,439 @@
             overflow-y: auto;
             background-color: white;
             width: 100%;
-            z-index: 10;
+            z-index: 20;
             border-radius: 0 0 0.375rem 0.375rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
         }
-
         .suggestion-item {
             padding: 0.5rem 0.75rem;
             cursor: pointer;
         }
-
-        .suggestion-item:hover {
+        .suggestion-item:hover, .suggestion-item.active {
             background-color: #f3f4f6;
+        }
+        .form-section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        #robot-canvas-container {
+            width: 100%;
+            height: 250px;
+            margin-bottom: 1rem;
+            background-color: #e0e0e0;
+            border-radius: 12px;
         }
     </style>
 </head>
-
 <body class="p-4 sm:p-6 md:p-8">
 
-    <!-- Container for the 3D robot animation -->
-    <div id="robot-canvas-container"></div>
+<!-- Container for the 3D robot animation -->
+<div id="robot-canvas-container"></div>
 
-    <div class="max-w-4xl mx-auto p-6 sm:p-8 bg-white rounded-2xl shadow-lg -mt-16 relative z-10">
+<div class="max-w-5xl mx-auto -mt-16 relative z-10">
+
+    <!-- CHECK-OUT FORM -->
+    <div id="checkout-container" class="form-container">
         <div class="border-b border-gray-200 pb-4 mb-6">
-            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Scholar Checkout Form- Main Office</h1>
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Scholar Check-Out Form - Main Office</h1>
             <p class="mt-1 text-sm text-gray-500">Please fill out all required fields.</p>
         </div>
-
         <div class="mb-6 p-4 bg-blue-50 border border-blue-200 text-blue-800 rounded-lg">
-            <p class="font-medium">Please Note: The exact check-out time is recorded automatically when you click the
-                "Submit" button. You do not need to enter it.</p>
+            <p class="font-medium">Please Note: The exact check-out time is recorded automatically when you click the Check-Out button.</p>
         </div>
-
         <form id="checkoutForm" autocomplete="off">
-            <!-- Main Checkout Information -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Main Office Staff Input with Autosuggestions -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
                 <div class="form-group relative">
-                    <label for="officeStaffOut" class="block text-sm font-medium text-gray-700 mb-1">Main Office Staff
-                        Checking Out</label>
-                    <input type="text" id="officeStaffOut" name="officeStaffOut" required
-                        class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                    <div id="staffSuggestions" class="suggestions-container hidden"></div>
+                    <label for="officeStaffOut" class="block text-sm font-medium text-gray-700 mb-1">Main Office Staff</label>
+                    <input type="text" id="officeStaffOut" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    <div id="staffSuggestionsOut" class="suggestions-container hidden"></div>
                 </div>
                 <div class="form-group">
-                    <label for="scholarWithId" class="block text-sm font-medium text-gray-700 mb-1">Scholar (with ID)
-                        Full Name</label>
-                    <input type="text" id="scholarWithId" name="scholarWithId" required
-                        class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    <label for="scholarWithId" class="block text-sm font-medium text-gray-700 mb-1">Scholar (with ID) Full Name</label>
+                    <input type="text" id="scholarWithId" name="scholarWithId" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
                 </div>
                 <div class="form-group">
                     <label for="idChecked" class="block text-sm font-medium text-gray-700 mb-1">ID Checked</label>
-                    <select id="idChecked" name="idChecked"
-                        class="form-select w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    <select id="idChecked" name="idChecked" class="form-select w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
                         <option value="Yes" selected>Yes</option>
                         <option value="No">No</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="checkoutDate" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
-                    <input type="date" id="checkoutDate" name="checkoutDate" required
-                        class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    <input type="date" id="checkoutDate" name="checkoutDate" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
                 </div>
                 <div class="form-group">
-                    <label for="mainReturnTime" class="block text-sm font-medium text-gray-700 mb-1">Expected Return
-                        Time (for group)</label>
-                    <input type="time" id="mainReturnTime" name="mainReturnTime" required
-                        class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    <label for="mainReturnTime" class="block text-sm font-medium text-gray-700 mb-1">Expected Return Time</label>
+                    <input type="time" id="mainReturnTime" name="mainReturnTime" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
                 </div>
                 <div class="form-group md:col-span-2">
-                    <label for="reason" class="block text-sm font-medium text-gray-700 mb-1">Reason For Check
-                        Out</label>
-                    <input type="text" id="reason" name="reason"
-                        class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    <label for="reason" class="block text-sm font-medium text-gray-700 mb-1">Reason For Check Out</label>
+                    <input type="text" id="reason" name="reason" class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
                 </div>
             </div>
 
-            <!-- Accompanying Scholars Section -->
-            <h2 class="text-xl font-semibold text-gray-800 mt-8 pt-6 border-t border-gray-200">Accompanying Scholar(s)
-                Details</h2>
-            <div id="accompanying-scholars-container" class="mt-4 space-y-6">
-                <!-- The first scholar section is here by default -->
-                <div class="accompanying-scholar-section p-4 border border-gray-200 rounded-lg bg-gray-50"
-                    data-scholar-id="1">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="form-group">
-                            <label for="accompanyingScholarName1"
-                                class="block text-sm font-medium text-gray-700 mb-1">Scholar Name 1</label>
-                            <input type="text" name="accompanyingScholarName" id="accompanyingScholarName1" required
-                                class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                        </div>
-                        <div class="form-group">
-                            <label for="note1" class="block text-sm font-medium text-gray-700 mb-1">Note 1
-                                (Optional)</label>
-                            <input type="text" name="accompanyingScholarNote" id="note1"
-                                class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button type="button"
-                class="btn-add mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                onclick="addScholar()">
-                <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                        clip-rule="evenodd" />
-                </svg>
-                Add Another Scholar
+            <h3 class="text-lg font-semibold text-gray-800 mt-6 pt-4 border-t border-gray-200">Accompanying Scholar(s)</h3>
+            <div id="accompanying-scholars-container" class="mt-4 space-y-4"></div>
+            <button type="button" class="mt-2 inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 btn" onclick="addScholar()">
+                <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>
+                Add Scholar
             </button>
 
-            <!-- Final Check-In Section -->
-            <h2 class="text-xl font-semibold text-gray-800 mt-8 pt-6 border-t border-gray-200">Final Check-In (Optional)
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                <div class="form-group">
-                    <label for="staffIn" class="block text-sm font-medium text-gray-700 mb-1">Main Office Staff Checking
-                        In</label>
-                    <input type="text" id="staffIn" name="staffIn"
-                        class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+            <div class="mt-8 pt-6 border-t border-gray-200 flex justify-end">
+                <button type="submit" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-md shadow-md btn">Check-Out</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- CHECK-IN FORM -->
+    <div id="checkin-container" class="form-container">
+        <h2 class="form-section-title">Scholar Check-In</h2>
+        <form id="checkinForm" autocomplete="off">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                <div class="form-group relative">
+                    <label for="staffIn" class="block text-sm font-medium text-gray-700 mb-1">Main Office Staff</label>
+                    <input type="text" id="staffIn" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                    <div id="staffSuggestionsIn" class="suggestions-container hidden"></div>
                 </div>
-                <div class="form-group">
-                    <label for="checkinTime" class="block text-sm font-medium text-gray-700 mb-1">Actual Return/Check-In
-                        Time</label>
-                    <input type="time" id="checkinTime" name="checkinTime"
-                        class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                 <div class="form-group relative">
+                    <label for="scholarSearch" class="block text-sm font-medium text-gray-700 mb-1">Search Checked-Out Scholar</label>
+                    <input type="text" id="scholarSearch" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" placeholder="Please search for the scholar with ID...">
+                    <div id="scholarSuggestions" class="suggestions-container hidden"></div>
                 </div>
-                <div class="form-group md:col-span-2">
-                    <label for="generalNotes" class="block text-sm font-medium text-gray-700 mb-1">General Notes</label>
-                    <input type="text" id="generalNotes" name="generalNotes"
-                        class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                </div>
+            </div>
+            
+            <div id="checkin-details" class="mt-6 hidden">
+                 <h3 class="text-lg font-semibold text-gray-800">Check-In Details</h3>
+                 <div class="mt-2 p-4 bg-gray-50 rounded-lg border border-gray-200 space-y-2">
+                    <p class="text-sm text-gray-600"><strong>Scholar with ID:</strong> <span id="checkin-scholar-name" class="font-medium text-gray-800"></span></p>
+                    <p class="text-sm text-gray-600"><strong>Accompanying Scholars:</strong> <span id="checkin-accompanying-scholars" class="font-medium text-gray-800"></span></p>
+                    <p class="text-sm text-gray-600"><strong>Expected Return:</strong> <span id="checkin-expected-return-time" class="font-medium text-gray-800"></span></p>
+                 </div>
+                 <div class="mt-4">
+                     <label for="checkinTime" class="block text-sm font-medium text-gray-700 mb-1">Actual Return/Check-In Time</label>
+                     <input type="time" id="checkinTime" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                 </div>
             </div>
 
             <div class="mt-8 pt-6 border-t border-gray-200 flex justify-end">
-                <button type="submit"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    Submit
-                </button>
+                <button type="submit" id="checkinSubmitBtn" disabled class="w-full sm:w-auto bg-gray-400 text-white font-bold py-2.5 px-6 rounded-md shadow-md cursor-not-allowed btn">Check-In</button>
             </div>
         </form>
-        <div id="form-status" class="mt-6 p-4 rounded-md text-center font-medium hidden"></div>
     </div>
+    
+    <div id="form-status" class="mt-2 p-4 rounded-md text-center font-medium hidden"></div>
+</div>
 
-    <!-- Using an import map for Three.js modules -->
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/"
-        }
-    }
+<script type="importmap">
+    {"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/"}}
 </script>
 
-    <script type="module">
-        // --- SCRIPT FOR 3D ROBOT ANIMATION ---
-        import * as THREE from 'three';
-        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+<script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    let container, clock, mixer, actions, activeAction, previousAction, camera, scene, renderer, model;
+    const emotes = ['Jump', 'Yes', 'No', 'Wave', 'Punch', 'ThumbsUp'], api = { state: 'Idle' };
+    init();
+    function init() {
+        container = document.getElementById('robot-canvas-container');
+        if (!container) return;
+        clock = new THREE.Clock();
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xe0e0e0);
+        scene.fog = new THREE.Fog(0xe0e0e0, 20, 100);
+        camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.25, 100);
+        camera.position.set(-5, 3, 10);
+        camera.lookAt(0, 2, 0);
+        const hemiLight = new THREE.HemisphereLight(0xffffff, 0x8d8d8d, 3);
+        hemiLight.position.set(0, 20, 0);
+        scene.add(hemiLight);
+        const dirLight = new THREE.DirectionalLight(0xffffff, 3);
+        dirLight.position.set(0, 20, 10);
+        scene.add(dirLight);
+        const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshPhongMaterial({ color: 0xcbcbcb, depthWrite: false }));
+        mesh.rotation.x = -Math.PI / 2;
+        scene.add(mesh);
+        const grid = new THREE.GridHelper(200, 40, 0x000000, 0x000000);
+        grid.material.opacity = 0.2;
+        grid.material.transparent = true;
+        scene.add(grid);
+        const loader = new GLTFLoader();
+        loader.load('https://threejs.org/examples/models/gltf/RobotExpressive/RobotExpressive.glb', (gltf) => { model = gltf.scene; scene.add(model); setupAnimations(gltf.animations); }, undefined, (e) => console.error(e));
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setAnimationLoop(animate);
+        container.appendChild(renderer.domElement);
+        window.addEventListener('resize', onWindowResize);
+    }
+    function setupAnimations(animations) {
+        mixer = new THREE.AnimationMixer(model);
+        actions = {};
+        animations.forEach(clip => { const action = mixer.clipAction(clip); actions[clip.name] = action; if (emotes.includes(clip.name)) { action.clampWhenFinished = true; action.loop = THREE.LoopOnce; } });
+        activeAction = actions['Idle'];
+        activeAction.play();
+        setInterval(playRandomEmote, 10000);
+    }
+    function playRandomEmote() { if (!mixer) return; const randomEmote = emotes[Math.floor(Math.random() * emotes.length)]; fadeToAction(randomEmote, 0.2); mixer.addEventListener('finished', restoreState); }
+    function restoreState() { if (!mixer) return; mixer.removeEventListener('finished', restoreState); fadeToAction(api.state, 0.2); }
+    function fadeToAction(name, duration) { previousAction = activeAction; activeAction = actions[name]; if (previousAction !== activeAction) { previousAction.fadeOut(duration); } activeAction.reset().setEffectiveTimeScale(1).setEffectiveWeight(1).fadeIn(duration).play(); }
+    function onWindowResize() { if (!container || !renderer || !camera) return; camera.aspect = container.clientWidth / container.clientHeight; camera.updateProjectionMatrix(); renderer.setSize(container.clientWidth, container.clientHeight); }
+    function animate() { if (!clock || !renderer || !scene || !camera) return; const dt = clock.getDelta(); if (mixer) mixer.update(dt); renderer.render(scene, camera); }
+</script>
 
-        let container, clock, mixer, actions, activeAction, previousAction;
-        let camera, scene, renderer, model;
-        const emotes = ['Jump', 'Yes', 'No', 'Wave', 'Punch', 'ThumbsUp'];
-        const api = { state: 'Idle' };
+<script>
+// --- CONFIGURATION ---
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwHVsRPPBlv2RmqlMRWwZIgcGVimcKdjPRVKfRsWxPuVXtutt6qB_DRJzDjqHPwGcjO/exec";
+const staffNames = ["Mahesh Pandit", "John Zurita", "Peter Raymond", "Sara Pedraja", "Amare Harris", "Nicholas Robie"];
 
-        init();
+// --- DOM ELEMENTS ---
+const checkoutForm = document.getElementById('checkoutForm');
+const checkinForm = document.getElementById('checkinForm');
+const accompanyingContainer = document.getElementById('accompanying-scholars-container');
+const scholarSearchInput = document.getElementById('scholarSearch');
+const scholarSuggestionsContainer = document.getElementById('scholarSuggestions');
+const checkinDetails = document.getElementById('checkin-details');
+const checkinSubmitBtn = document.getElementById('checkinSubmitBtn');
 
-        function init() {
-            container = document.getElementById('robot-canvas-container');
-            if (!container) return;
-            clock = new THREE.Clock();
-            scene = new THREE.Scene();
-            scene.background = new THREE.Color(0xe0e0e0);
-            scene.fog = new THREE.Fog(0xe0e0e0, 20, 100);
-            camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.25, 100);
-            camera.position.set(-5, 3, 10);
-            camera.lookAt(0, 2, 0);
-            const hemiLight = new THREE.HemisphereLight(0xffffff, 0x8d8d8d, 3);
-            hemiLight.position.set(0, 20, 0);
-            scene.add(hemiLight);
-            const dirLight = new THREE.DirectionalLight(0xffffff, 3);
-            dirLight.position.set(0, 20, 10);
-            scene.add(dirLight);
-            const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshPhongMaterial({ color: 0xcbcbcb, depthWrite: false }));
-            mesh.rotation.x = -Math.PI / 2;
-            scene.add(mesh);
-            const grid = new THREE.GridHelper(200, 40, 0x000000, 0x000000);
-            grid.material.opacity = 0.2;
-            grid.material.transparent = true;
-            scene.add(grid);
-            const loader = new GLTFLoader();
-            loader.load('https://threejs.org/examples/models/gltf/RobotExpressive/RobotExpressive.glb', function (gltf) {
-                model = gltf.scene;
-                scene.add(model);
-                setupAnimations(gltf.animations);
-            }, undefined, (e) => console.error(e));
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setPixelRatio(window.devicePixelRatio);
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            renderer.setAnimationLoop(animate);
-            container.appendChild(renderer.domElement);
-            window.addEventListener('resize', onWindowResize);
-        }
+// --- STATE ---
+let checkedOutScholars = [];
+let selectedScholarForCheckin = null;
 
-        function setupAnimations(animations) {
-            mixer = new THREE.AnimationMixer(model);
-            actions = {};
-            animations.forEach(clip => {
-                const action = mixer.clipAction(clip);
-                actions[clip.name] = action;
-                if (emotes.includes(clip.name)) {
-                    action.clampWhenFinished = true;
-                    action.loop = THREE.LoopOnce;
-                }
+// --- UTILITY FUNCTIONS ---
+function showStatus(message, type = 'success') {
+    const statusDiv = document.getElementById('form-status');
+    statusDiv.textContent = message;
+    statusDiv.className = `p-4 rounded-md text-center font-medium ${type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+    statusDiv.classList.remove('hidden');
+    setTimeout(() => statusDiv.classList.add('hidden'), 4000);
+}
+
+function createSuggestions(inputEl, containerEl, data, onSelect) {
+    inputEl.addEventListener('input', () => {
+        const value = inputEl.value.toLowerCase();
+        containerEl.innerHTML = '';
+        if (!value) { containerEl.classList.add('hidden'); return; }
+        const filtered = data.filter(item => item.toLowerCase().startsWith(value));
+        if (filtered.length > 0) {
+            filtered.forEach(item => {
+                const div = document.createElement('div');
+                div.textContent = item;
+                div.className = 'suggestion-item';
+                div.addEventListener('click', () => { inputEl.value = item; containerEl.classList.add('hidden'); if (onSelect) onSelect(item); });
+                containerEl.appendChild(div);
             });
-            activeAction = actions['Idle'];
-            activeAction.play();
-            setInterval(playRandomEmote, 10000);
+            containerEl.classList.remove('hidden');
+        } else { containerEl.classList.add('hidden'); }
+    });
+}
+
+/**
+ * Formats time from various potential sheet formats into a readable 12-hour AM/PM format.
+ * @param {string|Date} timeValue - The time to format.
+ * @returns {string} The formatted time string.
+ */
+function formatTime(timeValue) {
+    if (!timeValue) return 'Not set';
+    try {
+        let date;
+        // Case 1: It's already a Date object (less likely from JSON but good practice)
+        if (timeValue instanceof Date) {
+            date = timeValue;
+        } 
+        // Case 2: It's a string from Google Sheets that can be parsed into a Date
+        // This handles ISO strings and other standard date strings.
+        else {
+            date = new Date(timeValue);
         }
 
-        function playRandomEmote() {
-            if (!mixer) return;
-            const randomEmote = emotes[Math.floor(Math.random() * emotes.length)];
-            fadeToAction(randomEmote, 0.2);
-            mixer.addEventListener('finished', restoreState);
-        }
-
-        function restoreState() {
-            if (!mixer) return;
-            mixer.removeEventListener('finished', restoreState);
-            fadeToAction(api.state, 0.2);
-        }
-
-        function fadeToAction(name, duration) {
-            previousAction = activeAction;
-            activeAction = actions[name];
-            if (previousAction !== activeAction) {
-                previousAction.fadeOut(duration);
+        // Check if the created date is valid.
+        if (isNaN(date.getTime())) {
+            // Case 3: It might be a simple "HH:mm" string which new Date() might not parse correctly alone.
+            const parts = timeValue.split(':');
+            if (parts.length === 2) {
+                const hours = parseInt(parts[0], 10);
+                const minutes = parseInt(parts[1], 10);
+                if (!isNaN(hours) && !isNaN(minutes)) {
+                    const h = hours;
+                    const ampm = h >= 12 ? 'PM' : 'AM';
+                    const formattedHours = h % 12 || 12;
+                    return `${formattedHours}:${String(minutes).padStart(2, '0')} ${ampm}`;
+                }
             }
-            activeAction.reset().setEffectiveTimeScale(1).setEffectiveWeight(1).fadeIn(duration).play();
+            return 'Invalid Time'; // If all parsing fails
         }
 
-        function onWindowResize() {
-            if (!container || !renderer || !camera) return;
-            camera.aspect = container.clientWidth / container.clientHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(container.clientWidth, container.clientHeight);
-        }
+        // If we have a valid date object from cases 1 or 2, format it.
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const formattedHours = hours % 12 || 12;
+        return `${formattedHours}:${String(minutes).padStart(2, '0')} ${ampm}`;
 
-        function animate() {
-            if (!clock || !renderer || !scene || !camera) return;
-            const dt = clock.getDelta();
-            if (mixer) mixer.update(dt);
-            renderer.render(scene, camera);
-        }
-    </script>
+    } catch (e) {
+        console.error("Could not format time:", timeValue, e);
+        return 'Invalid Time';
+    }
+}
 
-    <script>
-        // --- SCRIPT FOR FORM FUNCTIONALITY ---
-        document.addEventListener("DOMContentLoaded", function () {
-            // Set today's date
-            const now = new Date();
-            const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split('T')[0];
-            document.getElementById('checkoutDate').value = localDate;
 
-            // --- AUTOSUGGESTION LOGIC ---
-            const staffNames = ["Mahesh Pandit", "John Zurita", "Peter Raymond", "Amare Harris", "Sara Pedraja", "Nicholas Robie"];
-            const staffInput = document.getElementById('officeStaffOut');
-            const suggestionsContainer = document.getElementById('staffSuggestions');
+// --- CHECK-OUT LOGIC ---
+function renumberScholars() {
+    accompanyingContainer.querySelectorAll('.accompanying-scholar-section').forEach((section, index) => {
+        const newNum = index + 1;
+        const label = section.querySelector('label');
+        const input = section.querySelector('input');
+        label.textContent = `Scholar Name ${newNum}`;
+        label.setAttribute('for', `accompanyingScholarName${newNum}`);
+        input.id = `accompanyingScholarName${newNum}`;
+    });
+}
 
-            staffInput.addEventListener('input', () => {
-                const inputText = staffInput.value.toLowerCase();
-                suggestionsContainer.innerHTML = '';
-                if (inputText.length === 0) {
-                    suggestionsContainer.classList.add('hidden');
-                    return;
-                }
+function addScholar() {
+    const count = accompanyingContainer.children.length + 1;
+    const section = document.createElement('div');
+    section.className = 'accompanying-scholar-section relative grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-4 items-center';
+    section.innerHTML = `<div><label for="accompanyingScholarName${count}" class="block text-sm font-medium text-gray-700 mb-1">Scholar Name ${count}</label><input type="text" name="accompanyingScholarName" id="accompanyingScholarName${count}" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"></div><button type="button" class="mt-6 text-red-500 hover:text-red-700" onclick="this.closest('.accompanying-scholar-section').remove(); renumberScholars();"><svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>`;
+    accompanyingContainer.appendChild(section);
+}
 
-                const filteredNames = staffNames.filter(name => name.toLowerCase().startsWith(inputText));
+checkoutForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const submitBtn = e.submitter;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
 
-                if (filteredNames.length > 0) {
-                    filteredNames.forEach(name => {
-                        const div = document.createElement('div');
-                        div.textContent = name;
-                        div.className = 'suggestion-item';
-                        div.addEventListener('click', () => {
-                            staffInput.value = name;
-                            suggestionsContainer.classList.add('hidden');
-                        });
-                        suggestionsContainer.appendChild(div);
-                    });
-                    suggestionsContainer.classList.remove('hidden');
-                } else {
-                    suggestionsContainer.classList.add('hidden');
-                }
+    const formData = new FormData(checkoutForm);
+    const data = {
+        action: 'checkout',
+        officeStaffOut: document.getElementById('officeStaffOut').value,
+        scholarWithId: formData.get('scholarWithId'),
+        idChecked: formData.get('idChecked'),
+        checkoutDate: formData.get('checkoutDate'),
+        mainReturnTime: formData.get('mainReturnTime'),
+        reason: formData.get('reason'),
+        accompanyingScholars: Array.from(document.querySelectorAll('input[name="accompanyingScholarName"]')).map(input => ({ name: input.value })).filter(s => s.name)
+    };
+
+    fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(data), mode: 'cors' })
+        .then(res => res.json())
+        .then(data => {
+            showStatus(data.message, data.status);
+            if (data.status === 'success') {
+                checkoutForm.reset();
+                accompanyingContainer.innerHTML = '';
+                document.getElementById('checkoutDate').valueAsDate = new Date();
+                fetchCheckedOutScholars();
+            }
+        })
+        .catch(err => showStatus(`Error: ${err.message}`, 'error'))
+        .finally(() => { submitBtn.disabled = false; submitBtn.textContent = 'Check-Out'; });
+});
+
+// --- CHECK-IN LOGIC ---
+function fetchCheckedOutScholars() {
+    fetch(SCRIPT_URL)
+        .then(res => res.json())
+        .then(response => {
+            if (response.status === 'success') {
+                checkedOutScholars = response.data;
+            } else {
+                showStatus(`Failed to load scholars: ${response.message}`, 'error');
+            }
+        })
+        .catch(err => showStatus(`Error fetching scholars: ${err.message}`, 'error'));
+}
+
+scholarSearchInput.addEventListener('input', () => {
+    const value = scholarSearchInput.value.toLowerCase();
+    scholarSuggestionsContainer.innerHTML = '';
+    if (!value) { scholarSuggestionsContainer.classList.add('hidden'); resetCheckinForm(); return; }
+    
+    const filtered = checkedOutScholars.filter(s => s.scholarWithId.toLowerCase().includes(value));
+    if (filtered.length > 0) {
+        filtered.forEach(scholar => {
+            const div = document.createElement('div');
+            div.textContent = scholar.scholarWithId;
+            div.className = 'suggestion-item';
+            div.addEventListener('click', () => {
+                scholarSearchInput.value = scholar.scholarWithId;
+                scholarSuggestionsContainer.classList.add('hidden');
+                selectScholarForCheckin(scholar);
             });
-
-            // Hide suggestions when clicking outside
-            document.addEventListener('click', (e) => {
-                if (e.target !== staffInput) {
-                    suggestionsContainer.classList.add('hidden');
-                }
-            });
+            scholarSuggestionsContainer.appendChild(div);
         });
+        scholarSuggestionsContainer.classList.remove('hidden');
+    } else { scholarSuggestionsContainer.classList.add('hidden'); resetCheckinForm(); }
+});
 
-        // --- DYNAMIC SCHOLAR FORM LOGIC ---
+function selectScholarForCheckin(scholar) {
+    selectedScholarForCheckin = scholar;
+    document.getElementById('checkin-scholar-name').textContent = scholar.scholarWithId;
+    const accompanyingText = scholar.accompanyingScholars.map(s => s.name).filter(Boolean).join(', ');
+    document.getElementById('checkin-accompanying-scholars').textContent = accompanyingText || 'None';
+    document.getElementById('checkin-expected-return-time').textContent = formatTime(scholar.expectedReturnTime);
+    checkinDetails.classList.remove('hidden');
+    checkinSubmitBtn.disabled = false;
+    checkinSubmitBtn.classList.replace('bg-gray-400', 'bg-blue-600');
+    checkinSubmitBtn.classList.replace('cursor-not-allowed', 'hover:bg-blue-700');
+}
 
-        // **FUNCTION TO RENUMBER SCHOLARS AFTER A REMOVAL**
-        function renumberScholars() {
-            const container = document.getElementById('accompanying-scholars-container');
-            const scholarSections = container.querySelectorAll('.accompanying-scholar-section');
+function resetCheckinForm() {
+    selectedScholarForCheckin = null;
+    checkinDetails.classList.add('hidden');
+    checkinSubmitBtn.disabled = true;
+    checkinSubmitBtn.classList.replace('bg-blue-600', 'bg-gray-400');
+    checkinSubmitBtn.classList.replace('hover:bg-blue-700', 'cursor-not-allowed');
+}
 
-            scholarSections.forEach((section, index) => {
-                const newScholarNumber = index + 1;
+checkinForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!selectedScholarForCheckin) { showStatus('Please select a scholar to check in.', 'error'); return; }
+    
+    const submitBtn = e.submitter;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
 
-                const nameLabel = section.querySelector('label[for^="accompanyingScholarName"]');
-                const nameInput = section.querySelector('input[name="accompanyingScholarName"]');
-                if (nameLabel && nameInput) {
-                    nameLabel.textContent = `Scholar Name ${newScholarNumber}`;
-                    nameLabel.setAttribute('for', `accompanyingScholarName${newScholarNumber}`);
-                    nameInput.id = `accompanyingScholarName${newScholarNumber}`;
-                }
+    const data = {
+        action: 'checkin',
+        rowId: selectedScholarForCheckin.rowId,
+        staffIn: document.getElementById('staffIn').value,
+        checkinTime: document.getElementById('checkinTime').value
+    };
 
-                const noteLabel = section.querySelector('label[for^="note"]');
-                const noteInput = section.querySelector('input[name="accompanyingScholarNote"]');
-                if (noteLabel && noteInput) {
-                    noteLabel.textContent = `Note ${newScholarNumber} (Optional)`;
-                    noteLabel.setAttribute('for', `note${newScholarNumber}`);
-                    noteInput.id = `note${newScholarNumber}`;
-                }
-            });
-        }
+    fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(data), mode: 'cors' })
+        .then(res => res.json())
+        .then(data => {
+            showStatus(data.message, data.status);
+            if (data.status === 'success') {
+                checkinForm.reset();
+                resetCheckinForm();
+                fetchCheckedOutScholars();
+            }
+        })
+        .catch(err => showStatus(`Error: ${err.message}`, 'error'))
+        .finally(() => { submitBtn.disabled = false; submitBtn.textContent = 'Check-In'; });
+});
 
-        // **FUNCTION TO ADD A NEW SCHOLAR**
-        function addScholar() {
-            const container = document.getElementById('accompanying-scholars-container');
-            const currentScholarCount = container.children.length;
-            const newScholarNumber = currentScholarCount + 1;
-
-            const newScholarSection = document.createElement('div');
-            newScholarSection.className = 'accompanying-scholar-section relative p-4 border border-gray-200 rounded-lg bg-gray-50';
-
-            newScholarSection.innerHTML = `
-            <button type="button" class="absolute top-2 right-2 text-red-400 hover:text-red-600" onclick="removeScholar(this)">
-                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                </svg>
-            </button>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="form-group">
-                    <label for="accompanyingScholarName${newScholarNumber}" class="block text-sm font-medium text-gray-700 mb-1">Scholar Name ${newScholarNumber}</label>
-                    <input type="text" name="accompanyingScholarName" id="accompanyingScholarName${newScholarNumber}" required class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                </div>
-                <div class="form-group">
-                    <label for="note${newScholarNumber}" class="block text-sm font-medium text-gray-700 mb-1">Note ${newScholarNumber} (Optional)</label>
-                    <input type="text" name="accompanyingScholarNote" id="note${newScholarNumber}" class="form-input w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                </div>
-            </div>`;
-            container.appendChild(newScholarSection);
-        }
-
-        // **FUNCTION TO REMOVE A SCHOLAR**
-        function removeScholar(button) {
-            const scholarSection = button.closest('.accompanying-scholar-section');
-            scholarSection.remove();
-            renumberScholars();
-        }
-
-        // --- SCRIPT FOR FORM SUBMISSION ---
-        const form = document.getElementById('checkoutForm');
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const statusDiv = document.getElementById('form-status');
-            statusDiv.style.display = 'block';
-            statusDiv.className = 'mt-6 p-4 rounded-md text-center font-medium bg-blue-100 text-blue-800';
-            statusDiv.textContent = 'Submitting...';
-
-            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwpb4Wa7ZFPQUJHmer21uxT7N5DvpR78WLuSlpfiJx8qse3k-T_wrcBO75hEyvnh5hr/exec";
-
-            const accompanyingScholarsArray = [];
-            document.querySelectorAll('.accompanying-scholar-section').forEach(section => {
-                const nameInput = section.querySelector('input[name="accompanyingScholarName"]');
-                const noteInput = section.querySelector('input[name="accompanyingScholarNote"]');
-                if (nameInput && nameInput.value) {
-                    accompanyingScholarsArray.push({ name: nameInput.value, note: noteInput ? noteInput.value : '' });
-                }
-            });
-
-            const formData = {
-                officeStaffOut: document.getElementById('officeStaffOut').value,
-                scholarWithId: document.getElementById('scholarWithId').value,
-                idChecked: document.getElementById('idChecked').value,
-                checkoutDate: document.getElementById('checkoutDate').value,
-                mainReturnTime: document.getElementById('mainReturnTime').value,
-                reason: document.getElementById('reason').value,
-                accompanyingScholars: accompanyingScholarsArray,
-                staffIn: document.getElementById('staffIn').value,
-                checkinTime: document.getElementById('checkinTime').value,
-                generalNotes: document.getElementById('generalNotes').value
-            };
-
-            fetch(SCRIPT_URL, {
-                method: 'POST', mode: 'cors', cache: 'no-cache',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(formData)
-            })
-                .then(res => {
-                    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-                    return res.json();
-                })
-                .then(data => {
-                    if (data.status === 'success') {
-                        statusDiv.textContent = 'Form submitted successfully!';
-                        statusDiv.className = 'mt-6 p-4 rounded-md text-center font-medium bg-green-100 text-green-800';
-                        form.reset();
-                        const now = new Date();
-                        document.getElementById('checkoutDate').value = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split('T')[0];
-                        const container = document.getElementById('accompanying-scholars-container');
-                        while (container.children.length > 1) {
-                            container.removeChild(container.lastChild);
-                        }
-                        renumberScholars();
-                    } else {
-                        throw new Error(data.message || 'The script returned an error.');
-                    }
-                })
-                .catch(err => {
-                    statusDiv.textContent = `Error: ${err.message}. Please check script deployment permissions.`;
-                    statusDiv.className = 'mt-6 p-4 rounded-md text-center font-medium status-error';
-                    console.error("Fetch Error:", err);
-                });
-        });
-    </script>
+// --- INITIALIZATION ---
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('checkoutDate').valueAsDate = new Date();
+    const now = new Date(), hours = String(now.getHours()).padStart(2, '0'), minutes = String(now.getMinutes()).padStart(2, '0');
+    document.getElementById('checkinTime').value = `${hours}:${minutes}`;
+    
+    createSuggestions(document.getElementById('officeStaffOut'), document.getElementById('staffSuggestionsOut'), staffNames);
+    createSuggestions(document.getElementById('staffIn'), document.getElementById('staffSuggestionsIn'), staffNames);
+    
+    fetchCheckedOutScholars();
+    
+    document.addEventListener('click', (e) => { if (!e.target.closest('.relative')) { document.querySelectorAll('.suggestions-container').forEach(el => el.classList.add('hidden')); } });
+});
+</script>
 
 </body>
-
 </html>
