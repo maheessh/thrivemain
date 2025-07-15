@@ -3,6 +3,39 @@
 // Simply add, remove, or edit the objects in this 'packages' array.
 // The webpage will automatically update.
 const packages = [
+     {
+        name: "Kabirah Azeez",
+        packageCount: 1,
+        status: "ready",
+        arrived: "Today",
+        location: 'Main Office "Eaton 283"',
+        sender: "Amazon",
+        icon: "truck",
+        iconBgColor: "bg-yellow-100",
+        iconTextColor: "text-yellow-500"
+    },
+    {
+        name: "Miranda Castillo",
+        packageCount: 2,
+        status: "ready",
+        arrived: "Today",
+        location: 'Main Office "Eaton 283"',
+        sender: "Amazon",
+        icon: "truck",
+        iconBgColor: "bg-yellow-100",
+        iconTextColor: "text-yellow-500"
+    },
+    {
+        name: "Ililli Mohammed",
+        packageCount: 1,
+        status: "ready",
+        arrived: "Today",
+        location: 'Main Office "Eaton 283"',
+        sender: "Amazon",
+        icon: "truck",
+        iconBgColor: "bg-yellow-100",
+        iconTextColor: "text-yellow-500"
+    },
 {
         name: "Daniel A. Ojerinde",
         packageCount: 1,
