@@ -6,7 +6,7 @@ const packages = [
      {
         name: "Kabirah Azeez",
         packageCount: 1,
-        status: "ready",
+        status: "delivered",
         arrived: "Today",
         location: 'Main Office "Eaton 283"',
         sender: "Amazon",
