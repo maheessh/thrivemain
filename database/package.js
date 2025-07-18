@@ -16,60 +16,113 @@ const packages = [
         iconTextColor: "text-gray-500"
     },
     {
-        name: "Sara Tovar Guacaneme",
+        name: "Abigail Hule",
         packageCount: 1,
-        status: "ready", 
-        arrived: "7/17/2025, 2:00 PM",
+        status: "ready",
+        arrived: "Today, 6:41 PM",
         location: 'Main Office "Eaton 283"',
         sender: "Amazon",
-        icon: "shopping-bag",   
-        iconBgColor: "bg-red-100",
-        iconTextColor: "text-gray-500"
+        icon: "truck",
+        iconBgColor: "bg-blue-100",
+        iconTextColor: "text-blue-500"
     },
     {
-        name: "Jason Ferrer",
+        name: "Jaynesha Maurais",
         packageCount: 1,
-        status: "ready", 
-        arrived: "7/17/2025, 2:00 PM",
+        status: "ready",
+        arrived: "Today, 6:41 PM",
         location: 'Main Office "Eaton 283"',
         sender: "Amazon",
-        icon: "shopping-bag",   
-        iconBgColor: "bg-red-100",
-        iconTextColor: "text-gray-500"
+        icon: "truck",
+        iconBgColor: "bg-blue-100",
+        iconTextColor: "text-blue-500"
     },
     {
-        name: "Jocelyn Lopez",
+        name: "Pagny Doll",
         packageCount: 1,
-        status: "ready", 
-        arrived: "7/17/2025, 2:00 PM",
+        status: "ready",
+        arrived: "Today, 6:41 PM",
         location: 'Main Office "Eaton 283"',
         sender: "Amazon",
-        icon: "shopping-bag",   
-        iconBgColor: "bg-red-100",
-        iconTextColor: "text-gray-500"
+        icon: "truck",
+        iconBgColor: "bg-blue-100",
+        iconTextColor: "text-blue-500"
     },
-    
     {
-        name: "Edward McKinnies",
+        name: "Devanah Alice",
         packageCount: 1,
-        status: "ready", 
-        arrived: "7/16/2025, 1:50 PM",
+        status: "ready",
+        arrived: "Today, 6:41 PM",
         location: 'Main Office "Eaton 283"',
         sender: "Amazon",
-        icon: "shopping-bag",   
-        iconBgColor: "bg-red-100",
-        iconTextColor: "text-gray-500"
+        icon: "truck",
+        iconBgColor: "bg-blue-100",
+        iconTextColor: "text-blue-500"
     },
-
     {
-        name: "Mathias Berglund",
-        packageCount: 2,
-        status: "ready", 
-        arrived: "7/15/2025, 11:42 AM",
+        name: "Nubia Morales",
+        packageCount: 1,
+        status: "ready",
+        arrived: "Today, 6:41 PM",
         location: 'Main Office "Eaton 283"',
         sender: "Amazon",
-        icon: "shopping-bag",   
-        iconBgColor: "bg-red-100",
-        iconTextColor: "text-gray-500"
+        icon: "truck",
+        iconBgColor: "bg-blue-100",
+        iconTextColor: "text-blue-500"
     },
+    {
+        name: "Damian Arias",
+        packageCount: 1,
+        status: "ready",
+        arrived: "Today, 6:41 PM",
+        location: 'Main Office "Eaton 283"',
+        sender: "Amazon",
+        icon: "truck",
+        iconBgColor: "bg-blue-100",
+        iconTextColor: "text-blue-500"
+    },
+    {
+        name: "Jiebin Fang",
+        packageCount: 1,
+        status: "ready",
+        arrived: "Today, 6:41 PM",
+        location: 'Main Office "Eaton 283"',
+        sender: "Amazon",
+        icon: "truck",
+        iconBgColor: "bg-blue-100",
+        iconTextColor: "text-blue-500"
+    },
+    {
+        name: "Rielyn Jackson",
+        packageCount: 1,
+        status: "ready",
+        arrived: "Today, 6:41 PM",
+        location: 'Main Office "Eaton 283"',
+        sender: "Amazon",
+        icon: "truck",
+        iconBgColor: "bg-blue-100",
+        iconTextColor: "text-blue-500"
+    },
+    {
+        name: "Renan",
+        packageCount: 1,
+        status: "ready",
+        arrived: "Today, 6:41 PM",
+        location: 'Main Office "Eaton 283"',
+        sender: "Amazon",
+        icon: "truck",
+        iconBgColor: "bg-blue-100",
+        iconTextColor: "text-blue-500"
+    },
+    {
+        name: "Ivon Dominguez",
+        packageCount: 1,
+        status: "ready",
+        arrived: "Today, 6:41 PM",
+        location: 'Main Office "Eaton 283"',
+        sender: "Amazon",
+        icon: "truck",
+        iconBgColor: "bg-blue-100",
+        iconTextColor: "text-blue-500"
+    }
 ];
