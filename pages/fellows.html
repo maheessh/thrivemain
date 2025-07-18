@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet The Team - Thrive Scholar</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles to complement Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+        }
+        /* Style for the counter animation */
+        .counter {
+            transition: all 0.3s ease-in-out;
+        }
+        /* Custom scrollbar for better aesthetics */
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        /* A class to hide modals by default */
+        .modal.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Team Section Container -->
+    <div class="container mx-auto px-4 py-16">
+
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800">Meet Our Extraordinary Team</h1>
+            <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">The driving force behind our mission, composed of passionate leaders, mentors, and managers dedicated to student success.</p>
+        </div>
+
+        <!-- Social Proof / Counter Section -->
+        <div id="counters_1" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 max-w-4xl mx-auto">
+            <div class="bg-white p-6 rounded-xl shadow-lg text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-bold text-indigo-600">Scholars Mentored</h3>
+                <p class="counter text-5xl font-extrabold text-gray-800 mt-2" data-TargetNum="150" data-Speed="2500">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-bold text-indigo-600">Projects Launched</h3>
+                <p class="counter text-5xl font-extrabold text-gray-800 mt-2" data-TargetNum="45" data-Speed="2500">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-bold text-indigo-600">Community Hours</h3>
+                <p class="counter text-5xl font-extrabold text-gray-800 mt-2" data-TargetNum="2000" data-Speed="3000">0</p>
+            </div>
+        </div>
+
+        <!-- Team Members Grid -->
+        <div id="team-grid">
+            <!-- Organizers -->
+            <h2 class="text-3xl font-bold text-gray-800 border-l-4 border-indigo-500 pl-4 mb-10">Organizers</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Team Member Card: Mahesh Raj Pandit -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="mahesh">
+                    <div class="relative">
+                        <img src="assets/img/mahesh.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/6366f1/ffffff?text=MRP';" alt="Mahesh Raj Pandit" class="w-full h-64 object-cover object-center">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Mahesh Raj Pandit</h3>
+                            <p class="text-indigo-300 text-sm">Founder & Director</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add other organizers here... -->
+                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="binayak">
+                    <div class="relative">
+                        <img src="assets/img/binayak.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/6366f1/ffffff?text=BJ';" alt="Binayak Jha" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Binayak Jha</h3><p class="text-indigo-300 text-sm">Tech Lead & Marketing</p></div>
+                    </div>
+                </div>
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="sujal">
+                    <div class="relative">
+                        <img src="assets/img/sujal.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/6366f1/ffffff?text=SS';" alt="Sujal Shah" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Sujal Shah</h3><p class="text-indigo-300 text-sm">Engagement & Logistics</p></div>
+                    </div>
+                </div>
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="aastha">
+                    <div class="relative">
+                        <img src="assets/img/Aastha1.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/6366f1/ffffff?text=AG';" alt="Aastha Ghimire" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Aastha Ghimire</h3><p class="text-indigo-300 text-sm">Head of Wellness</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mentors -->
+            <h2 class="text-3xl font-bold text-gray-800 border-l-4 border-indigo-500 pl-4 my-10 mt-16">Mentors</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Add mentor cards here... -->
+                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="anish">
+                    <div class="relative">
+                        <img src="assets/img/Anish Pandey.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/34d399/ffffff?text=AP';" alt="Anish Pandey" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Anish Pandey</h3><p class="text-emerald-300 text-sm">Mentor</p></div>
+                    </div>
+                </div>
+                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="bijyeta">
+                    <div class="relative">
+                        <img src="assets/img/Bijyeta_Headshot.JPG" onerror="this.onerror=null;this.src='https://placehold.co/400x400/34d399/ffffff?text=BM';" alt="Bijyeta Maharjan" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Bijyeta Maharjan</h3><p class="text-emerald-300 text-sm">Mentor</p></div>
+                    </div>
+                </div>
+                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="shubham">
+                    <div class="relative">
+                        <img src="assets/img/Shubham_Upreti.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/34d399/ffffff?text=SU';" alt="Shubham Upreti" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Shubham Upreti</h3><p class="text-emerald-300 text-sm">Mentor</p></div>
+                    </div>
+                </div>
+                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="swechchha">
+                    <div class="relative">
+                        <img src="assets/img/Swechchha.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/34d399/ffffff?text=SA';" alt="Swechchha Adhikari" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Swechchha Adhikari</h3><p class="text-emerald-300 text-sm">Mentor</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Program Managers -->
+            <h2 class="text-3xl font-bold text-gray-800 border-l-4 border-indigo-500 pl-4 my-10 mt-16">Program Managers</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Add program manager cards here... -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="lavana">
+                    <div class="relative">
+                        <img src="assets/img/lavana.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f59e0b/ffffff?text=LM';" alt="Lavana Maharjan" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Lavana Maharjan</h3><p class="text-amber-300 text-sm">Program Manager</p></div>
+                    </div>
+                </div>
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="prashim">
+                    <div class="relative">
+                        <img src="assets/img/prashim.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f59e0b/ffffff?text=PT';" alt="Prashim Timsina" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Prashim Timsina</h3><p class="text-amber-300 text-sm">Program Manager</p></div>
+                    </div>
+                </div>
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="nischit">
+                    <div class="relative">
+                        <img src="assets/img/nischit.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f59e0b/ffffff?text=NB';" alt="Nishchit Bhandari" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Nishchit Bhandari</h3><p class="text-amber-300 text-sm">Program Manager</p></div>
+                    </div>
+                </div>
+                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="niranjan">
+                    <div class="relative">
+                        <img src="assets/img/niranjan.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f59e0b/ffffff?text=NS';" alt="Niranjan Kumar Sharma" class="w-full h-64 object-cover">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Niranjan K. Sharma</h3><p class="text-amber-300 text-sm">Program Manager</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals Section -->
+    <!-- Mahesh's Modal -->
+    <div id="modal-mahesh" class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden">
+            <img src="assets/img/mahesh.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x800/6366f1/ffffff?text=Mahesh';" alt="Mahesh Raj Pandit" class="w-full md:w-1/3 h-96 md:h-auto object-cover">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto" style="max-height: 90vh;">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Mahesh Raj Pandit</h3>
+                    <p class="text-indigo-600 font-semibold mt-1">Founder & Director</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Mahesh is a dedicated leader and a rising junior at SLU who values the transformative power of education. His passion for education led him to start the Uunchai Summer Program, where he organizes learning opportunities as the founder and director of Uunchai. In addition, he founded and serves as President of the FountEd Foundation. Mahesh's experience spans program management, graphic design, and other fields that have a direct impact on society. Currently pursuing a degree in computer science, he aspires to launch his own startup in Nepal in the future.
+                    </p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="#" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-linkedin fa-2x"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-twitter fa-2x"></i></a>
+                </div>
+            </div>
+            <button class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900">&times;</button>
+        </div>
+    </div>
+    <!-- Add other modals here using the same structure -->
+    <div id="modal-binayak" class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden">
+            <img src="assets/img/binayak.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/600x800/6366f1/ffffff?text=Binayak';" alt="Binayak Jha" class="w-full md:w-1/3 h-96 md:h-auto object-cover">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto" style="max-height: 90vh;">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Binayak Jha</h3>
+                    <p class="text-indigo-600 font-semibold mt-1">Tech Lead & Marketing Manager</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Binayak is currently a rising sophomore at Franklin & Marshall College, with aspirations to double major in Computer Science and Mathematics and pursue a minor in Music. He has a diverse background in leadership and mentorship roles... He is also passionate about leveraging AI to tackle real-world challenges, promoting equal access to education and healthcare...
+                    </p>
+                </div>
+                 <div class="mt-6 flex space-x-4"><a href="#" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-linkedin fa-2x"></i></a><a href="#" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-github fa-2x"></i></a></div>
+            </div>
+            <button class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900">&times;</button>
+        </div>
+    </div>
+     <!-- Add more modals for each person following the pattern -->
+
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        // --- MODAL SCRIPT ---
+        document.addEventListener('DOMContentLoaded', function () {
+            const teamCards = document.querySelectorAll('.team-card');
+            
+            teamCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const modalId = 'modal-' + card.getAttribute('data-modal-target');
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.classList.remove('hidden');
+                    }
+                });
+            });
+
+            const closeButtons = document.querySelectorAll('.modal-close');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent card click event from firing
+                    button.closest('.modal').classList.add('hidden');
+                });
+            });
+
+            // Close modal on outside click
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.addEventListener('click', function(event) {
+                    if (event.target === this) {
+                        this.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+
+        // --- COUNTER SCRIPT (as provided) ---
+        $(function () {
+            // CONFIG
+            let visibilityIds = ["#counters_1"]; // Target the social proof section
+            let counterClass = ".counter";
+            let defaultSpeed = 3000; // Default animation speed in milliseconds
+
+            // END CONFIG
+
+            // Debounce function to limit how often a function can fire.
+            function debounce(func, wait, immediate) {
+                var timeout;
+                return function() {
+                    var context = this, args = arguments;
+                    var later = function() {
+                        timeout = null;
+                        if (!immediate) func.apply(context, args);
+                    };
+                    var callNow = immediate && !timeout;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                    if (callNow) func.apply(context, args);
+                };
+            };
+
+            var checkVisibility = debounce(function() {
+                getVisibilityStatus();
+            }, 200); // Check every 200ms.
+
+            $(window).on("scroll", checkVisibility);
+            getVisibilityStatus(); // Initial check on page load
+
+            function getVisibilityStatus() {
+                var windowHeight = $(window).height();
+                var windowScrollValFromTop = $(window).scrollTop();
+
+                visibilityIds.forEach(function (item) {
+                    try {
+                        var el = $(item);
+                        if (!el.length) return; // Skip if element doesn't exist
+                        var elValFromTop = el.offset().top;
+                        
+                        // Check if the element is in the viewport and hasn't been animated yet
+                        if ((windowHeight + windowScrollValFromTop) > elValFromTop && !el.hasClass('is-visible')) {
+                            el.addClass('is-visible'); // Mark as visible to prevent re-triggering
+                            counter_init(item);
+                        }
+                    } catch (err) {
+                        console.error("Error checking visibility for:", item, err);
+                    }
+                });
+            }
+
+            function counter_init(groupId) {
+                $(groupId).find(counterClass).each(function (index) {
+                    var $this = $(this);
+                    var num = $this.attr("data-TargetNum");
+                    var speed = $this.attr("data-Speed") || defaultSpeed;
+                    var direction = $this.attr("data-Direction");
+                    var easing = $this.attr("data-Easing") || "swing";
+
+                    // Ensure we don't re-animate
+                    if ($this.is(':animated') || $this.text() === num) {
+                        return;
+                    }
+
+                    doCount($this, num, speed, direction, easing);
+                });
+            }
+
+            function doCount($element, num, speed, direction, easing) {
+                var start = direction === "reverse" ? num : 0;
+                var end = direction === "reverse" ? 0 : num;
+
+                $({ Counter: start }).animate({ Counter: end }, {
+                    duration: +speed,
+                    easing: easing,
+                    step: function (now) {
+                        $element.text(Math.ceil(now).toLocaleString('en-US'));
+                    },
+                    complete: function() {
+                        // Ensure the final number is exact and formatted
+                        $element.text(parseInt(num).toLocaleString('en-US'));
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

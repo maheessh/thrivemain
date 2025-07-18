@@ -42,25 +42,76 @@
 
 <body class="text-slate-800">
     <!-- HEADER -->
-    <header class="bg-white/80 backdrop-blur-lg shadow-sm border-b border-slate-200 sticky top-0 z-50">
+      <!-- Header Section -->
+    <header class="bg-surface shadow-soft border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo and Title -->
-                <div class="flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
-                        <svg class="w-7 h-7 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+            <div class="flex items-center justify-between h-16">
+                <!-- Campus Logo & Branding -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" />
                         </svg>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold text-slate-900">Thrive Scholar</h1>
-                        <p class="text-sm text-slate-500">Main Office</p>
+                        <h1 class="text-xl font-semibold text-text-primary">Thrive Scholar</h1>
+                        <p class="text-sm text-text-secondary">Main Office</p>
                     </div>
                 </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-2">
+                    <a href="homepage.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Home</a>
+                    <a href="announcements.html"
+                        class="px-4 py-2 text-indigo-600 bg-indigo-50 font-medium rounded-lg transition-colors">Announcements</a>
+                    <a href="student_dashboard.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Dashboard</a>
+                    <a href="print_request.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Print
+                        Request</a>
+                    <a href="lost_found.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Lost
+                        & Found</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn"
+                    class="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100 transition-colors">
+                    <svg class="w-6 h-6" id="menu-open-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg class="w-6 h-6 hidden" id="menu-close-icon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
         </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 bg-surface">
+            <div class="px-4 py-2 space-y-1">
+                <a href="homepage.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">
+                    Home
+                </a>
+                <a href="announcements.html"
+                    class="block px-3 py-2 text-indigo-600 bg-indigo-50 rounded-md font-medium">Announcements</a>
+                <a href="student_dashboard.html"
+                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Student Dashboard
+                </a>
+                <a href="print_request.html"
+                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Print Request
+                </a>
+                <a href="lost_found.html"
+                    class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Lost & Found
+                </a>
+            </div>
     </header>
 
     <!-- MAIN CONTENT -->
