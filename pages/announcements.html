@@ -19,44 +19,6 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8f9fa;
-            /* A lighter, cleaner background */
-        }
-
-        /* Custom component styles using @apply for cleaner HTML */
-        .card {
-            @apply bg-white border border-slate-200 rounded-xl shadow-sm transition-all duration-300 ease-in-out;
-        }
-
-        .hover-lift {
-            @apply hover:-translate-y-1 hover:shadow-lg;
-        }
-
-        .btn {
-            @apply w-full px-4 py-2.5 rounded-lg font-semibold text-center transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2;
-        }
-
-        .btn-primary {
-            @apply bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500;
-        }
-
-        .btn-secondary {
-            @apply bg-indigo-100 text-indigo-700 hover:bg-indigo-200 focus:ring-indigo-500;
-        }
-
-        /* Tab styling with moving indicator */
-        .tab-btn {
-            @apply relative z-10 px-4 py-2 text-sm md:text-base md:px-6 md:py-2.5 rounded-lg font-semibold transition-colors duration-300 ease-in-out flex items-center gap-2;
-            /* The background is handled by the moving indicator */
-        }
-
-        .tab-btn.active {
-            @apply text-indigo-600;
-            /* Active text color */
-        }
-
-        .tab-btn:not(.active) {
-            @apply text-slate-600 hover:text-slate-900;
-            /* Inactive text color */
         }
 
         /* Fade-in animation */
@@ -85,8 +47,7 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Logo and Title -->
                 <div class="flex items-center space-x-4">
-                    <div
-                        class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
+                    <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
                         <svg class="w-7 h-7 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -98,54 +59,6 @@
                         <p class="text-sm text-slate-500">Main Office</p>
                     </div>
                 </div>
-
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex items-center space-x-2">
-                    <a href="homepage.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Home</a>
-                    <a href="announcements.html"
-                        class="px-4 py-2 text-indigo-600 bg-indigo-50 font-medium rounded-lg transition-colors">Announcements</a>
-                    <a href="student_dashboard.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Dashboard</a>
-                    <a href="print_request.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Print
-                        Request</a>
-                    <a href="lost_found.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Lost
-                        & Found</a>
-                </nav>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn"
-                    class="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100 transition-colors">
-                    <svg class="w-6 h-6" id="menu-open-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                    <svg class="w-6 h-6 hidden" id="menu-close-icon" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200">
-            <div class="px-4 pt-2 pb-4 space-y-1">
-                <a href="homepage.html"
-                    class="block px-3 py-2 text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-md font-medium">Home</a>
-                <a href="announcements.html"
-                    class="block px-3 py-2 text-indigo-600 bg-indigo-50 rounded-md font-medium">Announcements</a>
-                <a href="student_dashboard.html"
-                    class="block px-3 py-2 text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-md font-medium">Dashboard</a>
-                <a href="print_request.html"
-                    class="block px-3 py-2 text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-md font-medium">Print
-                    Request</a>
-                <a href="lost_found.html"
-                    class="block px-3 py-2 text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-md font-medium">Lost
-                    & Found</a>
             </div>
         </div>
     </header>
@@ -160,32 +73,28 @@
 
         <!-- Tab Navigation Section -->
         <section class="mb-10 flex justify-center">
-            <div class="inline-flex bg-slate-200 p-1 rounded-xl">
+            <div class="inline-flex bg-slate-100 p-1 rounded-xl">
                 <!-- Announcements Tab -->
                 <button id="announcements-tab"
-                    class="tab-btn active px-6 py-2 rounded-md font-medium bg-white text-blue-600 shadow transition flex items-center space-x-2"
+                    class="tab-btn px-6 py-2 rounded-lg font-semibold transition-colors duration-300 flex items-center gap-2"
                     aria-selected="true" role="tab" data-tab="announcements">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
                     </svg>
                     <span>Announcements</span>
                 </button>
 
                 <!-- Events Tab -->
                 <button id="events-tab"
-                    class="tab-btn px-6 py-2 rounded-md font-medium text-gray-600 hover:text-blue-600 hover:bg-slate-100 transition flex items-center space-x-2"
+                    class="tab-btn px-6 py-2 rounded-lg font-semibold transition-colors duration-300 flex items-center gap-2"
                     aria-selected="false" role="tab" data-tab="events">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd"
-                            d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c0-.414.336-.75.75-.75h10.5a.75.75 0 01.75.75v1.25a.75.75 0 01-.75.75H5.5a.75.75 0 01-.75-.75V7.5z"
-                            clip-rule="evenodd" />
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c0-.414.336-.75.75-.75h10.5a.75.75 0 01.75.75v1.25a.75.75 0 01-.75.75H5.5a.75.75 0 01-.75-.75V7.5z" clip-rule="evenodd" />
                     </svg>
                     <span>Events</span>
                 </button>
             </div>
         </section>
-
 
         <!-- Content Sections -->
         <section id="announcements-section" class="animate-fade-in">
@@ -207,144 +116,89 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="text-center">
                 <p class="text-slate-500 text-sm">© 2025 Thrive Scholars. All Rights Reserved.</p>
-                <div class="mt-4 flex justify-center space-x-6">
-                    <a href="#" class="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Admin Access</a>
-                    <a href="#" class="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Support</a>
-                    <a href="#" class="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Privacy</a>
-                </div>
             </div>
         </div>
     </footer>
-
-    <!-- 
-      This script tag contains the data for your announcements and events.
-      In your actual project, you would keep this in an external file like `/database/announcements.js`
-    -->
-    <script src="/database/announcements.js">
-
-    </script>
+    
+    <!-- External Data Source -->
+    <script src="/database/announcements.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- UI ELEMENT REFERENCES ---
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuOpenIcon = document.getElementById('menu-open-icon');
-            const menuCloseIcon = document.getElementById('menu-close-icon');
-
             const announcementsGrid = document.getElementById('announcements-grid');
             const eventsGrid = document.getElementById('events-grid');
-
-            const tabContainer = document.getElementById('tab-container');
             const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabIndicator = document.getElementById('tab-indicator');
-            const contentSections = document.querySelectorAll('main > section[id$="-section"]');
-
-            // --- MOBILE MENU LOGIC ---
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                    menuOpenIcon.classList.toggle('hidden');
-                    menuCloseIcon.classList.toggle('hidden');
-                });
-            }
-
-            // --- TAB INDICATOR LOGIC ---
-            function moveIndicator(activeTab) {
-                if (!activeTab || !tabIndicator) return;
-                // Move the indicator pill to the active tab's position and size
-                tabIndicator.style.width = `${activeTab.offsetWidth}px`;
-                tabIndicator.style.transform = `translateX(${activeTab.offsetLeft}px)`;
-            }
+            const contentSections = {
+                announcements: document.getElementById('announcements-section'),
+                events: document.getElementById('events-section')
+            };
 
             // --- TAB SWITCHING LOGIC ---
             function switchTab(clickedTab) {
-                if (!clickedTab || clickedTab.classList.contains('active')) return;
+                if (!clickedTab || clickedTab.getAttribute('aria-selected') === 'true') return;
 
                 const targetTab = clickedTab.dataset.tab;
 
-                // Update button active/inactive classes
+                // Update button styles
                 tabButtons.forEach(button => {
-                    button.classList.remove('active', 'bg-white', 'text-blue-600', 'shadow');
-                    button.classList.add('text-gray-600', 'hover:text-blue-600', 'hover:bg-slate-100');
-                    button.setAttribute('aria-selected', 'false');
+                    const isSelected = button === clickedTab;
+                    button.setAttribute('aria-selected', isSelected);
+                    if (isSelected) {
+                        button.classList.add('bg-white', 'text-indigo-600', 'shadow-md');
+                        button.classList.remove('text-slate-600');
+                    } else {
+                        button.classList.remove('bg-white', 'text-indigo-600', 'shadow-md');
+                        button.classList.add('text-slate-600');
+                    }
                 });
 
-                clickedTab.classList.add('active', 'bg-white', 'text-blue-600', 'shadow');
-                clickedTab.classList.remove('text-gray-600', 'hover:text-blue-600', 'hover:bg-slate-100');
-                clickedTab.setAttribute('aria-selected', 'true');
-
-                // Move the indicator
-                moveIndicator(clickedTab);
-
                 // Show/hide content sections
-                contentSections.forEach(section => {
-                    if (section.id === `${targetTab}-section`) {
-                        section.classList.remove('hidden');
-                        section.classList.add('animate-fade-in');
+                Object.keys(contentSections).forEach(key => {
+                    if (key === targetTab) {
+                        contentSections[key].classList.remove('hidden');
+                        contentSections[key].classList.add('animate-fade-in');
                     } else {
-                        section.classList.add('hidden');
+                        contentSections[key].classList.add('hidden');
                     }
                 });
             }
 
-
-            // Add event listeners to all tab buttons
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => switchTab(button));
-            });
-
             // --- HELPER FUNCTIONS ---
             function generateCalendarLink(event) {
-                const formatDateTime = (dateStr, timeStr) => {
-                    const date = new Date(dateStr);
-                    const timeParts = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/);
-                    if (!timeParts) return date.toISOString().replace(/-|:|\.\d+/g, '');
-
-                    let hours = parseInt(timeParts[1], 10);
-                    const minutes = parseInt(timeParts[2], 10);
-                    const period = timeParts[3];
-
-                    if (period === 'PM' && hours < 12) hours += 12;
-                    if (period === 'AM' && hours === 12) hours = 0;
-
-                    date.setUTCHours(hours, minutes, 0, 0);
-                    return date.toISOString().replace(/-|:|\.\d+Z/g, '') + 'Z';
+                const formatTime = (date, timeStr) => {
+                    const time = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/);
+                    let hours = parseInt(time[1], 10);
+                    if (time[3] === 'PM' && hours < 12) hours += 12;
+                    if (time[3] === 'AM' && hours === 12) hours = 0;
+                    date.setUTCHours(hours);
+                    date.setUTCMinutes(parseInt(time[2], 10));
+                    return date.toISOString().replace(/-|:|\.\d+/g, "");
                 };
+                
+                const startDate = new Date(event.date);
+                const startTime = event.time.split(' - ')[0];
+                const endDate = new Date(event.date);
+                const endTime = event.time.split(' - ')[1] || startTime;
 
-                const timeRange = event.time.split(' - ');
-                const startTimeStr = timeRange[0];
-                const endTimeStr = timeRange.length > 1 ? timeRange[1] : null;
+                const dates = `${formatTime(startDate, startTime)}/${formatTime(endDate, endTime)}`;
 
-                const startDateTime = formatDateTime(event.date, startTimeStr);
-                let endDateTime;
-
-                if (endTimeStr) {
-                    endDateTime = formatDateTime(event.date, endTimeStr);
-                } else {
-                    // Default to a 1-hour duration if no end time is provided
-                    const tempDate = new Date(startDateTime);
-                    tempDate.setHours(tempDate.getHours() + 1);
-                    endDateTime = tempDate.toISOString().replace(/-|:|\.\d+Z/g, '') + 'Z';
-                }
-
-                const baseUrl = 'https://www.google.com/calendar/render?action=TEMPLATE';
                 const params = new URLSearchParams({
+                    action: 'TEMPLATE',
                     text: event.title,
-                    dates: `${startDateTime}/${endDateTime}`,
+                    dates: dates,
                     details: event.description,
                     location: event.location,
                 });
-
-                return `${baseUrl}&${params.toString()}`;
+                return `https://www.google.com/calendar/render?${params.toString()}`;
             }
 
             // --- DYNAMIC CONTENT RENDERING LOGIC ---
             function renderContent() {
-                if (typeof announcementsData === 'undefined') {
-                    console.error("Data not loaded.");
-                    announcementsGrid.innerHTML = `<p class="text-slate-500 col-span-full text-center">Could not load announcements.</p>`;
-                    eventsGrid.innerHTML = `<p class="text-slate-500 col-span-full text-center">Could not load events.</p>`;
+                if (typeof announcementsData === 'undefined' || !announcementsData) {
+                    console.error("Data variable 'announcementsData' is not defined or could not be loaded.");
+                    announcementsGrid.innerHTML = `<p class="text-slate-500 col-span-full text-center">Could not load announcements. Ensure database/announcements.js is correctly linked.</p>`;
+                    eventsGrid.innerHTML = `<p class="text-slate-500 col-span-full text-center">Could not load events. Ensure database/announcements.js is correctly linked.</p>`;
                     return;
                 }
 
@@ -354,13 +208,14 @@
                 const allAnnouncements = announcementsData.filter(item => item.type === 'announcement').sort((a, b) => new Date(b.postedDate) - new Date(a.postedDate));
                 const allEvents = announcementsData.filter(item => item.type === 'event').sort((a, b) => new Date(a.date) - new Date(b.date));
 
+                // Render Announcements
                 if (allAnnouncements.length > 0) {
                     allAnnouncements.forEach(item => {
                         const newBadge = item.isNew ? `<span class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full">NEW</span>` : '';
-                        const imageHtml = item.image ? `<img src="${item.image}" alt="${item.title}" class="w-full h-48 object-cover rounded-t-xl" onerror="this.style.display='none'">` : '';
+                        const imageHtml = item.image ? `<img src="${item.image}" alt="${item.title}" class="w-full h-48 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Error';">` : '';
 
                         const cardHtml = `
-                            <div class="card hover-lift flex flex-col relative">
+                            <div class="bg-white border border-slate-200 rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg flex flex-col relative">
                                 ${imageHtml}
                                 ${newBadge}
                                 <div class="p-6 flex flex-col flex-grow">
@@ -377,14 +232,15 @@
                     announcementsGrid.innerHTML = `<p class="text-slate-500 col-span-full text-center">No announcements at this time.</p>`;
                 }
 
+                // Render Events
                 if (allEvents.length > 0) {
                     allEvents.forEach(item => {
                         const calendarLink = generateCalendarLink(item);
-                        const imageHtml = item.image ? `<img src="${item.image}" alt="${item.title}" class="w-full h-48 object-cover rounded-t-xl" onerror="this.style.display='none'">` : '';
-                        const formattedDate = new Date(item.date + 'T00:00:00');
+                        const imageHtml = item.image ? `<img src="${item.image}" alt="${item.title}" class="w-full h-48 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Error';">` : '';
+                        const formattedDate = new Date(item.date + 'T00:00:00'); // Ensure date is parsed correctly regardless of timezone
 
                         const cardHtml = `
-                            <div class="card hover-lift flex flex-col">
+                            <div class="bg-white border border-slate-200 rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg flex flex-col">
                                 <div class="relative">
                                     ${imageHtml}
                                     <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm p-2 rounded-lg text-center shadow-md">
@@ -400,8 +256,8 @@
                                     </div>
                                     <p class="text-slate-600 flex-grow mb-6">${item.description}</p>
                                     <div class="flex flex-col sm:flex-row gap-3 mt-auto border-t border-slate-100 pt-5">
-                                        <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Register</a>
-                                        <a href="${calendarLink}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Add to Calendar</a>
+                                        <a href="${item.link || '#'}" target="_blank" rel="noopener noreferrer" class="w-full px-4 py-2.5 rounded-lg font-semibold text-center transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500 ${!item.link ? 'opacity-50 cursor-not-allowed' : ''}">Register</a>
+                                        <a href="${calendarLink}" target="_blank" rel="noopener noreferrer" class="w-full px-4 py-2.5 rounded-lg font-semibold text-center transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 bg-indigo-100 text-indigo-700 hover:bg-indigo-200 focus:ring-indigo-500">Add to Calendar</a>
                                     </div>
                                 </div>
                             </div>`;
@@ -413,27 +269,16 @@
             }
 
             // --- INITIALIZATION ---
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => switchTab(button));
+            });
+            
             // Initial render on page load
             renderContent();
 
             // Set initial active state on the first tab
-            const initialActiveTab = document.querySelector('.tab-btn');
-            if (initialActiveTab) {
-                initialActiveTab.classList.add('active');
-            }
+            switchTab(document.getElementById('announcements-tab'));
 
-            // Set initial position of the tab indicator.
-            // Using a small timeout to ensure the browser has calculated the layout.
-            setTimeout(() => {
-                const activeTab = document.querySelector('.tab-btn.active');
-                moveIndicator(activeTab);
-            }, 50);
-
-            // Add a listener for resize to reposition the indicator if the window size changes.
-            window.addEventListener('resize', () => {
-                const currentActiveTab = document.querySelector('.tab-btn.active');
-                moveIndicator(currentActiveTab);
-            });
         });
     </script>
 </body>
