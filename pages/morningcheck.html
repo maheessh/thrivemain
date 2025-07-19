@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Checkout Status</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #f3f4f6; /* Lighter gray background */
+        }
+        #threejs-container {
+            cursor: grab;
+            background: linear-gradient(180deg, #111827 0%, #1f2937 100%);
+        }
+        .floor-tab {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .floor-tab.active-tab {
+            border-color: #4f46e5;
+            color: #4f46e5;
+        }
+        .table-row-animate {
+            animation: fadeInSlideUp 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+<header class="bg-surface shadow-soft border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Campus Logo & Branding -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-semibold text-text-primary">Thrive Scholar</h1>
+                        <p class="text-sm text-text-secondary">Main Office</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-2">
+                    <a href="homepage.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Home</a>
+                    <a href="announcements.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Announcements</a>
+                    <a href="student_dashboard.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Dashboard</a>
+                    <a href="print_request.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Print
+                        Request</a>
+                    <a href="lost_found.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Lost
+                        & Found</a>
+                    <a href="morningcheck.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Morning
+                        Status</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn"
+                    class="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100 transition-colors">
+                    <svg class="w-6 h-6" id="menu-open-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg class="w-6 h-6 hidden" id="menu-close-icon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 bg-surface">
+            <div class="px-4 py-2 space-y-1">
+                <a href="homepage.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">
+                    Home
+                </a>
+                <a href="announcements.html"
+                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">Announcements</a>
+                <a href="student_dashboard.html"
+                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Student Dashboard
+                </a>
+                <a href="print_request.html"
+                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Print Request
+                </a>
+                <a href="lost_found.html"
+                    class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Lost & Found
+                </a>
+                <a href="morningcheck.html"
+                    class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
+                    Morning Status</a>
+            </div>
+    </header>
+
+    <!-- 3D Header Section - Full Width -->
+    <div id="threejs-container" class="w-full h-64 md:h-80 overflow-hidden relative">
+        <!-- Canvas will be inserted here by three.js -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center leading-tight p-4 rounded-lg" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.5);">
+                Student Morning Checkout Status
+            </h1>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 -mt-20">
+        
+        <!-- Control Panel Card -->
+        <div class="bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl p-4 sm:p-6 mb-8">
+            <header class="text-center mb-6">
+                <p id="current-date-display" class="text-lg text-indigo-700 font-semibold"></p>
+                <div class="flex justify-center items-center mt-3 space-x-4">
+                    <button id="refresh-button" class="bg-indigo-600 text-white font-bold py-2 px-5 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300 ease-in-out flex items-center shadow-lg hover:shadow-indigo-500/50">
+                        <svg id="refresh-icon" class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5M20 20v-5h-5M4 4l1.5 1.5A9 9 0 0120.5 15M20 20l-1.5-1.5A9 9 0 003.5 9" />
+                        </svg>
+                        Refresh
+                    </button>
+                    <p id="last-updated" class="text-sm text-gray-500"></p>
+                </div>
+            </header>
+
+            <!-- Search & Filter Controls -->
+            <div class="space-y-6">
+                <!-- Search Bar -->
+                <form role="search" class="max-w-xl mx-auto">
+                    <label for="search-input" class="sr-only">Search all students</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
+                        </div>
+                        <input type="search" id="search-input" class="block w-full pl-12 pr-3 py-3 border border-gray-200 rounded-full leading-5 bg-gray-50 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow duration-300" placeholder="Search all students by name...">
+                    </div>
+                </form>
+                <!-- Floor Navigation Tabs -->
+                <div class="border-b border-gray-200">
+                    <nav id="floor-tabs" class="-mb-px flex justify-center space-x-4 sm:space-x-8" aria-label="Tabs">
+                        <button data-floor="all" class="floor-tab whitespace-nowrap py-3 px-2 font-semibold text-sm active-tab">All Floors</button>
+                        <button data-floor="2" class="floor-tab whitespace-nowrap py-3 px-2 font-semibold text-sm text-gray-500 hover:text-indigo-600">Floor 2</button>
+                        <button data-floor="3" class="floor-tab whitespace-nowrap py-3 px-2 font-semibold text-sm text-gray-500 hover:text-indigo-600">Floor 3</button>
+                        <button data-floor="4" class="floor-tab whitespace-nowrap py-3 px-2 font-semibold text-sm text-gray-500 hover:text-indigo-600">Floor 4</button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Data Table -->
+        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-600">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 tracking-wider">Student Name</th>
+                            <th scope="col" class="px-6 py-4 tracking-wider text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-status-table">
+                        <!-- Initial loading state -->
+                        <tr>
+                            <td colspan="3" class="text-center p-12 text-gray-500">
+                                Loading student data...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer class="text-center mt-10 text-sm text-gray-500">
+            <p>&copy; 2025 Thrive Scholars. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- 3D HEADER ANIMATION ---
+        const initThreeJS = () => {
+            const container = document.getElementById('threejs-container');
+            if (!container) return;
+
+            let scene, camera, renderer, objectsGroup;
+            const clock = new THREE.Clock();
+
+            // Scene setup
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 20;
+
+            // Renderer setup
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+            scene.add(ambientLight);
+            const pointLight = new THREE.PointLight(0xaea5ff, 2, 100);
+            pointLight.position.set(0, 0, 5);
+            scene.add(pointLight);
+
+            // Create a group for the objects
+            objectsGroup = new THREE.Group();
+            scene.add(objectsGroup);
+
+            // Create geometric objects
+            const geometries = [
+                new THREE.IcosahedronGeometry(1, 0),
+                new THREE.TorusGeometry(0.8, 0.3, 16, 100),
+                new THREE.BoxGeometry(1, 1, 1)
+            ];
+            const material = new THREE.MeshStandardMaterial({
+                color: 0x818cf8,
+                metalness: 0.1,
+                roughness: 0.3
+            });
+
+            for (let i = 0; i < 50; i++) {
+                const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+                const mesh = new THREE.Mesh(geometry, material);
+                
+                const radius = Math.random() * 10 + 5;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos((Math.random() * 2) - 1);
+
+                mesh.position.x = radius * Math.sin(phi) * Math.cos(theta);
+                mesh.position.y = radius * Math.sin(phi) * Math.sin(theta);
+                mesh.position.z = radius * Math.cos(phi);
+                
+                mesh.rotation.set(Math.random() * 2, Math.random() * 2, Math.random() * 2);
+                mesh.scale.setScalar(Math.random() * 0.5 + 0.1);
+                objectsGroup.add(mesh);
+            }
+
+            // Event listeners
+            const onWindowResize = () => {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            };
+            
+            window.addEventListener('resize', onWindowResize);
+
+            // Animation loop
+            const animate = () => {
+                requestAnimationFrame(animate);
+                const delta = clock.getDelta();
+                objectsGroup.rotation.y += delta * 0.1;
+                objectsGroup.rotation.x += delta * 0.05;
+                renderer.render(scene, camera);
+            };
+
+            animate();
+        };
+
+        // --- STUDENT STATUS APPLICATION LOGIC ---
+        const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbwAgHIfM6ApEqKvmx1VpAQHrygCA6D0aDL8OTibtqRPkDlPj4HwUPakJjJlwSLr-DpL9Q/exec";
+
+        let allStudents = [];
+        let currentFloor = 'all';
+        let isInitialLoad = true;
+
+        const searchInput = document.getElementById('search-input');
+        const floorTabsContainer = document.getElementById('floor-tabs');
+        const tableBody = document.getElementById('student-status-table');
+        const refreshButton = document.getElementById('refresh-button');
+        const refreshIcon = document.getElementById('refresh-icon');
+        const lastUpdatedEl = document.getElementById('last-updated');
+
+        async function fetchStudentData() {
+            console.log("Fetching data from Google Sheet...");
+            if (isInitialLoad) {
+                tableBody.innerHTML = `<tr><td colspan="3" class="text-center p-12 text-gray-500">Loading student data...</td></tr>`;
+            }
+            refreshIcon.classList.add('animate-spin');
+            refreshButton.disabled = true;
+
+            try {
+                if (!GOOGLE_SHEET_API_URL.includes('macros/s')) {
+                    throw new Error("Google Apps Script URL is not configured. Please paste your URL in the script.");
+                }
+                const response = await fetch(GOOGLE_SHEET_API_URL);
+                const result = await response.json();
+
+                if (!result.success) {
+                    throw new Error(result.error || "An unknown error occurred in the Google Script.");
+                }
+                
+                allStudents = result.data.sort((a, b) => a.room.localeCompare(b.room));
+                console.log(`Successfully fetched ${allStudents.length} students.`);
+                updateDisplay();
+                lastUpdatedEl.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+                isInitialLoad = false;
+
+            } catch (error) {
+                console.error("Error fetching student data:", error);
+                tableBody.innerHTML = `<tr><td colspan="3" class="text-center p-12 text-red-500"><strong>Error:</strong> ${error.message}</td></tr>`;
+            } finally {
+                refreshIcon.classList.remove('animate-spin');
+                refreshButton.disabled = false;
+            }
+        }
+
+        function renderTable(students) {
+            tableBody.innerHTML = '';
+            if (students.length === 0) {
+                const message = searchInput.value ? 'No students match your search.' : 'No students found for this floor.';
+                tableBody.innerHTML = `<tr><td colspan="3" class="text-center p-12 text-gray-500">${message}</td></tr>`;
+                return;
+            }
+            students.forEach((student, index) => {
+                const row = document.createElement('tr');
+                row.className = 'border-b border-gray-200/80 hover:bg-gray-50 table-row-animate';
+                row.style.animationDelay = `${index * 0.03}s`; // Stagger animation
+                
+                let statusText, statusClass;
+                const studentStatus = String(student.status || "").toUpperCase();
+                switch (studentStatus) {
+                    case 'TRUE': statusText = 'Checked-out'; statusClass = 'bg-green-100 text-green-800'; break;
+                    case 'FALSE': statusText = 'Not checked-out'; statusClass = 'bg-red-100 text-red-800'; break;
+                    case 'NURSE': statusText = 'Nurse'; statusClass = 'bg-yellow-100 text-yellow-800'; break;
+                    case '': statusText = 'No Status'; statusClass = 'bg-gray-100 text-gray-800'; break;
+                    default: statusText = student.status; statusClass = 'bg-blue-100 text-blue-800';
+                }
+                row.innerHTML = `
+                    <td class="px-6 py-4">${student.name}</td>
+                    <td class="px-6 py-4 text-center">
+                        <span class="px-3 py-1 text-xs font-semibold rounded-full ${statusClass}">${statusText}</span>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function updateDisplay() {
+            let studentsToDisplay = allStudents;
+            const searchTerm = searchInput.value.toLowerCase();
+            if (searchTerm) {
+                studentsToDisplay = allStudents.filter(student => student.name.toLowerCase().includes(searchTerm));
+            } else if (currentFloor !== 'all') {
+                studentsToDisplay = allStudents.filter(student => student.floor == currentFloor);
+            }
+            renderTable(studentsToDisplay);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initThreeJS();
+            
+            const dateDisplay = document.getElementById('current-date-display');
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            dateDisplay.textContent = `Status for ${today.toLocaleDateString('en-US', options)}`;
+
+            searchInput.addEventListener('input', updateDisplay);
+            refreshButton.addEventListener('click', fetchStudentData);
+            floorTabsContainer.addEventListener('click', (e) => {
+                const target = e.target.closest('.floor-tab');
+                if (!target) return;
+                floorTabsContainer.querySelectorAll('.floor-tab').forEach(tab => tab.classList.remove('active-tab'));
+                target.classList.add('active-tab');
+                currentFloor = target.dataset.floor;
+                searchInput.value = '';
+                updateDisplay();
+            });
+
+            fetchStudentData();
+            const refreshInterval = 30000;
+            setInterval(fetchStudentData, refreshInterval);
+        });
+    </script>
+</body>
+</html>
