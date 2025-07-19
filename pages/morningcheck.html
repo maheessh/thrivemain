@@ -258,6 +258,21 @@
                 objectsGroup.add(mesh);
             }
 
+            // --- MOBILE MENU TOGGLE ---
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const menuOpenIcon = document.getElementById('menu-open-icon');
+const menuCloseIcon = document.getElementById('menu-close-icon');
+
+mobileMenuBtn.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+
+    mobileMenu.classList.toggle('hidden');
+    menuOpenIcon.classList.toggle('hidden', isOpen);
+    menuCloseIcon.classList.toggle('hidden', !isOpen);
+});
+
+
             // Event listeners
             const onWindowResize = () => {
                 camera.aspect = container.clientWidth / container.clientHeight;

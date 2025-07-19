@@ -116,7 +116,7 @@
                     class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
                     Morning Status</a>
             </div>
-    </header>
+</header>
 
     <!-- MAIN CONTENT -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
@@ -179,6 +179,20 @@
     <script src="/database/announcements.js"></script>
 
     <script>
+        // --- MOBILE MENU TOGGLE ---
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const menuOpenIcon = document.getElementById('menu-open-icon');
+const menuCloseIcon = document.getElementById('menu-close-icon');
+
+mobileMenuBtn.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+
+    mobileMenu.classList.toggle('hidden');
+    menuOpenIcon.classList.toggle('hidden', isOpen);
+    menuCloseIcon.classList.toggle('hidden', !isOpen);
+});
+
         document.addEventListener('DOMContentLoaded', () => {
             // --- UI ELEMENT REFERENCES ---
             const announcementsGrid = document.getElementById('announcements-grid');
