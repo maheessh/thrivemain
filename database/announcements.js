@@ -36,7 +36,7 @@ const announcementsData = [
         date: '2025-07-21',
         time: '4:45 PM',
         location: 'Meet in the Lobby',
-        image: 'https://placehold.co/600x400/0e7490/ffffff?text=Coconut+Grove',
+        image: 'https://images.unsplash.com/photo-1595111571848-fdf33cfb6cff?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         link: null 
     },
     {
@@ -46,7 +46,7 @@ const announcementsData = [
         date: '2025-07-21',
         time: '6:00 PM – 8:00 PM',
         location: 'Campus Gym',
-        image: 'https://placehold.co/600x400/f59e0b/ffffff?text=Basketball+Game',
+        image: 'https://plus.unsplash.com/premium_photo-1723867496907-63ae4781603f?q=80&w=1061&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         link: null 
     },
     {
@@ -56,7 +56,7 @@ const announcementsData = [
         date: '2025-07-21',
         time: '8:00 PM – 10:00 PM',
         location: 'Campus Lounge',
-        image: 'https://placehold.co/600x400/1e293b/ffffff?text=Love+%26+Basketball',
+        image: 'https://i.ibb.co/7txkfBWB/love-basketball.png',
         link: null 
     },
     {
@@ -66,7 +66,7 @@ const announcementsData = [
         date: '2025-07-22',
         time: '5:00 PM – 9:30 PM',
         location: 'Event Hall',
-        image: 'https://placehold.co/600x400/9333ea/ffffff?text=Thrive+Prom',
+        image: 'https://images.unsplash.com/photo-1630395822970-acd6a691d97e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         link: null 
     },
     {
@@ -76,7 +76,7 @@ const announcementsData = [
         date: '2025-07-23',
         time: '6:00 PM – 7:00 PM',
         location: 'Community Lounge',
-        image: 'https://placehold.co/600x400/facc15/000000?text=Bingo+Night',
+        image: 'https://images.unsplash.com/photo-1651359729278-7fadd8d93152?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         link: null 
     },
     {
@@ -86,7 +86,7 @@ const announcementsData = [
         date: '2025-07-23',
         time: '7:00 PM – 9:00 PM',
         location: 'Event Room',
-        image: 'https://placehold.co/600x400/3b82f6/ffffff?text=Disney+Karaoke',
+        image: 'https://images.unsplash.com/photo-1722816738620-5eb5fc059487?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         link: null 
     },
     {
@@ -96,7 +96,7 @@ const announcementsData = [
         date: '2025-07-23',
         time: '9:00 PM – 11:00 PM',
         location: 'Movie Room',
-        image: 'https://placehold.co/600x400/ef4444/ffffff?text=Movie+Night',
+        image: 'https://images.unsplash.com/photo-1527979809431-ea3d5c0c01c9?q=80&w=1209&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         link: null 
     },
     {
@@ -106,7 +106,7 @@ const announcementsData = [
         date: '2025-07-24',
         time: '6:00 PM – 9:00 PM',
         location: 'ColdStone Creamery',
-        image: 'https://placehold.co/600x400/fbbf24/000000?text=Ice+Cream+Night',
+        image: 'https://images.unsplash.com/photo-1502174832274-bc176e52765a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         link: null 
     },
     {
@@ -116,7 +116,7 @@ const announcementsData = [
         date: '2025-07-24',
         time: '7:00 PM – 9:00 PM',
         location: 'Networking Lounge',
-        image: 'https://placehold.co/600x400/14b8a6/ffffff?text=Networking+Night',
+        image: 'https://images.unsplash.com/photo-1524868857876-218cafbdda8b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         link: null 
     },
     {
@@ -126,7 +126,7 @@ const announcementsData = [
         date: '2025-07-25',
         time: '5:00 PM – 9:00 PM',
         location: 'Main Hall',
-        image: 'https://placehold.co/600x400/f472b6/ffffff?text=DIY+%26+Goodbye',
+        image: 'https://images.unsplash.com/photo-1721934175045-54856f1087cf?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         link: null 
     }
 ];
