@@ -41,13 +41,15 @@
 </head>
 
 <body class="text-slate-800">
-<header class="bg-surface shadow-soft border-b border-slate-200 sticky top-0 z-50">
+<header class="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-slate-200 shadow-md">
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Campus Logo & Branding -->
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+    <svg class="w-6 h-6 text-purple-700" fill="currentColor" viewBox="0 0 24 24">
+
                             <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" />
                         </svg>
                     </div>
@@ -129,40 +131,42 @@
         <!-- Tab Navigation Section -->
         <section class="mb-10 flex justify-center">
             <div class="inline-flex bg-slate-100 p-1 rounded-xl">
-                <!-- Announcements Tab -->
-                <button id="announcements-tab"
-                    class="tab-btn px-6 py-2 rounded-lg font-semibold transition-colors duration-300 flex items-center gap-2"
-                    aria-selected="true" role="tab" data-tab="announcements">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-                    </svg>
-                    <span>Announcements</span>
-                </button>
-
+                
                 <!-- Events Tab -->
                 <button id="events-tab"
                     class="tab-btn px-6 py-2 rounded-lg font-semibold transition-colors duration-300 flex items-center gap-2"
-                    aria-selected="false" role="tab" data-tab="events">
+                    aria-selected="true" role="tab" data-tab="events">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c0-.414.336-.75.75-.75h10.5a.75.75 0 01.75.75v1.25a.75.75 0 01-.75.75H5.5a.75.75 0 01-.75-.75V7.5z" clip-rule="evenodd" />
                     </svg>
                     <span>Events</span>
                 </button>
+
+                <!-- Announcements Tab -->
+                <button id="announcements-tab"
+                    class="tab-btn px-6 py-2 rounded-lg font-semibold transition-colors duration-300 flex items-center gap-2"
+                    aria-selected="false" role="tab" data-tab="announcements">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                    </svg>
+                    <span>Announcements</span>
+                </button>
+            </div>
+        </section>
+        <section id="events-section" class="animate-fade-in">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="events-grid">
+                <!-- Event cards will be injected here -->
             </div>
         </section>
 
         <!-- Content Sections -->
-        <section id="announcements-section" class="animate-fade-in">
+        <section id="announcements-section" class="hidden animate-fade-in">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="announcements-grid">
                 <!-- Announcement cards will be injected here -->
             </div>
         </section>
 
-        <section id="events-section" class="hidden animate-fade-in">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="events-grid">
-                <!-- Event cards will be injected here -->
-            </div>
-        </section>
+        
 
     </main>
 
@@ -346,7 +350,7 @@ mobileMenuBtn.addEventListener('click', () => {
             renderContent();
 
             // Set initial active state on the first tab
-            switchTab(document.getElementById('announcements-tab'));
+            switchTab(document.getElementById('events-tab'));
 
         });
     </script>
