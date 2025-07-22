@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meet The Team - Thrive Scholar</title>
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,46 +21,96 @@
         /* Custom styles to complement Tailwind */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
+            background-color: #f8fafc;
+            /* Lighter blue-gray background */
         }
+
         /* Style for the counter animation */
         .counter {
             transition: all 0.3s ease-in-out;
         }
+
         /* Custom scrollbar for better aesthetics */
         .modal-body::-webkit-scrollbar {
             width: 8px;
         }
+
         .modal-body::-webkit-scrollbar-track {
             background: #f1f1f1;
-        }
-        .modal-body::-webkit-scrollbar-thumb {
-            background: #888;
             border-radius: 4px;
         }
-        .modal-body::-webkit-scrollbar-thumb:hover {
-            background: #555;
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            /* Tailwind gray-300 */
+            border-radius: 4px;
         }
+
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+            /* Tailwind gray-400 */
+        }
+
         /* A class to hide modals by default */
         .modal.hidden {
             display: none;
         }
+
+        /* Fade in/out animation for modals */
+        .modal {
+            transition: opacity 0.3s ease-out;
+            opacity: 0;
+            pointer-events: none;
+            /* Prevents interaction when hidden */
+        }
+
+        .modal.visible {
+            opacity: 1;
+            pointer-events: auto;
+            /* Allows interaction when visible */
+        }
+
+        /* Max height for modal body to enable scrolling */
+        .modal-body {
+            max-height: 90vh;
+            /* Adjust as needed */
+        }
+
+        /* Custom styles for mobile dropdown animation */
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .mobile-dropdown-content.open {
+            max-height: 500px; /* A sufficiently large value to accommodate content */
+        }
+
+        .mobile-dropdown-btn svg {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-dropdown-btn svg.rotate-180 {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
+
 <body class="bg-gray-100">
-<header class="bg-surface shadow-soft border-b border-slate-200 sticky top-0 z-50">
+    <header class="bg-white shadow-md border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Campus Logo & Branding -->
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                    <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
                         <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" />
                         </svg>
                     </div>
                     <div>
-                        <h1 class="text-xl font-semibold text-text-primary">Thrive Scholar</h1>
-                        <p class="text-sm text-text-secondary">Main Office</p>
+                        <h1 class="text-xl font-semibold text-gray-800">Thrive Scholar</h1>
+                        <p class="text-sm text-gray-600">Main Office</p>
                     </div>
                 </div>
 
@@ -69,17 +120,39 @@
                         class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Home</a>
                     <a href="announcements.html"
                         class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Announcements</a>
-                    <a href="student_dashboard.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Dashboard</a>
-                    <a href="print_request.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Print
-                        Request</a>
-                    <a href="lost_found.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Lost
-                        & Found</a>
-                    <a href="morningcheck.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Morning
-                        Status</a>
+
+                    <!-- Student Hub Dropdown -->
+                    <div class="relative group">
+                        <button class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors flex items-center">
+                            Student Hub
+                            <svg class="ml-1 w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 ease-out bg-white shadow-lg rounded-md mt-2 w-48 py-1 z-10">
+                            <a href="student_dashboard.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
+                            <a href="print_request.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Print Request</a>
+                            <a href="morningcheck.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Morning Status</a>
+                        </div>
+                    </div>
+
+                    <!-- Campus Life Dropdown -->
+                    <div class="relative group">
+                        <button class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors flex items-center">
+                            Campus Life
+                            <svg class="ml-1 w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 ease-out bg-white shadow-lg rounded-md mt-2 w-48 py-1 z-10">
+                            <a href="lost_found.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Lost & Found</a>
+                            <!-- Add more Campus Life links here -->
+                        </div>
+                    </div>
+
+                    <!-- New Team Section -->
+                    <a href="fellows.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Team</a>
                 </nav>
 
                 <!-- Mobile Menu Button -->
@@ -99,29 +172,47 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 bg-surface">
+        <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 bg-white">
             <div class="px-4 py-2 space-y-1">
-                <a href="homepage.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">
-                    Home
-                </a>
+                <a href="homepage.html" class="block px-3 py-2 text-indigo-700 bg-indigo-50 rounded-md font-medium">Home</a>
                 <a href="announcements.html"
-                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">Announcements</a>
-                <a href="student_dashboard.html"
-                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Student Dashboard
-                </a>
-                <a href="print_request.html"
-                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Print Request
-                </a>
-                <a href="lost_found.html"
-                    class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Lost & Found
-                </a>
-                <a href="morningcheck.html"
-                    class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Morning Status</a>
+                    class="block px-3 py-2 text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md font-medium transition-colors">Announcements</a>
+
+                <!-- Mobile Student Hub Dropdown -->
+                <div class="py-2">
+                    <button class="mobile-dropdown-btn block w-full text-left px-3 py-2 text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md font-medium transition-colors">
+                        Student Hub
+                        <!-- Dropdown arrow for mobile -->
+                        <svg class="ml-auto w-4 h-4 inline-block transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="mobile-dropdown-content pl-6 pt-1 space-y-1"> <!-- This div would be toggled by JS -->
+                        <a href="student_dashboard.html" class="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">Dashboard</a>
+                        <a href="print_request.html" class="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">Print Request</a>
+                        <a href="morningcheck.html" class="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">Morning Status</a>
+                    </div>
+                </div>
+
+                <!-- Mobile Campus Life Dropdown -->
+                <div class="py-2">
+                    <button class="mobile-dropdown-btn block w-full text-left px-3 py-2 text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md font-medium transition-colors">
+                        Campus Life
+                        <!-- Dropdown arrow for mobile -->
+                        <svg class="ml-auto w-4 h-4 inline-block transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="mobile-dropdown-content pl-6 pt-1 space-y-1"> <!-- This div would be toggled by JS -->
+                        <a href="lost_found.html" class="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">Lost & Found</a>
+                    </div>
+                </div>
+
+                <!-- New Team Section for Mobile -->
+                <a href="fellows.html"
+                    class="block px-3 py-2 text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md font-medium transition-colors">Team</a>
             </div>
+        </div>
     </header>
 
     <!-- Team Section Container -->
@@ -130,178 +221,1017 @@
         <!-- Header -->
         <div class="text-center mb-16">
             <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800">Meet Our Extraordinary Team</h1>
-            <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">The driving force behind our mission, composed of passionate leaders, mentors, and managers dedicated to student success.</p>
+            <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">The driving force behind our mission, composed of
+                passive leaders, mentors, and managers dedicated to student success.</p>
         </div>
 
         <!-- Social Proof / Counter Section -->
         <div id="counters_1" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 max-w-4xl mx-auto">
             <div class="bg-white p-6 rounded-xl shadow-lg text-center transition-transform transform hover:scale-105">
-                <h3 class="text-xl font-bold text-indigo-600">Scholars Mentored</h3>
-                <p class="counter text-5xl font-extrabold text-gray-800 mt-2" data-TargetNum="150" data-Speed="2500">0</p>
+                <h3 class="text-xl font-bold text-indigo-600">Scholars</h3>
+                <p class="counter text-5xl font-extrabold text-gray-800 mt-2" data-TargetNum="169" data-Speed="2500">0
+                </p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-lg text-center transition-transform transform hover:scale-105">
-                <h3 class="text-xl font-bold text-indigo-600">Projects Launched</h3>
-                <p class="counter text-5xl font-extrabold text-gray-800 mt-2" data-TargetNum="45" data-Speed="2500">0</p>
+                <h3 class="text-xl font-bold text-indigo-600">Fellows</h3>
+                <p class="counter text-5xl font-extrabold text-gray-800 mt-2" data-TargetNum="19" data-Speed="2500">0
+                </p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-lg text-center transition-transform transform hover:scale-105">
-                <h3 class="text-xl font-bold text-indigo-600">Community Hours</h3>
-                <p class="counter text-5xl font-extrabold text-gray-800 mt-2" data-TargetNum="2000" data-Speed="3000">0</p>
+                <h3 class="text-xl font-bold text-indigo-600">Events Done</h3>
+                <p class="counter text-5xl font-extrabold text-gray-800 mt-2" data-TargetNum="45" data-Speed="3000">0
+                </p>
             </div>
         </div>
 
         <!-- Team Members Grid -->
         <div id="team-grid">
             <!-- Organizers -->
-            <h2 class="text-3xl font-bold text-gray-800 border-l-4 border-indigo-500 pl-4 mb-10">Organizers</h2>
+            <h2 class="text-3xl font-bold text-gray-800 border-l-4 border-indigo-500 pl-4 mb-10">Site Directors</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Team Member Card: Mahesh Raj Pandit -->
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="mahesh">
+                <!-- Team Member Card: Stephanie Tilley -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="stephanie">
                     <div class="relative">
-                        <img src="assets/img/mahesh.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/6366f1/ffffff?text=MRP';" alt="Mahesh Raj Pandit" class="w-full h-64 object-cover object-center">
+                        <img src="https://i.ibb.co/99nDFjPV/stephanie.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=ST';"
+                            alt="Stephanie Tilley" class="w-full h-80 object-cover object-top">
                         <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
-                            <h3 class="text-white text-xl font-bold">Mahesh Raj Pandit</h3>
-                            <p class="text-indigo-300 text-sm">Founder & Director</p>
+                            <h3 class="text-white text-xl font-bold">Stephanie Tilley</h3>
+                            <p class="text-orange-400 text-sm">Assistant Site Director</p>
                         </div>
                     </div>
                 </div>
-                <!-- Add other organizers here... -->
-                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="binayak">
+
+
+            </div>
+
+            <!-- Fellows -->
+            <h2 class="text-3xl font-bold text-gray-800 border-l-4 border-green-500 pl-4 my-10 mt-16">Fellows</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Team Member Card: Grecia V. Acevedo -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="grecia">
                     <div class="relative">
-                        <img src="assets/img/binayak.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/6366f1/ffffff?text=BJ';" alt="Binayak Jha" class="w-full h-64 object-cover">
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Binayak Jha</h3><p class="text-indigo-300 text-sm">Tech Lead & Marketing</p></div>
+                        <img src="https://i.ibb.co/0yGfcbD2/gracia.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=GA';"
+                            alt="Grecia V. Acevedo" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Grecia V. Acevedo</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
                     </div>
                 </div>
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="sujal">
+                <!-- Team Member Card: Nicholas Robie -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="nicholas">
                     <div class="relative">
-                        <img src="assets/img/sujal.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/6366f1/ffffff?text=SS';" alt="Sujal Shah" class="w-full h-64 object-cover">
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Sujal Shah</h3><p class="text-indigo-300 text-sm">Engagement & Logistics</p></div>
+                        <img src="https://i.ibb.co/PZ91wPJm/unnamed-1.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=NR';"
+                            alt="Nicholas Robie" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Nicholas Robie</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
                     </div>
                 </div>
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="aastha">
+                <!-- Team Member Card: Amare Harris -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="amare">
                     <div class="relative">
-                        <img src="assets/img/Aastha1.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/6366f1/ffffff?text=AG';" alt="Aastha Ghimire" class="w-full h-64 object-cover">
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Aastha Ghimire</h3><p class="text-indigo-300 text-sm">Head of Wellness</p></div>
+                        <img src="https://i.ibb.co/ymwpQ3L2/unnamed-2.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=AH';"
+                            alt="Amare Harris" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Amare Harris</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card: Mahesh Raj Pandit -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="mahesh">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/bMdqSmTf/IMG-0055.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/6366f1/ffffff?text=MRP';"
+                            alt="Mahesh Raj Pandit" class="w-full h-80 object-cover object-center">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Mahesh Raj Pandit</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card: Chealsea -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="chealsea">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/Q7BmbFPV/chelsea.png"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=CR';"
+                            alt="Chealsea Roldan" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Chealsea Roldan</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card: Gabrielle Nicoleau -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="gabrielle">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/n8bpT0LX/unnamed-3.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=GN';"
+                            alt="Gabrielle Nicoleau" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Gabrielle Nicoleau</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card: Christian Howze -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="christian">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/QFz75gJD/unnamed-4.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=CH';"
+                            alt="Christian Howze" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Christian Howze</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card: Liz Rodriguez -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="liz">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/hFXMjcW3/liz.png"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=LR';"
+                            alt="Liz Rodriguez" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Liz Rodriguez</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card: Minerva Pineda -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="minerva">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/1JsQzP01/minerva.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=MP';"
+                            alt="Minerva Pineda" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Minerva Pineda</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card: Boluwatife Adewusi -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="boluwatife">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/8gr2ZPyh/samson.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=BA';"
+                            alt="Boluwatife Adewusi" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Boluwatife Adewusi</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card: Peter Raymond -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="peter">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/pjbkcTDP/peter.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=PR';"
+                            alt="Peter Raymond" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Peter Raymond</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card: Makayla J. Brown -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="makayla">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/p6zMZc2W/may.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=MB';"
+                            alt="Makayla J. Brown" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Makayla J. Brown</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card: Sara Pedraja -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="sara">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/9H3MwW1N/sara.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=SP';"
+                            alt="Sara Pedraja" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Sara Pedraja</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card: Sanai Hicks -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="sanai">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/21cPhrFv/sanai.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=SH';"
+                            alt="Sanai Hicks" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Sanai Hicks</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member Card: Katharine Situ -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="katharine">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/b5Ggwwjk/kathrine.png"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=KS';"
+                            alt="Katharine Situ" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Katharine Situ</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card: Naomi Gates -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="naomi">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/Fb1FH5XJ/naomi.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=NG';"
+                            alt="Naomi Gates" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Naomi Gates</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Mentors -->
-            <h2 class="text-3xl font-bold text-gray-800 border-l-4 border-indigo-500 pl-4 my-10 mt-16">Mentors</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Add mentor cards here... -->
-                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="anish">
-                    <div class="relative">
-                        <img src="assets/img/Anish Pandey.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/34d399/ffffff?text=AP';" alt="Anish Pandey" class="w-full h-64 object-cover">
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Anish Pandey</h3><p class="text-emerald-300 text-sm">Mentor</p></div>
-                    </div>
-                </div>
-                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="bijyeta">
-                    <div class="relative">
-                        <img src="assets/img/Bijyeta_Headshot.JPG" onerror="this.onerror=null;this.src='https://placehold.co/400x400/34d399/ffffff?text=BM';" alt="Bijyeta Maharjan" class="w-full h-64 object-cover">
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Bijyeta Maharjan</h3><p class="text-emerald-300 text-sm">Mentor</p></div>
-                    </div>
-                </div>
-                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="shubham">
-                    <div class="relative">
-                        <img src="assets/img/Shubham_Upreti.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/34d399/ffffff?text=SU';" alt="Shubham Upreti" class="w-full h-64 object-cover">
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Shubham Upreti</h3><p class="text-emerald-300 text-sm">Mentor</p></div>
-                    </div>
-                </div>
-                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="swechchha">
-                    <div class="relative">
-                        <img src="assets/img/Swechchha.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/34d399/ffffff?text=SA';" alt="Swechchha Adhikari" class="w-full h-64 object-cover">
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Swechchha Adhikari</h3><p class="text-emerald-300 text-sm">Mentor</p></div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Program Managers -->
-            <h2 class="text-3xl font-bold text-gray-800 border-l-4 border-indigo-500 pl-4 my-10 mt-16">Program Managers</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Add program manager cards here... -->
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="lavana">
-                    <div class="relative">
-                        <img src="assets/img/lavana.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f59e0b/ffffff?text=LM';" alt="Lavana Maharjan" class="w-full h-64 object-cover">
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Lavana Maharjan</h3><p class="text-amber-300 text-sm">Program Manager</p></div>
-                    </div>
-                </div>
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="prashim">
-                    <div class="relative">
-                        <img src="assets/img/prashim.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f59e0b/ffffff?text=PT';" alt="Prashim Timsina" class="w-full h-64 object-cover">
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Prashim Timsina</h3><p class="text-amber-300 text-sm">Program Manager</p></div>
-                    </div>
-                </div>
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="nischit">
-                    <div class="relative">
-                        <img src="assets/img/nischit.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f59e0b/ffffff?text=NB';" alt="Nishchit Bhandari" class="w-full h-64 object-cover">
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Nishchit Bhandari</h3><p class="text-amber-300 text-sm">Program Manager</p></div>
-                    </div>
-                </div>
-                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer" data-modal-target="niranjan">
-                    <div class="relative">
-                        <img src="assets/img/niranjan.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f59e0b/ffffff?text=NS';" alt="Niranjan Kumar Sharma" class="w-full h-64 object-cover">
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><h3 class="text-white text-xl font-bold">Niranjan K. Sharma</h3><p class="text-amber-300 text-sm">Program Manager</p></div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 
     <!-- Modals Section -->
     <!-- Mahesh's Modal -->
-    <div id="modal-mahesh" class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden">
-            <img src="assets/img/mahesh.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x800/6366f1/ffffff?text=Mahesh';" alt="Mahesh Raj Pandit" class="w-full md:w-1/3 h-96 md:h-auto object-cover">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto" style="max-height: 90vh;">
+
+
+    <!-- Fellows Modals -->
+    <!-- Grecia V. Acevedo's Modal -->
+    <div id="modal-grecia"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/0yGfcbD2/gracia.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Grecia';"
+                alt="Grecia V. Acevedo" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
                 <div>
-                    <h3 class="text-3xl font-bold text-gray-900">Mahesh Raj Pandit</h3>
-                    <p class="text-indigo-600 font-semibold mt-1">Founder & Director</p>
+                    <h3 class="text-3xl font-bold text-gray-900">Grecia V. Acevedo</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
                     <p class="text-gray-600 mt-4 text-base leading-relaxed">
-                        Mahesh is a dedicated leader and a rising junior at SLU who values the transformative power of education. His passion for education led him to start the Uunchai Summer Program, where he organizes learning opportunities as the founder and director of Uunchai. In addition, he founded and serves as President of the FountEd Foundation. Mahesh's experience spans program management, graphic design, and other fields that have a direct impact on society. Currently pursuing a degree in computer science, he aspires to launch his own startup in Nepal in the future.
+                        Grecia is a passionate advocate for culturally and linguistically responsive assessment and
+                        treatment in communication challenges, focusing on equity and inclusivity models for healthcare
+                        and education access. She holds a B.S. in Speech Language Pathology from California State
+                        University of San Marcos and an M.S. in Communication Disorders & Sciences from the University
+                        of Oregon. As a first-generation Latina and bilingual (Spanish-English) and bicultural
+                        (Mexican-American) individual, she brings a unique and valuable perspective to her work.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Santa Ana, CA</li>
+                        <li><strong>Career Interest:</strong> Speech Language Pathologist</li>
+                        <li><strong>Major:</strong> Speech Language Pathology B.S., Communication Disorders & Sciences,
+                            M.S.</li>
+                        <li><strong>College:</strong> Undergraduate: California State University of San Marcos,
+                            Graduate: University of Oregon</li>
+                        <li><strong>Additional Info:</strong> First-Gen Latina | Bilingual (Spanish-English) &
+                            Bicultural (Mexican-American)</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> choosing a path you’ve never seen
+                        someone like you in, balancing cultural/family expectations with independence in college, the
+                        value of mentorship (specifically graduate school prep programs), and mindfulness!</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/grecia-acevedo-7376a1185/" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Nicholas Robie's Modal -->
+    <div id="modal-nicholas"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/PZ91wPJm/unnamed-1.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Nicholas';"
+                alt="Nicholas Robie" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Nicholas Robie</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Nicholas is focused on a career in healthcare, exploring paths as a Physician Assistant or
+                        Physical Therapist. He holds a major in Exercise Science in Healthcare from the University of
+                        Toledo and Grand Valley State University. He brings a valuable perspective on navigating PWI's
+                        as a black male.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Harper Woods, Michigan</li>
+                        <li><strong>Career Interest:</strong> Physician Assistant / Physical Therapy</li>
+                        <li><strong>Major:</strong> Exercise Science in Healthcare</li>
+                        <li><strong>College:</strong> University of Toledo → Grand Valley State University</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> overcoming the struggles of switching
+                        majors / career paths, time management skills, healthy stress management, dieting, strength
+                        training assistance & advice. My experiences navigating PWI’s as a black male.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/nicholas-robie-146a84263?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                        target="_blank" class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Amare Harris's Modal -->
+    <div id="modal-amare"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/ymwpQ3L2/unnamed-2.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Amare';"
+                alt="Amare Harris" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Amare Harris</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Amare is a student at Vanderbilt University, double majoring in Sociology and Data Science. His
+                        career interests lie in social impact, education, entrepreneurship, and finance, bringing a
+                        diverse set of skills and knowledge to the team.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Tampa, Florida</li>
+                        <li><strong>Career Interest:</strong> Social Impact, Education, Entrepreneurship, & Finance</li>
+                        <li><strong>Major/Minors:</strong> Sociology and Data Science</li>
+                        <li><strong>College:</strong> Vanderbilt University</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> study abroad, career development,
+                        internships (consulting, finance, technology), and balancing academics with extracurriculars.
                     </p>
                 </div>
                 <div class="mt-6 flex space-x-4">
-                    <a href="#" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-linkedin fa-2x"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-twitter fa-2x"></i></a>
+                    <a href="https://www.linkedin.com/in/amareharris/" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
                 </div>
             </div>
-            <button class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900">&times;</button>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
         </div>
     </div>
-    <!-- Add other modals here using the same structure -->
-    <div id="modal-binayak" class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden">
-            <img src="assets/img/binayak.jpeg" onerror="this.onerror=null;this.src='https://placehold.co/600x800/6366f1/ffffff?text=Binayak';" alt="Binayak Jha" class="w-full md:w-1/3 h-96 md:h-auto object-cover">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto" style="max-height: 90vh;">
+    <!-- Mahesh Pandit's Modal -->
+    <div id="modal-mahesh"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/bMdqSmTf/IMG-0055.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/6366f1/ffffff?text=Mahesh';"
+                alt="Mahesh Raj Pandit" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
                 <div>
-                    <h3 class="text-3xl font-bold text-gray-900">Binayak Jha</h3>
-                    <p class="text-indigo-600 font-semibold mt-1">Tech Lead & Marketing Manager</p>
+                    <h3 class="text-3xl font-bold text-gray-900">Mahesh Raj Pandit</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
                     <p class="text-gray-600 mt-4 text-base leading-relaxed">
-                        Binayak is currently a rising sophomore at Franklin & Marshall College, with aspirations to double major in Computer Science and Mathematics and pursue a minor in Music. He has a diverse background in leadership and mentorship roles... He is also passionate about leveraging AI to tackle real-world challenges, promoting equal access to education and healthcare...
+                        Mahesh is a dedicated leader and a rising junior at SLU who values the transformative power of
+                        education. His passion for education led him to start the Uunchai Summer Program, where he
+                        organizes learning opportunities as the founder and director of Uunchai. In addition, he founded
+                        and serves as President of the FountED Foundation. Mahesh's experience spans software developemnt, program management,
+                        graphic design, and other fields that have a direct impact on society. Currently pursuing a
+                        degree in computer science, he aspires to scale his own startup in Nepal in the future.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Bhaktapur, Nepal</li>
+                        <li><strong>Career Interest:</strong> Entrepreneurship, Technology, Program Management</li>
+                        <li><strong>Major:</strong> Computer Science, Minor in Marketing </li>
+                        <li><strong>College:</strong> Southeastern Louisiana University </li>
+                        <li><strong>Additional Info:</strong> Founder of Uunchai, FountED Foundation, and KampandLabs | Google x HackNYU 2025 Winner | UpToUS Fiscal Challenger 2024 Winner.</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> founding and scaling a organization, program management, computer science projects, studying out of the country, and balancing academics with extracurriculars.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://linkedin.com/in/maheshpandit2" target="_blank"
+                        class="text-gray-500 hover:text-indigo-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                    <a href="mailto:mpandit@thrivesummer.org" class="text-gray-500 hover:text-indigo-600 transition-colors"><i
+                            class="fas fa-envelope fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Chealsea's Modal -->
+    <div id="modal-chealsea"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/Q7BmbFPV/chelsea.png"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Chealsea';"
+                alt="Chealsea Roldan" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Chealsea Roldan</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Chealsea is a student at Middlebury College, pursuing a joint major in Anthropology and Sociology.
+                        Originally from Chicago, IL, she has valuable insights into navigating an out-of-state experience
+                        and attending a liberal arts college, especially as a first-generation student at a Predominantly White Institution.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Chicago, IL</li>
+                        <li><strong>Career Interest:</strong> Education, college access advisor, UX Researcher, non-profit</li>
+                        <li><strong>Major:</strong> Anthropology joint Sociology</li>
+                        <li><strong>College:</strong> Middlebury College</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> First-generation student, attending a PWI, out-of-state experience, study abroad, financial aid, internships, attending a liberal arts college, campus involvement, Posse Foundation, post-grad experience. Feel free to email me at <a href="mailto:roldanchealsea@gmail.com" class="text-green-600 hover:underline">roldanchealsea@gmail.com</a></p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="http://www.linkedin.com/in/chealsea-roldan-123270231" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Gabrielle Nicoleau's Modal -->
+    <div id="modal-gabrielle"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/n8bpT0LX/unnamed-3.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Gabrielle';"
+                alt="Gabrielle Nicoleau" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Gabrielle Nicoleau</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Gabrielle is a student at Duke University, majoring in Political Science with minors in Theater
+                        and Music. A graduate of Young Women’s Preparatory Academy in 2023, she brings the valuable
+                        experience of being a Black student at a Predominantly White Institution.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Miami, Florida</li>
+                        <li><strong>Career Interest:</strong> Law</li>
+                        <li><strong>Major/Minors:</strong> Political Science, Minors: Theater, Music</li>
+                        <li><strong>College:</strong> Duke University</li>
+                        <li><strong>Additional Info:</strong> Graduated from Young Women’s Preparatory Academy in 2023,
+                            Black at a PWI.</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> switching my major from theater to
+                        political science & making it my minor.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/gabrielle-nicoleau-707197355/" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Christian Howze's Modal -->
+    <div id="modal-christian"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/QFz75gJD/unnamed-4.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Christian';"
+                alt="Christian Howze" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Christian Howze</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Christian is a rising junior at New York University, pursuing a Business degree with a
+                        concentration in Marketing and a double major in Journalism. He also minors in the Business of
+                        Entertainment, Media, and Technology. Christian is deeply involved on campus, serving as
+                        President of the Black Student Union, Vice President of Brown Sugar Brilliance, and a Public
+                        Relations Program Assistant for the Academic Achievement Program (for BIPOC students). He is
+                        also a reporter for WNYU Radio and the Senator-at-Large for Black/African American Students and
+                        Students of Color. He brings a rich background in leadership and community engagement.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Chester, South Carolina</li>
+                        <li><strong>Career Interest:</strong> Product & Brand Marketing Management in the Music Industry
+                            | Consulting | Public Relations | Broadcast/Multimedia Journalist | News Anchor</li>
+                        <li><strong>Major/Minor:</strong> Business (Concentration in Marketing) | Double Major:
+                            Journalism | Minor: Business of Entertainment, Media, and Technology</li>
+                        <li><strong>College:</strong> New York University (Leonard N. Stern School of Business & the
+                            College of Arts & Sciences)</li>
+                        <li><strong>Additional Info:</strong> Rising junior at NYU, graduated with Associates in General
+                            Studies at local community college. Very involved on campus in various leadership roles.
+                        </li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> Black at a PWI & PAI, Black American
+                        Identity, Low-Income, Southern/Rural to City Experience, Journalism, Music, Marketing Trends,
+                        DEI Programs, Internships, Scheduling, City Life, & Campus Involvement and Work.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/christian-howze/" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Liz Rodriguez's Modal -->
+    <div id="modal-liz"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/hFXMjcW3/liz.png"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Liz';"
+                alt="Liz Rodriguez" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Liz Rodriguez</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Liz is pursuing a major in Communication with a focus on interpersonal and organizational
+                        communication, and a minor in Psychology at the University of Illinois Urbana-Champaign. Her
+                        career interest lies in higher education, making her a valuable resource for students navigating
+                        their academic journeys.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Oswego, IL</li>
+                        <li><strong>Career Interest:</strong> Higher Education</li>
+                        <li><strong>Major/Minor:</strong> Communication (interpersonal and organizational)/Psychology
+                        </li>
+                        <li><strong>College:</strong> University of Illinois Urbana-Champaign</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> how to pick a major or career path and
+                        student organization involvement.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/liz-rodriguez-05a2021ba" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Minerva Pineda's Modal -->
+    <div id="modal-minerva"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/1JsQzP01/minerva.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Minerva';"
+                alt="Minerva Pineda" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Minerva Pineda</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Minerva is a rising junior at Stanford University, majoring in Product Design (Physical +
+                        Manufacturing Track) with minors in Mechanical Engineering and Computer Science. Her career
+                        interests include Mechanical Engineering Design, UI/UX Design, and Product Management. She is a
+                        first-generation, low-income Latina student at a PWI, offering valuable insights into balancing
+                        academic and personal life, familial expectations, and making the most of college resources.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Los Angeles, California</li>
+                        <li><strong>Career Interest:</strong> Mechanical Engineering Design, UI/UX Design, Product
+                            Management</li>
+                        <li><strong>Major/Minors:</strong> Product Design (Physical + Manufacturing Track), Minors:
+                            Mechanical Engineering and Computer Science</li>
+                        <li><strong>College:</strong> Stanford University [Rising Junior]</li>
+                        <li><strong>Additional Info:</strong> First-Generation, Low-Income student; Latina in a PWI;
+                            Involved in Mentorship, Non-profit work, Marketing, Education Equity Access.</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> Being a First-Generation, Low-Income
+                        student, Being Latina in a PWI (Predominantly White Institute), Balancing personal & academic
+                        life, familial expectations, dating in college, “Failing” a class, Seasonal depression,
+                        Organization tools!!!! (Google Calendar, Notion, etc.), making the most out of college
+                        resources!</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/minervapineda/" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Boluwatife Adewusi's Modal -->
+    <div id="modal-boluwatife"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/8gr2ZPyh/samson.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Boluwatife';"
+                alt="Boluwatife Adewusi" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Boluwatife Adewusi</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Boluwatife is a Criminal Justice/Law Enforcement Administration and Computer Information Systems
+                        student from Alabama State University, deeply interested in the relationship between law,
+                        justice, and technology. She is the founder and CEO of Vulcan Forge Security, a student-led
+                        initiative focused on educating Black communities about cybercrime and supporting students of
+                        color in cybersecurity with mentorship, networking, and skill-building opportunities. She is
+                        looking forward to gaining practical experience and developing her career in the cybersecurity
+                        industry.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Montgomery, Alabama</li>
+                        <li><strong>Career Interest:</strong> Cybercrime Investigation & Cybersecurity</li>
+                        <li><strong>Major:</strong> Criminal Justice</li>
+                        <li><strong>Minor:</strong> Computer Information System</li>
+                        <li><strong>College:</strong> Alabama State University</li>
+                        <li><strong>Additional Info:</strong> Participated in multiple leadership and fellowship
+                            programs for underrepresented students in STEM and LASS. Owns a startup hosting tech
+                            workshops for K12 and Elderly in rural Alabama. Loves playing soccer and building community.
+                        </li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> being a student, transitioning into
+                        tech without a traditional background, or navigating opportunities in college while balancing
+                        personal growth.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/boluwatife-adewusi-46268423a/" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Peter Raymond's Modal -->
+    <div id="modal-peter"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/pjbkcTDP/peter.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Peter';"
+                alt="Peter Raymond" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Peter Raymond</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Peter is a Political Science major at Wake Forest University, interested in careers in Law,
+                        Public Policy, and Foreign Service. He offers insights into attending a liberal arts college,
+                        first-year experiences, and utilizing academic and personal resources.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Miami, Florida</li>
+                        <li><strong>Career Interest:</strong> Law, Public Policy and Foreign Service</li>
+                        <li><strong>Major:</strong> Political Science</li>
+                        <li><strong>College:</strong> Wake Forest University</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> Attending a liberal arts college,
+                        first-year experiences, utilizing academic/personal resources such as guidance counselors,
+                        first-year study abroad opportunities, establishing a gym/eating routine and pre-orientation.
                     </p>
                 </div>
-                 <div class="mt-6 flex space-x-4"><a href="#" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-linkedin fa-2x"></i></a><a href="#" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-github fa-2x"></i></a></div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="http://www.linkedin.com/in/peter-raymond-35a7631bb" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
             </div>
-            <button class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900">&times;</button>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
         </div>
     </div>
-     <!-- Add more modals for each person following the pattern -->
+    <!-- Makayla J. Brown's Modal -->
+    <div id="modal-makayla"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/p6zMZc2W/may.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Makayla';"
+                alt="Makayla J. Brown" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Makayla J. Brown</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Makayla is a Neuroscience and Psychology major at Wesleyan College, with a career interest in
+                        clinical social work. While attending Wesleyan College, she worked with geriatric patients to
+                        learn the duties of a social worker and created a field resource manual to aid patients and
+                        their families in securing financial assistance.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Thomaston, Ga</li>
+                        <li><strong>Career Interest:</strong> Clinical social work</li>
+                        <li><strong>Major:</strong> Neuroscience and Psychology</li>
+                        <li><strong>College:</strong> Wesleyan College</li>
+                        <li><strong>Additional Info:</strong> Experience working with geriatric patients, created a
+                            field resource manual for financial help.</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> going to a liberal arts college, being
+                        at a private school, or being at an all girls school.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/makayla-brown-b380aa283/" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Sara Pedraja's Modal -->
+    <div id="modal-sara"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/9H3MwW1N/sara.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Sara';"
+                alt="Sara Pedraja" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Sara Pedraja</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Sara is a Mechanical Engineering major at Cornell University with a unique career interest in
+                        Theme Park Engineering. She has extensive experience navigating unusual financial aid situations
+                        as a non-citizen or permanent resident, making her a valuable resource for other scholars facing
+                        similar challenges.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Miami, Florida!</li>
+                        <li><strong>Career Interest:</strong> Theme Park Engineering!</li>
+                        <li><strong>Major:</strong> Mechanical Engineering</li>
+                        <li><strong>College:</strong> Cornell University</li>
+                        <li><strong>Additional Info:</strong> Has a lot of experience dealing with unusual financial aid
+                            situations due to not being a citizen or permanent resident.</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> math, f1, mental health, and
+                        rollercoasters!</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/sara-pedraja-a748a4284/" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Sanai Hicks's Modal -->
+    <div id="modal-sanai"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/21cPhrFv/sanai.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Sanai';"
+                alt="Sanai Hicks" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Sanai Hicks</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Sanai is a rising junior at Spelman College in Atlanta, Georgia, majoring in Political Science
+                        with a minor in Management and Organization. Originally from Baltimore, Maryland, she is a proud
+                        member of the Spelman LadyBuds program, a mentorship initiative for young girls. While her
+                        academic background is in social sciences, her true passion lies in cinematography and
+                        videography, aspiring to a creative career behind the camera.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Baltimore, Maryland</li>
+                        <li><strong>Career Interest:</strong> Cinematography and Videography (Visual Storytelling)</li>
+                        <li><strong>Major/Minor:</strong> Political Science, Minor: Management and Organization</li>
+                        <li><strong>College:</strong> Spelman College</li>
+                        <li><strong>Additional Info:</strong> Member of Spelman LadyBuds program.</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> attending an all girls college,
+                        attending a Historically Black College University (HBCU), my freshman year experience, utilizing
+                        academic success resources on campus, having excellent time management skills, balancing social
+                        and academic life, and staying organized.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/sanai-hicks-81a353296" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Stephanie Tilley's Modal -->
+    <div id="modal-stephanie"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/99nDFjPV/stephanie.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Stephanie';"
+                alt="Stephanie Tilley" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Stephanie Tilley</h3>
+                    <p class="text-green-600 font-semibold mt-1">ASD</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Stephanie's professional background is in study abroad education, international higher
+                        education, and global Black studies, having lived and worked overseas in various locations. She
+                        holds a BA in Economics from Loyola University New Orleans, an MEd in Student Affairs in Higher
+                        Education at Texas State University, and a PhD in Educational Leadership from Prairie View A & M
+                        University. Later this year, she will be relocating abroad to begin a two-year research
+                        fellowship at the University of Johannesburg and was recently accepted into a research institute
+                        at the University of Oxford.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> New Orleans, Louisiana (spent half childhood in Watson, rural
+                            Louisiana)</li>
+                        <li><strong>Career Interest:</strong> International Education Research/ Academia</li>
+                        <li><strong>Educational Background:</strong> BA in Economics, minor: Latin American Studies at
+                            Loyola University New Orleans; MEd in Student Affairs in Higher Education at Texas State
+                            University; PhD in Educational Leadership at Prairie View A & M University</li>
+                        <li><strong>Additional Info:</strong> Lived and worked overseas, relocating for a research
+                            fellowship in Johannesburg, accepted into research institute at University of Oxford.</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> The Fulbright Program, going to
+                        graduate school, working while going to school, studying abroad/ completing research abroad or
+                        living abroad (how to fund your experience abroad as a lower income student)!</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/stephanie-tilley-phd-3a29568a/" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Katharine Situ's Modal -->
+    <div id="modal-katharine"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/b5Ggwwjk/kathrine.png"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Katharine';"
+                alt="Katharine Situ" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Katharine Situ</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Katharine is focused on a career in Consulting in Life Sciences and Biotech Research. She
+                        majored in Biochemistry at the University of California San Diego and is pursuing a PhD in
+                        Material Science at the University of Southern California. She offers unique insights into
+                        exploring diverse academic paths and gaining international experience.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Los Angeles, CA</li>
+                        <li><strong>Career Interest:</strong> Consulting in Life Sciences, Biotech Research</li>
+                        <li><strong>Major:</strong> Biochemistry → PhD Material Science</li>
+                        <li><strong>College:</strong> University of California San Diego → University of Southern
+                            California</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> taking random classes, interning
+                        abroad, college experience, roommate experience, joining a research lab in college.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/katharine-situ/" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- Naomi Gates's Modal -->
+    <div id="modal-naomi"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+            <img src="https://i.ibb.co/Fb1FH5XJ/naomi.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Naomi';"
+                alt="Naomi Gates" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Naomi Gates</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        Naomi is a Computing (IT in Focus) major at East Tennessee State University. Her diverse career
+                        interests include UI/UX, IT Project Management, Software Development, Quality Assurance, and
+                        Information Security Analysis. She currently serves as a Multicultural student leader and study
+                        abroad ambassador on campus, and previously held leadership roles in ETSU’s Black student union
+                        and CKI, a service organization. She is also a proud member of Alpha Kappa Alpha sorority inc.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Lawrenceville, Georgia</li>
+                        <li><strong>Career Interest:</strong> UI/UX | IT Project Management | Software Development |
+                            Quality Assurance | Information Security Analyst</li>
+                        <li><strong>Major:</strong> Computing (IT in Focus)</li>
+                        <li><strong>College:</strong> East Tennessee State University</li>
+                        <li><strong>Additional Info:</strong> Multicultural student leader, study abroad ambassador,
+                            former VP and treasurer of ETSU’s Black student union, treasurer for CKI, member of Alpha
+                            Kappa Alpha sorority inc.</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> Coding, Black at a PWI, Robotics, Black
+                        American Identity, Low-Income, Tech, Study abroad, Scholarships, DEI Programs, Internships,
+                        Scheduling, FSL, Campus Involvement and Work.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="http://www.linkedin.com/in/naomi-gates-3316b829b" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
 
 
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <script>
+        // JavaScript for Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
+
+            mobileMenuBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+                menuOpenIcon.classList.toggle('hidden');
+                menuCloseIcon.classList.toggle('hidden');
+            });
+
+            // JavaScript for Mobile Dropdown Toggles
+            const mobileDropdownButtons = document.querySelectorAll('.mobile-dropdown-btn');
+
+            mobileDropdownButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const dropdownContent = this.nextElementSibling;
+                    const dropdownArrow = this.querySelector('svg');
+
+                    // Toggle 'open' class for max-height transition
+                    dropdownContent.classList.toggle('open');
+                    // Toggle 'rotate-180' for arrow animation
+                    dropdownArrow.classList.toggle('rotate-180');
+                });
+            });
+        });
+
         // --- MODAL SCRIPT ---
         document.addEventListener('DOMContentLoaded', function () {
             const teamCards = document.querySelectorAll('.team-card');
-            
+
             teamCards.forEach(card => {
                 card.addEventListener('click', () => {
                     const modalId = 'modal-' + card.getAttribute('data-modal-target');
                     const modal = document.getElementById(modalId);
                     if (modal) {
                         modal.classList.remove('hidden');
+                        // Add a slight delay for the opacity transition to work
+                        setTimeout(() => {
+                            modal.classList.add('visible');
+                        }, 10);
+                        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
                     }
                 });
             });
@@ -310,16 +1240,27 @@
             closeButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.stopPropagation(); // Prevent card click event from firing
-                    button.closest('.modal').classList.add('hidden');
+                    const modal = button.closest('.modal');
+                    modal.classList.remove('visible');
+                    // Match transition duration for smooth fade-out
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                        document.body.style.overflow = ''; // Restore scrolling
+                    }, 300);
                 });
             });
 
             // Close modal on outside click
             const modals = document.querySelectorAll('.modal');
             modals.forEach(modal => {
-                modal.addEventListener('click', function(event) {
+                modal.addEventListener('click', function (event) {
+                    // Check if the click target is the modal overlay itself, not its content
                     if (event.target === this) {
-                        this.classList.add('hidden');
+                        this.classList.remove('visible');
+                        setTimeout(() => {
+                            this.classList.add('hidden');
+                            document.body.style.overflow = '';
+                        }, 300);
                     }
                 });
             });
@@ -338,9 +1279,9 @@
             // Debounce function to limit how often a function can fire.
             function debounce(func, wait, immediate) {
                 var timeout;
-                return function() {
+                return function () {
                     var context = this, args = arguments;
-                    var later = function() {
+                    var later = function () {
                         timeout = null;
                         if (!immediate) func.apply(context, args);
                     };
@@ -351,7 +1292,7 @@
                 };
             };
 
-            var checkVisibility = debounce(function() {
+            var checkVisibility = debounce(function () {
                 getVisibilityStatus();
             }, 200); // Check every 200ms.
 
@@ -367,7 +1308,7 @@
                         var el = $(item);
                         if (!el.length) return; // Skip if element doesn't exist
                         var elValFromTop = el.offset().top;
-                        
+
                         // Check if the element is in the viewport and hasn't been animated yet
                         if ((windowHeight + windowScrollValFromTop) > elValFromTop && !el.hasClass('is-visible')) {
                             el.addClass('is-visible'); // Mark as visible to prevent re-triggering
@@ -406,7 +1347,7 @@
                     step: function (now) {
                         $element.text(Math.ceil(now).toLocaleString('en-US'));
                     },
-                    complete: function() {
+                    complete: function () {
                         // Ensure the final number is exact and formatted
                         $element.text(parseInt(num).toLocaleString('en-US'));
                     }
@@ -416,4 +1357,5 @@
     </script>
 
 </body>
+
 </html>

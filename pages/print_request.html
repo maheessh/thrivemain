@@ -2,13 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thrive Scholar - Print Request</title>
-    <link rel="stylesheet" href="../css/main.css" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons (added for new navbar) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script type="module"
         src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fcampuspor2185back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.5"></script>
     <style>
@@ -240,11 +243,32 @@
             background-color: var(--color-success-100);
             color: var(--color-success);
         }
+
+        /* Custom styles for mobile dropdown animation (from previous request) */
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .mobile-dropdown-content.open {
+            max-height: 500px;
+            /* A sufficiently large value to accommodate content */
+        }
+
+        .mobile-dropdown-btn svg {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-dropdown-btn svg.rotate-180 {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 
 <body class="bg-background min-h-screen font-sans">
-<header class="bg-surface shadow-soft border-b border-slate-200 sticky top-0 z-50">
+    <!-- Reusable Header/Navbar HTML -->
+    <header class="bg-surface shadow-soft border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Campus Logo & Branding -->
@@ -266,17 +290,39 @@
                         class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Home</a>
                     <a href="announcements.html"
                         class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Announcements</a>
-                    <a href="student_dashboard.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Dashboard</a>
-                    <a href="print_request.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Print
-                        Request</a>
-                    <a href="lost_found.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Lost
-                        & Found</a>
-                    <a href="morningcheck.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Morning
-                        Status</a>
+
+                    <!-- Student Hub Dropdown -->
+                    <div class="relative group">
+                        <button class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors flex items-center">
+                            Student Hub
+                            <svg class="ml-1 w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 ease-out bg-white shadow-lg rounded-md mt-2 w-48 py-1 z-10">
+                            <a href="student_dashboard.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
+                            <a href="print_request.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Print Request</a>
+                            <a href="morningcheck.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Morning Status</a>
+                        </div>
+                    </div>
+
+                    <!-- Campus Life Dropdown -->
+                    <div class="relative group">
+                        <button class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors flex items-center">
+                            Campus Life
+                            <svg class="ml-1 w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 ease-out bg-white shadow-lg rounded-md mt-2 w-48 py-1 z-10">
+                            <a href="lost_found.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Lost & Found</a>
+                            <!-- Add more Campus Life links here -->
+                        </div>
+                    </div>
+
+                    <!-- New Team Section -->
+                    <a href="fellows.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Team</a>
                 </nav>
 
                 <!-- Mobile Menu Button -->
@@ -298,27 +344,45 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 bg-surface">
             <div class="px-4 py-2 space-y-1">
-                <a href="homepage.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">
-                    Home
-                </a>
+                <a href="homepage.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">Home</a>
                 <a href="announcements.html"
-                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">Announcements</a>
-                <a href="student_dashboard.html"
-                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Student Dashboard
-                </a>
-                <a href="print_request.html"
-                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Print Request
-                </a>
-                <a href="lost_found.html"
-                    class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Lost & Found
-                </a>
-                <a href="morningcheck.html"
-                    class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Morning Status</a>
+                    class="block px-3 py-2 text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md font-medium transition-colors">Announcements</a>
+
+                <!-- Mobile Student Hub Dropdown -->
+                <div class="py-2">
+                    <button class="mobile-dropdown-btn block w-full text-left px-3 py-2 text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md font-medium transition-colors">
+                        Student Hub
+                        <!-- Dropdown arrow for mobile -->
+                        <svg class="ml-auto w-4 h-4 inline-block transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="mobile-dropdown-content pl-6 pt-1 space-y-1"> <!-- This div would be toggled by JS -->
+                        <a href="student_dashboard.html" class="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">Dashboard</a>
+                        <a href="print_request.html" class="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">Print Request</a>
+                        <a href="morningcheck.html" class="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">Morning Status</a>
+                    </div>
+                </div>
+
+                <!-- Mobile Campus Life Dropdown -->
+                <div class="py-2">
+                    <button class="mobile-dropdown-btn block w-full text-left px-3 py-2 text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md font-medium transition-colors">
+                        Campus Life
+                        <!-- Dropdown arrow for mobile -->
+                        <svg class="ml-auto w-4 h-4 inline-block transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="mobile-dropdown-content pl-6 pt-1 space-y-1"> <!-- This div would be toggled by JS -->
+                        <a href="lost_found.html" class="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">Lost & Found</a>
+                    </div>
+                </div>
+
+                <!-- New Team Section for Mobile -->
+                <a href="fellows.html"
+                    class="block px-3 py-2 text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md font-medium transition-colors">Team</a>
             </div>
+        </div>
     </header>
 
     <!-- Main Content -->
@@ -333,9 +397,10 @@
                             Submit your print requests here for quick and convenient service at the SA2 Office.
                         </p>
                     </div>
-                    <!-- <div class="hidden sm:block">
-                        <img src="https://images.pexels.com/photos/5212317/pexels-photo-5212317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Printing illustration" class="w-24 h-24 rounded-lg object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
-                    </div> -->
+                    <!-- Retaining original image, if you want to replace with the logo, let me know -->
+                    <div class="hidden sm:block">
+                        <img src="https://www.thrivescholars.org/wp-content/uploads/2024/02/Thrive-Scholars_Standard-Horizontal-Logo-e1708984636495.png" alt="Thrive Scholars Logo" class="w-30 h-24 rounded-lg object-contain" onerror="this.onerror=null;this.src='https://placehold.co/200x80/10b981/ffffff?text=Thrive+Logo';">
+                    </div>
                 </div>
             </div>
         </section>
@@ -392,31 +457,52 @@
 
     <!-- JavaScript -->
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+            mobileMenuBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+                menuOpenIcon.classList.toggle('hidden');
+                menuCloseIcon.classList.toggle('hidden');
+            });
 
-        // Print Request Button functionality
-        const submitPrintRequestBtn = document.getElementById('submit-print-request-btn');
-        const loadingIndicator = document.getElementById('loading-indicator');
+            // Mobile Dropdown Toggles
+            const mobileDropdownButtons = document.querySelectorAll('.mobile-dropdown-btn');
 
-        submitPrintRequestBtn.addEventListener('click', () => {
-            loadingIndicator.classList.remove('hidden');
-            // Simulate redirection or form loading
-            setTimeout(() => {
-                loadingIndicator.classList.add('hidden');
-                // For now, we'll just log a message.
-                // In a real application, you would redirect to your print request form page:
-                // window.location.href = 'your_print_request_form_url.html';
-                console.log('Redirecting to print request form...');
-                // Example: window.location.href = 'print_request_form.html';
-                // For demonstration, let's just show a temporary alert (replace with modal in production)
-                alert('Redirecting to the print request form! (This is a placeholder)');
-            }, 1000); // Simulate a short loading time
+            mobileDropdownButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const dropdownContent = this.nextElementSibling;
+                    const dropdownArrow = this.querySelector('svg');
+
+                    // Toggle 'open' class for max-height transition
+                    dropdownContent.classList.toggle('open');
+                    // Toggle 'rotate-180' for arrow animation
+                    dropdownArrow.classList.toggle('rotate-180');
+                });
+            });
+
+            // Print Request Button functionality
+            const submitPrintRequestBtn = document.getElementById('submit-print-request-btn');
+            const loadingIndicator = document.getElementById('loading-indicator');
+
+            submitPrintRequestBtn.addEventListener('click', () => {
+                loadingIndicator.classList.remove('hidden');
+                // Simulate redirection or form loading
+                setTimeout(() => {
+                    loadingIndicator.classList.add('hidden');
+                    // For now, we'll just log a message.
+                    // In a real application, you would redirect to your print request form page:
+                    // window.location.href = 'your_print_request_form_url.html';
+                    console.log('Redirecting to print request form...');
+                    // Example: window.location.href = 'print_request_form.html';
+                    // For demonstration, let's just show a temporary alert (replace with modal in production)
+                    // alert('Redirecting to the print request form! (This is a placeholder)'); // Removed alert as per instructions
+                }, 1000); // Simulate a short loading time
+            });
         });
     </script>
     <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>

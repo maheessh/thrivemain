@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thrive Scholar - Lost & Found Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Custom Tailwind CSS Configuration (if needed, otherwise rely on CDN defaults) */
         :root {
@@ -212,6 +213,26 @@
             min-height: 48px;
             /* Minimum touch target size */
         }
+
+        /* Custom styles for mobile dropdown animation (from previous request) */
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .mobile-dropdown-content.open {
+            max-height: 500px;
+            /* A sufficiently large value to accommodate content */
+        }
+
+        .mobile-dropdown-btn svg {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-dropdown-btn svg.rotate-180 {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 
@@ -220,11 +241,9 @@
     <header class="bg-surface shadow-soft border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <!-- Campus Logo & Branding -->
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-    <svg class="w-6 h-6 text-purple-700" fill="currentColor" viewBox="0 0 24 24">
-
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" />
                         </svg>
                     </div>
@@ -234,26 +253,42 @@
                     </div>
                 </div>
 
-                <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center space-x-2">
                     <a href="homepage.html"
                         class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Home</a>
                     <a href="announcements.html"
                         class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Announcements</a>
-                    <a href="student_dashboard.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Dashboard</a>
-                    <a href="print_request.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Print
-                        Request</a>
-                    <a href="lost_found.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Lost
-                        & Found</a>
-                    <a href="morningcheck.html"
-                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Morning
-                        Status</a>
+
+                    <div class="relative group">
+                        <button class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors flex items-center">
+                            Student Hub
+                            <svg class="ml-1 w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 ease-out bg-white shadow-lg rounded-md mt-2 w-48 py-1 z-10">
+                            <a href="student_dashboard.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
+                            <a href="print_request.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Print Request</a>
+                            <a href="morningcheck.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Morning Status</a>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <button class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors flex items-center">
+                            Campus Life
+                            <svg class="ml-1 w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 ease-out bg-white shadow-lg rounded-md mt-2 w-48 py-1 z-10">
+                            <a href="lost_found.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Lost & Found</a>
+                            </div>
+                    </div>
+
+                    <a href="fellows.html"
+                        class="px-4 py-2 text-slate-600 hover:text-indigo-600 font-medium rounded-lg transition-colors">Team</a>
                 </nav>
 
-                <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn"
                     class="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100 transition-colors">
                     <svg class="w-6 h-6" id="menu-open-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -269,30 +304,40 @@
             </div>
         </div>
 
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 bg-surface">
             <div class="px-4 py-2 space-y-1">
-                <a href="homepage.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">
-                    Home
-                </a>
+                <a href="homepage.html" class="block px-3 py-2 text-primary bg-primary-50 rounded-md font-medium">Home</a>
                 <a href="announcements.html"
-                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">Announcements</a>
-                <a href="student_dashboard.html"
-                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Student Dashboard
-                </a>
-                <a href="print_request.html"
-                    class="block px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Print Request
-                </a>
-                <a href="lost_found.html"
-                    class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Lost & Found
-                </a>
-                <a href="morningcheck.html"
-                    class="px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-secondary-100 rounded-md font-medium transition-smooth">
-                    Morning Status</a>
+                    class="block px-3 py-2 text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md font-medium transition-colors">Announcements</a>
+
+                <div class="py-2">
+                    <button class="mobile-dropdown-btn block w-full text-left px-3 py-2 text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md font-medium transition-colors">
+                        Student Hub
+                        <svg class="ml-auto w-4 h-4 inline-block transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="mobile-dropdown-content pl-6 pt-1 space-y-1"> <a href="student_dashboard.html" class="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">Dashboard</a>
+                        <a href="print_request.html" class="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">Print Request</a>
+                        <a href="morningcheck.html" class="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">Morning Status</a>
+                    </div>
+                </div>
+
+                <div class="py-2">
+                    <button class="mobile-dropdown-btn block w-full text-left px-3 py-2 text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md font-medium transition-colors">
+                        Campus Life
+                        <svg class="ml-auto w-4 h-4 inline-block transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="mobile-dropdown-content pl-6 pt-1 space-y-1"> <a href="lost_found.html" class="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md">Lost & Found</a>
+                    </div>
+                </div>
+
+                <a href="fellows.html"
+                    class="block px-3 py-2 text-gray-700 hover:text-indigo-700 hover:bg-gray-50 rounded-md font-medium transition-colors">Team</a>
             </div>
+        </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -305,44 +350,12 @@
                     </div>
                     <div class="hidden sm:block">
                         <img src="https://www.thrivescholars.org/wp-content/uploads/2024/02/Thrive-Scholars_Standard-Horizontal-Logo-e1708984636495.png"
-                            alt="Campus illustration" class="w-30 h-24 rounded-lg object-cover"
-                            onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            alt="Thrive Scholars Logo" class="w-30 h-24 rounded-lg object-contain"
+                            onerror="this.onerror=null;this.src='https://placehold.co/200x80/10b981/ffffff?text=Thrive+Logo';">
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- <section class="mb-8 animate-fade-in">
-            <h2 class="text-fluid-xl font-semibold text-text-primary mb-4">Add New Item</h2>
-            <div class="card p-6">
-                <form id="lost-found-form" class="space-y-4">
-                    <div>
-                        <label for="item-name" class="block text-sm font-medium text-text-secondary mb-1">Item Name</label>
-                        <input type="text" id="item-name" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-smooth" placeholder="e.g., Blue backpack, Silver watch" required>
-                    </div>
-                    <div>
-                        <label for="item-description" class="block text-sm font-medium text-text-secondary mb-1">Description</label>
-                        <textarea id="item-description" rows="3" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-smooth" placeholder="Provide a detailed description (color, brand, distinguishing features, where/when it was lost/found)." required></textarea>
-                    </div>
-                    <div>
-                        <label for="item-image" class="block text-sm font-medium text-text-secondary mb-1">Image (Optional)</label>
-                        <input type="file" id="item-image" accept="image/*" class="w-full text-text-secondary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary hover:file:bg-primary-100 transition-smooth">
-                    </div>
-                    <div>
-                        <label for="contact-info" class="block text-sm font-medium text-text-secondary mb-1">Contact Info</label>
-                        <input type="text" id="contact-info" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-smooth" placeholder="Email or Phone Number" required>
-                    </div>
-                    <div>
-                        <label for="item-status" class="block text-sm font-medium text-text-secondary mb-1">Status</label>
-                        <select id="item-status" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-smooth">
-                            <option value="lost">Lost Item</option>
-                            <option value="found">Found Item</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-primary w-full">Add Item</button>
-                </form>
-            </div>
-        </section> -->
 
         <section class="mb-8 animate-fade-in">
             <div class="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
@@ -366,8 +379,6 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="found-items-grid">
-                <!-- add lost items here. -->
-
                 <div class="card p-6 hover-lift transition-smooth animate-fade-in border border-slate-300">
                     <div class="flex items-start justify-between mb-4">
                         <div class="flex items-center space-x-3">
@@ -510,27 +521,6 @@
 
         </section>
 
-        <!-- <section class="animate-fade-in">
-            <div class="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-                <h2 class="text-fluid-xl font-semibold text-text-primary">All Lost Items</h2>
-                <div class="flex items-center space-x-2">
-                    <div class="relative flex-1 max-w-md">
-                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
-                        <input type="text" id="lost-item-search" placeholder="Search lost items..." class="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-smooth" />
-                    </div>
-                    <select id="lost-item-filter-status" class="px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-smooth">
-                        <option value="all">All Lost</option>
-                        <option value="lost" selected>Currently Lost</option>
-                        </select>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="lost-items-grid">
-                <p id="no-lost-items-message" class="text-text-secondary col-span-full text-center hidden">No lost items reported yet.</p>
-            </div>
-        </section> -->
-
         <div id="loading-indicator" class="hidden fixed top-20 right-4 bg-surface shadow-elevated rounded-lg p-4 z-50">
             <div class="flex items-center space-x-3">
                 <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-primary"></div>
@@ -555,231 +545,252 @@
     </footer>
 
     <script>
-        // --- MOBILE MENU TOGGLE ---
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
 
-        mobileMenuBtn?.addEventListener('click', () => {
-            mobileMenu?.classList.toggle('hidden');
-        });
-
-        // --- LOST AND FOUND ---
-        const lostFoundForm = document.getElementById('lost-found-form');
-
-        // Found Items
-        const foundItemsGrid = document.getElementById('found-items-grid');
-        const foundItemSearch = document.getElementById('found-item-search');
-        const foundItemFilterStatus = document.getElementById('found-item-filter-status');
-        const noFoundItemsMessage = document.getElementById('no-found-items-message');
-
-        // Lost Items
-        const lostItemsGrid = document.getElementById('lost-items-grid');
-        const lostItemSearch = document.getElementById('lost-item-search');
-        const lostItemFilterStatus = document.getElementById('lost-item-filter-status');
-        const noLostItemsMessage = document.getElementById('no-lost-items-message');
-
-        const loadingIndicator = document.getElementById('loading-indicator');
-
-        function loadItems() {
-            try {
-                return JSON.parse(localStorage.getItem('lostFoundItems')) || [];
-            } catch (e) {
-                console.error("Error parsing lostFoundItems:", e);
-                return [];
-            }
-        }
-
-        function saveItems(items) {
-            localStorage.setItem('lostFoundItems', JSON.stringify(items));
-        }
-
-        function renderItemCard(item) {
-            const card = document.createElement('div');
-            card.classList.add('card', 'p-6', 'hover-lift', 'transition-smooth', 'reported-item-card', 'animate-fade-in');
-            card.dataset.status = item.status;
-            card.dataset.name = item.name.toLowerCase();
-            card.dataset.description = item.description.toLowerCase();
-
-            const isLost = item.status === 'lost';
-            const statusClass = isLost ? 'status-error' : 'status-success';
-            const statusIconPath = isLost
-                ? 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'
-                : 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z';
-            const statusBgClass = isLost ? 'bg-error-100' : 'bg-success-100';
-            const statusTextColorClass = isLost ? 'text-error' : 'text-success';
-
-            const shortDesc = item.description.length > 50 ? item.description.substring(0, 50) + "..." : item.description;
-            const image = item.imageUrl && item.imageUrl !== "https://placehold.co/400x200/e2e8f0/6b7280?text=No+Image"
-                ? item.imageUrl
-                : "https://placehold.co/400x200/e2e8f0/6b7280?text=No+Image";
-
-            card.innerHTML = `
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 ${statusBgClass} rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6 ${statusTextColorClass}" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="${statusIconPath}"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-text-primary">${item.name}</h3>
-                        <p class="text-sm text-text-secondary">${shortDesc}</p>
-                    </div>
-                </div>
-                <span class="${statusClass} px-3 py-1 rounded-full text-xs font-medium">${item.status === 'lost' ? 'Lost' : 'Found'}</span>
-            </div>
-            <img src="${image}" alt="${item.name}" class="w-full h-40 object-cover rounded-lg mb-4">
-            <div class="space-y-2">
-                <div class="flex items-center justify-between text-sm">
-                    <span class="text-text-secondary">Reported On</span>
-                    <span class="font-medium text-text-primary">${new Date(item.reportedDate).toLocaleDateString()}</span>
-                </div>
-                <div class="flex items-center justify-between text-sm">
-                    <span class="text-text-secondary">Contact</span>
-                    <span class="font-medium text-text-primary">${item.contactInfo}</span>
-                </div>
-            </div>
-            <div class="mt-4 pt-4 border-t border-slate-200 text-center">
-                <p class="text-sm text-text-secondary">For more details or to claim, visit the <span class="font-semibold text-primary">Main Office</span>.</p>
-            </div>
-        `;
-            return card;
-        }
-
-        function displayItems(items, targetGrid, noItemsMessage) {
-            // Clear only dynamically added items
-            const dynamicItems = targetGrid.querySelectorAll('.reported-item-card');
-            dynamicItems.forEach(item => item.remove());
-
-            const staticItemCount = targetGrid.children.length;
-
-            if (items.length === 0 && staticItemCount === 0) {
-                noItemsMessage.classList.remove('hidden');
-            } else {
-                noItemsMessage.classList.add('hidden');
-                // Prepend new items so static ones remain at the end
-                items.forEach(item => targetGrid.prepend(renderItemCard(item)));
-            }
-        }
-
-
-        function filterAndSearchItems(searchEl, filterEl, statusToShow, targetGrid, noItemsMessage) {
-            const searchTerm = searchEl.value.toLowerCase();
-            const filterStatus = filterEl.value;
-            const allItems = loadItems();
-
-            // Hide/show static cards based on search
-            const staticCards = targetGrid.querySelectorAll('.card:not(.reported-item-card)');
-            staticCards.forEach(card => {
-                const name = (card.querySelector('h3')?.textContent || '').toLowerCase();
-                const description = (card.querySelector('p')?.textContent || '').toLowerCase();
-                const matches = name.includes(searchTerm) || description.includes(searchTerm);
-                card.style.display = matches ? 'block' : 'none';
+            mobileMenuBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+                menuOpenIcon.classList.toggle('hidden');
+                menuCloseIcon.classList.toggle('hidden');
             });
 
-            const filtered = allItems.filter(item => {
-                const matchesSearch = item.name.toLowerCase().includes(searchTerm) ||
-                    item.description.toLowerCase().includes(searchTerm) ||
-                    item.contactInfo.toLowerCase().includes(searchTerm);
-                const matchesStatus = (filterStatus === 'all' || item.status === filterStatus) && item.status === statusToShow;
-                return matchesSearch && matchesStatus;
+            // Mobile Dropdown Toggles
+            const mobileDropdownButtons = document.querySelectorAll('.mobile-dropdown-btn');
+
+            mobileDropdownButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const dropdownContent = this.nextElementSibling;
+                    const dropdownArrow = this.querySelector('svg');
+
+                    // Toggle 'open' class for max-height transition
+                    dropdownContent.classList.toggle('open');
+                    // Toggle 'rotate-180' for arrow animation
+                    dropdownArrow.classList.toggle('rotate-180');
+                });
             });
 
-            displayItems(filtered, targetGrid, noItemsMessage);
-        }
+            // --- LOST AND FOUND ---
+            const lostFoundForm = document.getElementById('lost-found-form');
 
-        // Form Submission
-        lostFoundForm?.addEventListener('submit', e => {
-            e.preventDefault();
+            // Found Items
+            const foundItemsGrid = document.getElementById('found-items-grid');
+            const foundItemSearch = document.getElementById('found-item-search');
+            const foundItemFilterStatus = document.getElementById('found-item-filter-status');
+            const noFoundItemsMessage = document.getElementById('no-found-items-message');
 
-            const itemName = document.getElementById('item-name').value;
-            const itemDescription = document.getElementById('item-description').value;
-            const itemImageFile = document.getElementById('item-image').files[0];
-            const contactInfo = document.getElementById('contact-info').value;
-            const itemStatus = document.getElementById('item-status').value;
+            // Lost Items
+            const lostItemsGrid = document.getElementById('lost-items-grid');
+            const lostItemSearch = document.getElementById('lost-item-search');
+            const lostItemFilterStatus = document.getElementById('lost-item-filter-status');
+            const noLostItemsMessage = document.getElementById('no-lost-items-message');
 
-            const newItem = {
-                id: Date.now(),
-                name: itemName,
-                description: itemDescription,
-                imageUrl: "https://placehold.co/400x200/e2e8f0/6b7280?text=No+Image",
-                contactInfo: contactInfo,
-                status: itemStatus,
-                reportedDate: new Date().toISOString()
-            };
+            const loadingIndicator = document.getElementById('loading-indicator');
 
-            loadingIndicator?.classList.remove('hidden');
+            function loadItems() {
+                try {
+                    return JSON.parse(localStorage.getItem('lostFoundItems')) || [];
+                } catch (e) {
+                    console.error("Error parsing lostFoundItems:", e);
+                    return [];
+                }
+            }
 
-            const saveAndRender = () => {
-                const items = loadItems();
-                items.unshift(newItem);
-                saveItems(items);
-                filterAndSearchItems(foundItemSearch, foundItemFilterStatus, 'found', foundItemsGrid, noFoundItemsMessage);
-                filterAndSearchItems(lostItemSearch, lostItemFilterStatus, 'lost', lostItemsGrid, noLostItemsMessage);
-                loadingIndicator?.classList.add('hidden');
-            };
+            function saveItems(items) {
+                localStorage.setItem('lostFoundItems', JSON.stringify(items));
+            }
 
-            if (itemImageFile) {
-                const reader = new FileReader();
-                reader.onload = event => {
-                    newItem.imageUrl = event.target.result;
+            function renderItemCard(item) {
+                const card = document.createElement('div');
+                card.classList.add('card', 'p-6', 'hover-lift', 'transition-smooth', 'reported-item-card', 'animate-fade-in');
+                card.dataset.status = item.status;
+                card.dataset.name = item.name.toLowerCase();
+                card.dataset.description = item.description.toLowerCase();
+
+                const isLost = item.status === 'lost';
+                const statusClass = isLost ? 'status-error' : 'status-success';
+                const statusIconPath = isLost
+                    ? 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'
+                    : 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z';
+                const statusBgClass = isLost ? 'bg-error-100' : 'bg-success-100';
+                const statusTextColorClass = isLost ? 'text-error' : 'text-success';
+
+                const shortDesc = item.description.length > 50 ? item.description.substring(0, 50) + "..." : item.description;
+                const image = item.imageUrl && item.imageUrl !== "https://placehold.co/400x200/e2e8f0/6b7280?text=No+Image"
+                    ? item.imageUrl
+                    : "https://placehold.co/400x200/e2e8f0/6b7280?text=No+Image";
+
+                card.innerHTML = `
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 ${statusBgClass} rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 ${statusTextColorClass}" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="${statusIconPath}"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-text-primary">${item.name}</h3>
+                            <p class="text-sm text-text-secondary">${shortDesc}</p>
+                        </div>
+                    </div>
+                    <span class="${statusClass} px-3 py-1 rounded-full text-xs font-medium">${item.status === 'lost' ? 'Lost' : 'Found'}</span>
+                </div>
+                <img src="${image}" alt="${item.name}" class="w-full h-40 object-cover rounded-lg mb-4">
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-text-secondary">Reported On</span>
+                        <span class="font-medium text-text-primary">${new Date(item.reportedDate).toLocaleDateString()}</span>
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-text-secondary">Contact</span>
+                        <span class="font-medium text-text-primary">${item.contactInfo}</span>
+                    </div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-slate-200 text-center">
+                    <p class="text-sm text-text-secondary">For more details or to claim, visit the <span class="font-semibold text-primary">Main Office</span>.</p>
+                </div>
+            `;
+                return card;
+            }
+
+            function displayItems(items, targetGrid, noItemsMessage) {
+                // Clear only dynamically added items
+                const dynamicItems = targetGrid.querySelectorAll('.reported-item-card');
+                dynamicItems.forEach(item => item.remove());
+
+                const staticItemCount = targetGrid.children.length;
+
+                if (items.length === 0 && staticItemCount === 0) {
+                    noItemsMessage.classList.remove('hidden');
+                } else {
+                    noItemsMessage.classList.add('hidden');
+                    // Prepend new items so static ones remain at the end
+                    items.forEach(item => targetGrid.prepend(renderItemCard(item)));
+                }
+            }
+
+
+            function filterAndSearchItems(searchEl, filterEl, statusToShow, targetGrid, noItemsMessage) {
+                const searchTerm = searchEl.value.toLowerCase();
+                const filterStatus = filterEl.value;
+                const allItems = loadItems();
+
+                // Hide/show static cards based on search
+                const staticCards = targetGrid.querySelectorAll('.card:not(.reported-item-card)');
+                staticCards.forEach(card => {
+                    const name = (card.querySelector('h3')?.textContent || '').toLowerCase();
+                    const description = (card.querySelector('p')?.textContent || '').toLowerCase();
+                    const matches = name.includes(searchTerm) || description.includes(searchTerm);
+                    card.style.display = matches ? 'block' : 'none';
+                });
+
+                const filtered = allItems.filter(item => {
+                    const matchesSearch = item.name.toLowerCase().includes(searchTerm) ||
+                        item.description.toLowerCase().includes(searchTerm) ||
+                        item.contactInfo.toLowerCase().includes(searchTerm);
+                    const matchesStatus = (filterStatus === 'all' || item.status === filterStatus) && item.status === statusToShow;
+                    return matchesSearch && matchesStatus;
+                });
+
+                displayItems(filtered, targetGrid, noItemsMessage);
+            }
+
+            // Form Submission
+            lostFoundForm?.addEventListener('submit', e => {
+                e.preventDefault();
+
+                const itemName = document.getElementById('item-name').value;
+                const itemDescription = document.getElementById('item-description').value;
+                const itemImageFile = document.getElementById('item-image').files[0];
+                const contactInfo = document.getElementById('contact-info').value;
+                const itemStatus = document.getElementById('item-status').value;
+
+                const newItem = {
+                    id: Date.now(),
+                    name: itemName,
+                    description: itemDescription,
+                    imageUrl: "https://placehold.co/400x200/e2e8f0/6b7280?text=No+Image",
+                    contactInfo: contactInfo,
+                    status: itemStatus,
+                    reportedDate: new Date().toISOString()
+                };
+
+                loadingIndicator?.classList.remove('hidden');
+
+                const saveAndRender = () => {
+                    const items = loadItems();
+                    items.unshift(newItem);
+                    saveItems(items);
+                    filterAndSearchItems(foundItemSearch, foundItemFilterStatus, 'found', foundItemsGrid, noFoundItemsMessage);
+                    filterAndSearchItems(lostItemSearch, lostItemFilterStatus, 'lost', lostItemsGrid, noLostItemsMessage);
+                    loadingIndicator?.classList.add('hidden');
+                };
+
+                if (itemImageFile) {
+                    const reader = new FileReader();
+                    reader.onload = event => {
+                        newItem.imageUrl = event.target.result;
+                        saveAndRender();
+                        showTemporaryMessage("Item reported successfully!", "success");
+                    };
+                    reader.onerror = () => {
+                        saveAndRender();
+                        showTemporaryMessage("Item reported, but image upload failed.", "warning");
+                    };
+                    reader.readAsDataURL(itemImageFile);
+                } else {
                     saveAndRender();
                     showTemporaryMessage("Item reported successfully!", "success");
-                };
-                reader.onerror = () => {
-                    saveAndRender();
-                    showTemporaryMessage("Item reported, but image upload failed.", "warning");
-                };
-                reader.readAsDataURL(itemImageFile);
-            } else {
-                saveAndRender();
-                showTemporaryMessage("Item reported successfully!", "success");
+                }
+
+                lostFoundForm.reset();
+            });
+
+            // Initial render
+            document.addEventListener('DOMContentLoaded', () => {
+                filterAndSearchItems(foundItemSearch, foundItemFilterStatus, 'found', foundItemsGrid, noFoundItemsMessage);
+                filterAndSearchItems(lostItemSearch, lostItemFilterStatus, 'lost', lostItemsGrid, noLostItemsMessage);
+            });
+
+            // Live search and filter
+            foundItemSearch?.addEventListener('input', () =>
+                filterAndSearchItems(foundItemSearch, foundItemFilterStatus, 'found', foundItemsGrid, noFoundItemsMessage)
+            );
+            foundItemFilterStatus?.addEventListener('change', () =>
+                filterAndSearchItems(foundItemSearch, foundItemFilterStatus, 'found', foundItemsGrid, noFoundItemsMessage)
+            );
+
+            lostItemSearch?.addEventListener('input', () =>
+                filterAndSearchItems(lostItemSearch, lostItemFilterStatus, 'lost', lostItemsGrid, noLostItemsMessage)
+            );
+            lostItemFilterStatus?.addEventListener('change', () =>
+                filterAndSearchItems(lostItemSearch, lostItemFilterStatus, 'lost', lostItemsGrid, noLostItemsMessage)
+            );
+
+            // Toast message
+            function showTemporaryMessage(message, type = 'info') {
+                const box = document.createElement('div');
+                box.classList.add('fixed', 'bottom-4', 'right-4', 'p-4', 'rounded-lg', 'shadow-elevated', 'text-white', 'z-50', 'animate-fade-in');
+
+                switch (type) {
+                    case 'success': box.classList.add('bg-green-500'); break;
+                    case 'error': box.classList.add('bg-red-500'); break;
+                    case 'warning': box.classList.add('bg-orange-500'); break;
+                    default: box.classList.add('bg-gray-700');
+                }
+
+                box.textContent = message;
+                document.body.appendChild(box);
+
+                setTimeout(() => {
+                    box.classList.add('opacity-0', 'transition-opacity');
+                    box.addEventListener('transitionend', () => box.remove());
+                }, 3000);
             }
-
-            lostFoundForm.reset();
         });
-
-        // Initial render
-        document.addEventListener('DOMContentLoaded', () => {
-            filterAndSearchItems(foundItemSearch, foundItemFilterStatus, 'found', foundItemsGrid, noFoundItemsMessage);
-            filterAndSearchItems(lostItemSearch, lostItemFilterStatus, 'lost', lostItemsGrid, noLostItemsMessage);
-        });
-
-        // Live search and filter
-        foundItemSearch?.addEventListener('input', () =>
-            filterAndSearchItems(foundItemSearch, foundItemFilterStatus, 'found', foundItemsGrid, noFoundItemsMessage)
-        );
-        foundItemFilterStatus?.addEventListener('change', () =>
-            filterAndSearchItems(foundItemSearch, foundItemFilterStatus, 'found', foundItemsGrid, noFoundItemsMessage)
-        );
-
-        lostItemSearch?.addEventListener('input', () =>
-            filterAndSearchItems(lostItemSearch, lostItemFilterStatus, 'lost', lostItemsGrid, noLostItemsMessage)
-        );
-        lostItemFilterStatus?.addEventListener('change', () =>
-            filterAndSearchItems(lostItemSearch, lostItemFilterStatus, 'lost', lostItemsGrid, noLostItemsMessage)
-        );
-
-        // Toast message
-        function showTemporaryMessage(message, type = 'info') {
-            const box = document.createElement('div');
-            box.classList.add('fixed', 'bottom-4', 'right-4', 'p-4', 'rounded-lg', 'shadow-elevated', 'text-white', 'z-50', 'animate-fade-in');
-
-            switch (type) {
-                case 'success': box.classList.add('bg-green-500'); break;
-                case 'error': box.classList.add('bg-red-500'); break;
-                case 'warning': box.classList.add('bg-orange-500'); break;
-                default: box.classList.add('bg-gray-700');
-            }
-
-            box.textContent = message;
-            document.body.appendChild(box);
-
-            setTimeout(() => {
-                box.classList.add('opacity-0', 'transition-opacity');
-                box.addEventListener('transitionend', () => box.remove());
-            }, 3000);
-        }
     </script>
 
     <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
