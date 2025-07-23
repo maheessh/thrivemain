@@ -62,6 +62,8 @@
             opacity: 0;
             pointer-events: none;
             /* Prevents interaction when hidden */
+            /* Added for mobile scrolling of the entire modal if content overflows viewport */
+            overflow-y: auto; 
         }
 
         .modal.visible {
@@ -72,8 +74,9 @@
 
         /* Max height for modal body to enable scrolling */
         .modal-body {
-            max-height: 90vh;
-            /* Adjust as needed */
+            max-height: 90vh; /* Adjust as needed */
+            /* Added padding-bottom for mobile view */
+            padding-bottom: 2rem; /* pb-8 equivalent */
         }
 
         /* Custom styles for mobile dropdown animation */
@@ -84,7 +87,8 @@
         }
 
         .mobile-dropdown-content.open {
-            max-height: 500px; /* A sufficiently large value to accommodate content */
+            max-height: 500px;
+            /* A sufficiently large value to accommodate content */
         }
 
         .mobile-dropdown-btn svg {
@@ -222,7 +226,7 @@
         <div class="text-center mb-16">
             <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800">Meet Our Extraordinary Team</h1>
             <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">The driving force behind our mission, composed of
-                passive leaders, mentors, and managers dedicated to student success.</p>
+                passionate leaders, mentors, and managers dedicated to student success.</p>
         </div>
 
         <!-- Social Proof / Counter Section -->
@@ -478,6 +482,35 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- NEW FELLOW: Corey Benton -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="corey">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/xtTG1B6Z/unnamed-1.png"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=CB';"
+                            alt="Corey Benton" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">Corey Benton</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW FELLOW: John Zurita -->
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="john">
+                    <div class="relative">
+                        <img src="https://i.ibb.co/60pWWRS9/unnamed-1.jpg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=JZ';"
+                            alt="John Zurita" class="w-full h-80 object-cover object-top">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-white text-xl font-bold">John Zurita</h3>
+                            <p class="text-blue-300 text-sm">Fellow</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
 
@@ -492,12 +525,12 @@
     <!-- Fellows Modals -->
     <!-- Grecia V. Acevedo's Modal -->
     <div id="modal-grecia"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/0yGfcbD2/gracia.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Grecia';"
                 alt="Grecia V. Acevedo" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Grecia V. Acevedo</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -536,12 +569,12 @@
     </div>
     <!-- Nicholas Robie's Modal -->
     <div id="modal-nicholas"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/PZ91wPJm/unnamed-1.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Nicholas';"
                 alt="Nicholas Robie" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Nicholas Robie</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -574,12 +607,12 @@
     </div>
     <!-- Amare Harris's Modal -->
     <div id="modal-amare"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/ymwpQ3L2/unnamed-2.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Amare';"
                 alt="Amare Harris" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Amare Harris</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -611,12 +644,12 @@
     </div>
     <!-- Mahesh Pandit's Modal -->
     <div id="modal-mahesh"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/bMdqSmTf/IMG-0055.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/6366f1/ffffff?text=Mahesh';"
                 alt="Mahesh Raj Pandit" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Mahesh Raj Pandit</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -652,12 +685,12 @@
     </div>
     <!-- Chealsea's Modal -->
     <div id="modal-chealsea"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/Q7BmbFPV/chelsea.png"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Chealsea';"
                 alt="Chealsea Roldan" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Chealsea Roldan</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -687,12 +720,12 @@
     </div>
     <!-- Gabrielle Nicoleau's Modal -->
     <div id="modal-gabrielle"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/n8bpT0LX/unnamed-3.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Gabrielle';"
                 alt="Gabrielle Nicoleau" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Gabrielle Nicoleau</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -725,12 +758,12 @@
     </div>
     <!-- Christian Howze's Modal -->
     <div id="modal-christian"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/QFz75gJD/unnamed-4.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Christian';"
                 alt="Christian Howze" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Christian Howze</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -772,12 +805,12 @@
     </div>
     <!-- Liz Rodriguez's Modal -->
     <div id="modal-liz"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/hFXMjcW3/liz.png"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Liz';"
                 alt="Liz Rodriguez" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Liz Rodriguez</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -810,12 +843,12 @@
     </div>
     <!-- Minerva Pineda's Modal -->
     <div id="modal-minerva"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/1JsQzP01/minerva.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Minerva';"
                 alt="Minerva Pineda" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Minerva Pineda</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -855,12 +888,12 @@
     </div>
     <!-- Boluwatife Adewusi's Modal -->
     <div id="modal-boluwatife"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/8gr2ZPyh/samson.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Boluwatife';"
                 alt="Boluwatife Adewusi" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Boluwatife Adewusi</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -901,12 +934,12 @@
     </div>
     <!-- Peter Raymond's Modal -->
     <div id="modal-peter"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/pjbkcTDP/peter.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Peter';"
                 alt="Peter Raymond" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Peter Raymond</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -939,12 +972,12 @@
     </div>
     <!-- Makayla J. Brown's Modal -->
     <div id="modal-makayla"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/p6zMZc2W/may.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Makayla';"
                 alt="Makayla J. Brown" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Makayla J. Brown</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -978,12 +1011,12 @@
     </div>
     <!-- Sara Pedraja's Modal -->
     <div id="modal-sara"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/9H3MwW1N/sara.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Sara';"
                 alt="Sara Pedraja" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Sara Pedraja</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -1017,12 +1050,12 @@
     </div>
     <!-- Sanai Hicks's Modal -->
     <div id="modal-sanai"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/21cPhrFv/sanai.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Sanai';"
                 alt="Sanai Hicks" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Sanai Hicks</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -1058,12 +1091,12 @@
     </div>
     <!-- Stephanie Tilley's Modal -->
     <div id="modal-stephanie"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/99nDFjPV/stephanie.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Stephanie';"
                 alt="Stephanie Tilley" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Stephanie Tilley</h3>
                     <p class="text-green-600 font-semibold mt-1">ASD</p>
@@ -1103,12 +1136,12 @@
     </div>
     <!-- Katharine Situ's Modal -->
     <div id="modal-katharine"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/b5Ggwwjk/kathrine.png"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Katharine';"
                 alt="Katharine Situ" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Katharine Situ</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -1141,12 +1174,12 @@
     </div>
     <!-- Naomi Gates's Modal -->
     <div id="modal-naomi"
-        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row overflow-hidden relative">
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
             <img src="https://i.ibb.co/Fb1FH5XJ/naomi.jpg"
                 onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Naomi';"
                 alt="Naomi Gates" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
-            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
                 <div>
                     <h3 class="text-3xl font-bold text-gray-900">Naomi Gates</h3>
                     <p class="text-green-600 font-semibold mt-1">Fellow</p>
@@ -1173,6 +1206,72 @@
                 </div>
                 <div class="mt-6 flex space-x-4">
                     <a href="http://www.linkedin.com/in/naomi-gates-3316b829b" target="_blank"
+                        class="text-gray-500 hover:text-green-600 transition-colors"><i
+                            class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <!-- NEW MODAL: Corey Benton's Modal -->
+    <div id="modal-corey"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
+            <img src="https://i.ibb.co/xtTG1B6Z/unnamed-1.png"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Corey';"
+                alt="Corey Benton" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Corey Benton</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Washington, DC</li>
+                        <li><strong>Career Interest:</strong> Something with the NFL</li>
+                        <li><strong>Major:</strong> Aviation management</li>
+                        <li><strong>College:</strong> Delaware state university</li>
+                        <li><strong>Additional Info:</strong> I attend a HBCU located in Dover, DE</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> navigating college life at an HBCU, exploring career paths, and balancing academics with personal interests.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <!-- LinkedIn link if available -->
+                     
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <!-- NEW MODAL: John Zurita's Modal -->
+    <div id="modal-john"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
+            <img src="https://i.ibb.co/60pWWRS9/unnamed-1.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=John';"
+                alt="John Zurita" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">John Zurita</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+                        I am a first-gen rising sophomore at UCSB that comes from a Hispanic background currently pursuing a dual degree in Data Science & Statistics and Communications. I am involved in clubs such as Los Ingenieros (UCSB’s SHPE chapter). I plan to pursue a career in marketing, consumer analytics, data visualization, or media analytics.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Los Angeles, CA</li>
+                        <li><strong>Career Interest:</strong> Media Analyst, Market Research Analyst, Data Analytics Consultant</li>
+                        <li><strong>Major:</strong> Data Science & Statistics Double: Communications</li>
+                        <li><strong>College:</strong> University of California, Santa Barbara</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> The first-year experience, making the most of campus resources, time management, utilizing internships to their advantage.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <!-- Add LinkedIn link here if provided -->
+                     <a href="https://www.linkedin.com/in/john-zurita-1217ca/" target="_blank"
                         class="text-gray-500 hover:text-green-600 transition-colors"><i
                             class="fab fa-linkedin fa-2x"></i></a>
                 </div>
