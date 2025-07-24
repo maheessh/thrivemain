@@ -19,7 +19,7 @@ const packages = [
     {
         name: "Christian Howze",
         packageCount: 1,
-        status: "ready",
+        status: "delivered",
         arrived: "7/24/2025, 1:41 PM",
         location: 'Main Office "Eaton 283"',
         sender: "Amazon",
