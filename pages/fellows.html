@@ -253,6 +253,19 @@
             <!-- Organizers -->
             <h2 class="text-3xl font-bold text-gray-800 border-l-4 border-indigo-500 pl-4 mb-10">Site Directors</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                    data-modal-target="lennon">
+                <div class="relative">
+                <img src="https://i.ibb.co/Vc6jsr33/unnamed-2.jpg"
+                     onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=LW';"
+                     alt="Lennon Wesley III" class="w-full h-80 object-cover object-top">
+                <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                    <h3 class="text-white text-xl font-bold">Lennon Wesley III</h3>
+                    <p class="text-blue-300 text-sm">Site Director</p>
+                </div>
+                </div>
+                </div>
+                
                 <!-- Team Member Card: Stephanie Tilley -->
                 <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
                     data-modal-target="stephanie">
@@ -266,6 +279,10 @@
                         </div>
                     </div>
                 </div>
+
+              
+
+                
 
 
             </div>
@@ -510,6 +527,19 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+             data-modal-target="peter2">
+            <div class="relative">
+                <img src="https://i.ibb.co/XkkHz6kv/unnamed-3.jpg"
+                     onerror="this.onerror=null;this.src='https://placehold.co/400x400/10b981/ffffff?text=PE';"
+                     alt="Peter Estiverne" class="w-full h-80 object-cover object-top">
+                <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                    <h3 class="text-white text-xl font-bold">Peter Estiverne</h3>
+                    <p class="text-blue-300 text-sm">Fellow</p>
+                </div>
+            </div>
+        </div>
 
             </div>
 
@@ -1134,6 +1164,38 @@
                     class="fas fa-times"></i></button>
         </div>
     </div>
+    <!-- Lennon's Modal -->
+    <div id="modal-lennon"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
+            <img src="https://i.ibb.co/Vc6jsr33/unnamed-2.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Lennon';"
+                alt="Lennon Wesley III" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Lennon Wesley III</h3>
+                    <p class="text-green-600 font-semibold mt-1">Site Director</p>
+                    <p class="text-gray-700 mt-4">A Masters graduate passionate about business and social impact. With an extensive background in leadership and operations, he is energized by engaging the critical challenges faced in access to education, social entrepreneurship, and resource scarcity. In the future he seeks to bring Social Impact to the Fortune 500 and pursue federal politics.</p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Las Vegas, NV</li>
+                        <li><strong>Career Interests:</strong> Social Impact, Leadership, Organizational Behavior, Politics</li>
+                        <li><strong>Education:</strong> M.S. Social Entrepreneurship, B.S. Business Administration, B.A. Philosophy, Politics, and Law from the University of Southern California</li>
+                        <li><strong>Fun Facts:</strong> Avid movie, sports, and music fanatic; enjoys reading and writing poetry.</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> access to education, leadership, executive development, and entrepreneurship.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/lw3/" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" class="text-gray-500 hover:text-blue-700 transition-colors">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+
     <!-- Katharine Situ's Modal -->
     <div id="modal-katharine"
         class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
@@ -1275,6 +1337,34 @@
                         class="text-gray-500 hover:text-green-600 transition-colors"><i
                             class="fab fa-linkedin fa-2x"></i></a>
                 </div>
+            </div>
+            <button
+                class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <div id="modal-peter2"
+        class="modal hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl flex flex-col md:flex-row relative">
+            <img src="https://i.ibb.co/XkkHz6kv/unnamed-3.jpg"
+                onerror="this.onerror=null;this.src='https://placehold.co/600x800/10b981/ffffff?text=Peter';"
+                alt="Peter Estiverne" class="w-full md:w-1/3 h-96 md:h-auto object-cover object-top">
+            <div class="p-8 flex flex-col justify-between w-full md:w-2/3 modal-body overflow-y-auto pb-8">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Peter Estiverne</h3>
+                    <p class="text-green-600 font-semibold mt-1">Fellow</p>
+                    <p class="text-gray-700 mt-4">My goal in life is to serve and love others. I attend a Christian university in Oklahoma, which helps me focus on my goals of growing in education and spirituality. As my vocation I plan to go into the digital marketing industry to fund my vocation as a christian leader, and missionary. I just finished my first mission trip last month with my school where I went to South Africa for 4 weeks to help their nation and serve their people.</p>
+                    <ul class="list-disc list-inside text-gray-700 mt-4">
+                        <li><strong>Hometown:</strong> Miami, FL</li>
+                        <li><strong>Career Interest:</strong> Digital Ministry / Missionary</li>
+                        <li><strong>Major:</strong> Digital Marketing</li>
+                        <li><strong>College:</strong> Oral Roberts University</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4"><strong>Ask me about…</strong> being a first-gen student, being uncertain of your major, practical skills for college success, and private school life.</p>
+                </div>
+                <div class="mt-6 flex space-x-4">
+                    </div>
             </div>
             <button
                 class="modal-close absolute top-4 right-4 text-white md:text-gray-600 hover:text-gray-900 text-3xl font-bold leading-none select-none transition-colors p-2"><i
